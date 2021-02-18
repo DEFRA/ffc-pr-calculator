@@ -1,13 +1,13 @@
 environment: development
-name: ffc-template-node
-namespace: ffc-demo
-workstream: ffc-demo
-image: ffc-template-node
+name: ffc-pr-calculator
+namespace: ffc-pr
+workstream: ffc-pr
+image: ffc-pr-calculator
 
 labels: {}
 
 containerConfigMap:
-  name: ffc-template-node-config-map
+  name: ffc-pr-calculator-config-map
 
 deployment:
   restartPolicy: Always
