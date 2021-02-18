@@ -1,0 +1,22 @@
+{
+  "defaults": {
+    "standard": "WCAG2AA",
+    "timeout": 10000,
+    "wait": 5000,
+    "chromeLaunchConfig": {
+      "args": [
+        "--no-sandbox",
+        "--disable-dev-shm-usage"
+      ],
+      "executablePath": "/usr/bin/chromium-browser"
+    },
+    "hideElements": [
+      ".govuk-header__logotype-crown",
+      ".govuk-footer__licence-logo"
+    ]
+  },
+  "urls": [
+    "http://ffc-pr-calculator:3000/",
+    "http://ffc-pr-calculator:3000/bps"
+  ]
+}

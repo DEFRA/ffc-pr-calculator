@@ -1,0 +1,34 @@
+const joi = require('joi')
+
+// Define config schema
+const schema = joi.object({
+  serviceName: joi.string().default('Calculate my progressive reductions'),
+  port: joi.number().default(3000),
+  env: joi.string().valid('development', 'test', 'production').default('development'),
+  googleTagManagerKey: joi.string().default('')
+})
+
+// Build config
+const config = {
+  serviceName: process.env.SERVICE_NAME,
+  port: process.env.PORT,
+  env: process.env.NODE_ENV,
+  googleTagManagerKey: process.env.GOOGLE_TAG_MANAGER_KEY
+}
+
+// Validate config
+const result = schema.validate(config, {
+  abortEarly: false
+})
+
+// Throw if config is invalid
+if (result.error) {
+  throw new Error(`The server config is invalid. ${result.error.message}`)
+}
+
+// Use the joi validated value
+const value = result.value
+
+value.isDev = (value.env === 'development' || value.env === 'test')
+
+module.exports = value
