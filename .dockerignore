@@ -4,7 +4,6 @@ auth
 helm
 docs
 app/static/stylesheets/*.css*
-scripts
 test-output
 docker-compose*
 Jenkinsfile
