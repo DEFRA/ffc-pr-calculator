@@ -1,13 +1,12 @@
 const joi = require('joi')
-const NameViewModel = require('./models/bps')
-const ConfirmationViewModel = require('./models/confirmation')
+const ViewModel = require('./models/bps')
 
 module.exports = [{
   method: 'GET',
   path: '/bps',
   options: {
     handler: (request, h) => {
-      return h.view('bps', new NameViewModel())
+      return h.view('bps', new ViewModel())
     }
   }
 },
@@ -20,11 +19,11 @@ module.exports = [{
         bpsValue: joi.number().precision(2).greater(0)
       }),
       failAction: async (request, h, error) => {
-        return h.view('bps', new NameViewModel(request.payload.bpsValue, error)).takeover()
+        return h.view('bps', new ViewModel(request.payload.bpsValue, error)).takeover()
       }
     },
     handler: async (request, h) => {
-      return h.view('confirmation', new ConfirmationViewModel(request.payload.bpsValue))
+      return h.redirect(`/calculation?bpsValue=${request.payload.bpsValue}`)
     }
   }
 }]
