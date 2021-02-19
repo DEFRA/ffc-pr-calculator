@@ -17,6 +17,7 @@
   },
   "urls": [
     "http://ffc-pr-calculator:3000/",
-    "http://ffc-pr-calculator:3000/bps"
+    "http://ffc-pr-calculator:3000/bps",
+    "http://ffc-pr-calculator:3000/calculation"
   ]
 }
