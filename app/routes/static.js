@@ -35,7 +35,8 @@ module.exports = [{
     handler: {
       directory: {
         path: [
-          'app/dist'
+          'app/dist',
+          'node_modules/govuk-frontend/govuk/assets'
         ]
       }
     },
