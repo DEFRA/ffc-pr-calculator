@@ -1,0 +1,27 @@
+{% extends 'layout.njk' %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/error-message/macro.njk" import govukErrorMessage %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      }]
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-body">
+    <form method="POST" action="/bps">
+      {{ govukInput(model) }}
+      {{ govukButton({
+        text: "Calculate my payments"
+      }) }}
+    </form>
+  </div>
+{% endblock %}

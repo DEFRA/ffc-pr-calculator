@@ -1,13 +1,25 @@
 environment: development
-name: ffc-template-node
-namespace: ffc-demo
-workstream: ffc-demo
-image: ffc-template-node
+name: ffc-pr-calculator
+namespace: ffc-pr
+workstream: ffc-pr
+image: ffc-pr-calculator
 
-labels: {}
+labels:
+  component: web
+
+appInsights:
+  key:
 
 containerConfigMap:
-  name: ffc-template-node-config-map
+  name: ffc-pr-calculator-config-map
+
+containerSecret:
+  name: ffc-pr-calculator-container-secret
+  type: Opaque
+
+service:
+  port: 80
+  type: ClusterIP
 
 deployment:
   restartPolicy: Always
@@ -17,16 +29,27 @@ deployment:
   redeployOnChange: update this field to force a change
   runAsNonRoot: true
   runAsUser: 1000
+  useLinkerd: true
+  minReplicas: 1
+  maxReplicas: 3
+  cpuThreshold: 80
+  memoryThreshold: 80
 
 container:
   imagePullPolicy: IfNotPresent
-  requestMemory: 120Mi
-  requestCpu: 120m
-  limitMemory: 120Mi
-  limitCpu: 120m
+  requestMemory: 40Mi
+  requestCpu: 40m
+  limitMemory: 40Mi
+  limitCpu: 40m
   readOnlyRootFilesystem: true
   allowPrivilegeEscalation: false
   port: 3000
+  googleTagManagerKey: tbc
+
+ingress:
+  class: nginx
+  endpoint: ffc-pr-calculator
+  server: example.com
 
 livenessProbe:
   path: /healthz

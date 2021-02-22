@@ -1,0 +1,8 @@
+{{- include "ffc-helm-library.container-config-map" (list . "ffc-pr-calculator.config-map") -}}
+{{- define "ffc-pr-calculator.config-map" -}}
+data:
+  NODE_ENV: {{ quote .Values.environment }}
+  PORT: {{ quote .Values.container.port }}
+  APPINSIGHTS_CLOUDROLE: {{ quote .Values.name }}
+  GOOGLE_TAG_MANAGER_KEY: {{ quote .Values.container.googleTagManagerKey}}
+{{- end -}}
