@@ -4,7 +4,7 @@
 {% include "./tag-manager/head-content.njk" %}
   <!--[if !IE 8]><!-->
 
-<link href="/static/css/application.b17cd3e52d4f0f36053b.css" rel="stylesheet">
+<link href="/static/css/application.3a0e35204e8d91f3d547.css" rel="stylesheet">
 
   <!--<![endif]-->
 
@@ -22,7 +22,9 @@
 
 {% block header %}
   {{ govukHeader({
-    homepageUrl: "#"
+    homepageUrl: "/",
+    containerClasses: "govuk-width-container",
+    serviceUrl: "/"
   }) }}
 {% endblock %}
 
@@ -41,6 +43,6 @@
 {% block bodyEnd %}
   {# Run JavaScript at end of the <body>, to avoid blocking the initial render. #}
 
-  <script src="/static/js/bundle.b17cd3e52d4f0f36053b.js"></script>
+  <script src="/static/js/bundle.3a0e35204e8d91f3d547.js"></script>
 
 {% endblock %}

@@ -3,9 +3,9 @@
 {% block head %}
 {% include "./tag-manager/head-content.njk" %}
   <!--[if !IE 8]><!-->
-
-<link href="/static/css/application.b17cd3e52d4f0f36053b.css" rel="stylesheet">
-
+<% htmlWebpackPlugin.files.css.forEach(file => { %>
+<link href="<%= file.replace('../dist/', '/static/') %>" rel="stylesheet">
+<% }) %>
   <!--<![endif]-->
 
   {# For Internet Explorer 8, you need to compile specific stylesheet #}
@@ -22,7 +22,9 @@
 
 {% block header %}
   {{ govukHeader({
-    homepageUrl: "#"
+    homepageUrl: "/",
+    containerClasses: "govuk-width-container",
+    serviceUrl: "/"
   }) }}
 {% endblock %}
 
@@ -40,7 +42,7 @@
 
 {% block bodyEnd %}
   {# Run JavaScript at end of the <body>, to avoid blocking the initial render. #}
-
-  <script src="/static/js/bundle.b17cd3e52d4f0f36053b.js"></script>
-
+<% htmlWebpackPlugin.files.js.forEach(file => { %>
+  <script src="<%= file.replace('../dist/', '/static/') %>"></script>
+<% }) %>
 {% endblock %}
