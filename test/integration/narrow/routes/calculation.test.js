@@ -44,5 +44,6 @@ describe('calculation route', () => {
         const result = await server.inject(options)
         expect(result.request.response.variety).toBe('view')
         expect(result.request.response.source.template).toBe('calculation')
+        expect(result.payload).toContain('govuk-table')
     })
 })
