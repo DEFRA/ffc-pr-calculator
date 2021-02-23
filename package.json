@@ -17,13 +17,14 @@
   "author": "Defra DDTS",
   "contributors": [
     "John Watson john.watson2@rpa.gov.uk",
-    "Fay Toward fay.toward@rpa.gov.uk",	
-    "Steve Dickinson steve.dickinson@defra.gov.uk",	
+    "Fay Toward fay.toward@rpa.gov.uk",
+    "Steve Dickinson steve.dickinson@defra.gov.uk",
     "Fareed Mohammed fareed.mohammed@defra.gov.uk",
     "Kaz Iyiola kaz.iyiola@defra.gov.uk"
   ],
   "license": "OGL-UK-3.0",
   "dependencies": {
+    "@hapi/boom": "^9.1.1",
     "@hapi/hapi": "^20.1.0",
     "@hapi/inert": "^6.0.3",
     "@hapi/vision": "^6.0.1",
