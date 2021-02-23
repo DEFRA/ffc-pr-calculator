@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   ffc-pr-calculator:
-    command: npm run start:watch
+    command: npm run start
     build:
       target: development
     image: ffc-pr-calculator-development
