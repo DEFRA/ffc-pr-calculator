@@ -1,47 +1,45 @@
-const { testEnvironment } = require('../../../../jest.config')
-
 describe('home route', () => {
-    let createServer
-    let server
+  let createServer
+  let server
 
-    beforeEach(async () => {
-        createServer =  require('../../../../app/server')
-        server = await createServer()
-        await server.initialize()
-    })
+  beforeEach(async () => {
+    createServer = require('../../../../app/server')
+    server = await createServer()
+    await server.initialize()
+  })
 
-    afterEach(async () => {
-        await server.stop()
-    })
+  afterEach(async () => {
+    await server.stop()
+  })
 
-    test('GET / returns 200', async () => {
-        const options = {
-            method: 'GET',
-            url: '/'
-        }
+  test('GET / returns 200', async () => {
+    const options = {
+      method: 'GET',
+      url: '/'
+    }
 
-        const result = await server.inject(options)
-        expect(result.statusCode).toBe(200)
-    })
+    const result = await server.inject(options)
+    expect(result.statusCode).toBe(200)
+  })
 
-    test('GET / returns home view', async () => {
-        const options = {
-            method: 'GET',
-            url: '/'
-        }
+  test('GET / returns home view', async () => {
+    const options = {
+      method: 'GET',
+      url: '/'
+    }
 
-        const result = await server.inject(options)
-        expect(result.request.response.variety).toBe('view')
-        expect(result.request.response.source.template).toBe('home')
-    })
+    const result = await server.inject(options)
+    expect(result.request.response.variety).toBe('view')
+    expect(result.request.response.source.template).toBe('home')
+  })
 
-    test('GET / context includes serviceName', async () => {
-        const options = {
-            method: 'GET',
-            url: '/'
-        }
+  test('GET / context includes serviceName', async () => {
+    const options = {
+      method: 'GET',
+      url: '/'
+    }
 
-        const result = await server.inject(options)
-        expect(result.request.response.source.manager._context.serviceName).toBe('Calculate my progressive reductions')
-    })
+    const result = await server.inject(options)
+    expect(result.request.response.source.manager._context.serviceName).toBe('Calculate my progressive reductions')
+  })
 })
