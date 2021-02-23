@@ -4,10 +4,10 @@ const boom = require('@hapi/boom')
 
 module.exports = [{
   method: 'GET',
-  path: '/api/calculation',
+  path: '/api/v1/calculation/{bpsValue}',
   options: {
     validate: {
-      query: joi.object({
+      params: joi.object({
         bpsValue: joi.number().precision(2).greater(0).required()
       }),
       failAction: async (request, h, error) => {
@@ -15,7 +15,7 @@ module.exports = [{
       }
     },
     handler: (request, h) => {
-      const result = calculate(request.query.bpsValue)
+      const result = calculate(request.params.bpsValue)
       return h.response(result)
     }
   }

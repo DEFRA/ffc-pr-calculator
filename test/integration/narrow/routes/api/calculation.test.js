@@ -12,30 +12,40 @@ describe('calculation route', () => {
     await server.stop()
   })
 
-  test('GET /api/calculation returns 200', async () => {
+  test('GET /api/v1/calculation returns 200', async () => {
     const options = {
       method: 'GET',
-      url: '/api/calculation?bpsValue=1000'
+      url: '/api/v1/calculation/1000'
     }
 
     const result = await server.inject(options)
     expect(result.statusCode).toBe(200)
   })
 
-  test('GET /api/calculation returns calculation', async () => {
+  test('GET /api/v1/calculation returns calculation', async () => {
     const options = {
       method: 'GET',
-      url: '/api/calculation?bpsValue=1000'
+      url: '/api/v1/calculation/1000'
     }
 
     const result = await server.inject(options)
     expect(result.payload).toBe(JSON.stringify({ success: true }))
   })
 
-  test('GET /api/calculation returns 400 if no querystring', async () => {
+  test('GET /api/v1/calculation returns 404 if no parameter', async () => {
     const options = {
       method: 'GET',
-      url: '/api/calculation'
+      url: '/api/v1/calculation'
+    }
+
+    const result = await server.inject(options)
+    expect(result.statusCode).toBe(404)
+  })
+
+  test('GET /api/v1/calculation returns 400 if invalid', async () => {
+    const options = {
+      method: 'GET',
+      url: '/api/v1/calculation/invalid'
     }
 
     const result = await server.inject(options)

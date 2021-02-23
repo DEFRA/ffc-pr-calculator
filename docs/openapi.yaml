@@ -16,7 +16,7 @@ components:
           type: boolean
 
 paths:
-  /api/calculation/{bpsValue}:
+  /api/v1/calculation/{bpsValue}:
     get:
       responses:
         '200':
