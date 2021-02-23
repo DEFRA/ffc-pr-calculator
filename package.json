@@ -16,7 +16,8 @@
   },
   "author": "Defra DDTS",
   "contributors": [
-    "John Watson john.watson2@rpa.gov.uk"
+    "John Watson john.watson2@rpa.gov.uk",
+    "Fay Toward fay.toward@rpa.gov.uk"
   ],
   "license": "OGL-UK-3.0",
   "dependencies": {
