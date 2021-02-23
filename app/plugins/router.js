@@ -4,7 +4,8 @@ const routes = [].concat(
   require('../routes/static'),
   require('../routes/home'),
   require('../routes/bps'),
-  require('../routes/calculation')
+  require('../routes/calculation'),
+  require('../routes/api/calculation')
 )
 
 module.exports = {
