@@ -1,4 +1,5 @@
 const ViewModel = require('./models/confirmation')
+const calculate = require('../calculation')
 const joi = require('joi')
 
 module.exports = [{
@@ -14,7 +15,8 @@ module.exports = [{
       }
     },
     handler: (request, h) => {
-      return h.view('calculation', new ViewModel(request.query.bpsValue))
+      const result = calculate(request.query.bpsValue)
+      return h.view('calculation', new ViewModel(result))
     }
   }
 }]
