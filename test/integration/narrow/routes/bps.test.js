@@ -78,10 +78,6 @@ describe('bps route', () => {
 
     const result = await server.inject(options)
     expect(result.statusCode).toBe(302)
-<<<<<<< HEAD
     expect(result.headers.location).toBe(`/calculation?bpsValue=${bpsValue}`)
-=======
-    expect(result.headers.location).toBe('/calculation?bpsValue=' + bpsValue)
->>>>>>> de8194ae14f095530b9a50f0423dd120b08eb7a3
   })
 })
