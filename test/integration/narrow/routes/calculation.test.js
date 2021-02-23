@@ -12,6 +12,7 @@ describe('calculation route', () => {
     await server.stop()
   })
 
+<<<<<<< HEAD
   test('GET /calculation returns 200', async () => {
     const options = {
       method: 'GET',
@@ -26,16 +27,29 @@ describe('calculation route', () => {
     const options = {
       method: 'GET',
       url: '/calculation?bpsValue=1000'
+=======
+  test('GET / returns 200', async () => {
+    const options = {
+      method: 'GET',
+      url: '/calculation'
+>>>>>>> de8194ae14f095530b9a50f0423dd120b08eb7a3
     }
 
     const result = await server.inject(options)
     expect(result.statusCode).toBe(200)
   })
 
+<<<<<<< HEAD
   test('GET /calculation returns calculation view', async () => {
     const options = {
       method: 'GET',
       url: '/calculation?bpsValue=1000'
+=======
+  test('GET / returns calculation view', async () => {
+    const options = {
+      method: 'GET',
+      url: '/calculation'
+>>>>>>> de8194ae14f095530b9a50f0423dd120b08eb7a3
     }
 
     const result = await server.inject(options)
@@ -43,10 +57,17 @@ describe('calculation route', () => {
     expect(result.request.response.source.template).toBe('calculation')
   })
 
+<<<<<<< HEAD
   test('GET /calculation includes table', async () => {
     const options = {
       method: 'GET',
       url: '/calculation?bpsValue=1000'
+=======
+  test('GET / includes table', async () => {
+    const options = {
+      method: 'GET',
+      url: '/calculation'
+>>>>>>> de8194ae14f095530b9a50f0423dd120b08eb7a3
     }
 
     const result = await server.inject(options)
@@ -54,6 +75,7 @@ describe('calculation route', () => {
     expect(result.request.response.source.template).toBe('calculation')
     expect(result.payload).toContain('govuk-table')
   })
+<<<<<<< HEAD
 
   test('GET /calculation returns 302 if no querystring', async () => {
     const options = {
@@ -74,4 +96,6 @@ describe('calculation route', () => {
     const result = await server.inject(options)
     expect(result.headers.location).toBe('/bps')
   })
+=======
+>>>>>>> de8194ae14f095530b9a50f0423dd120b08eb7a3
 })
