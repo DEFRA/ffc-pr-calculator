@@ -22,16 +22,6 @@ describe('calculation route', () => {
     expect(result.statusCode).toBe(200)
   })
 
-  test('GET /calculation returns 200', async () => {
-    const options = {
-      method: 'GET',
-      url: '/calculation?bpsValue=1000'
-    }
-
-    const result = await server.inject(options)
-    expect(result.statusCode).toBe(200)
-  })
-
   test('GET /calculation returns calculation view', async () => {
     const options = {
       method: 'GET',

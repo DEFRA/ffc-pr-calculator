@@ -1,0 +1,28 @@
+openapi: '3.0.2'
+info:
+  title: ffc-pr-calculator
+  description: FFC progressive reductions calculator
+  version: 1.0.0
+servers:
+  - description: local
+    url: localhost:3000/​
+
+components:
+  schemas:
+    calculationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+
+paths:
+  /api/calculation/{bpsValue}:
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/calculationResponse'
+  
