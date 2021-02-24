@@ -16,7 +16,7 @@ module.exports = [{
   options: {
     validate: {
       payload: joi.object({
-        bpsValue: joi.number().precision(2).greater(0).required()
+        bpsValue: joi.number().precision(2).greater(0).less(1000000000).required()
       }),
       failAction: async (request, h, error) => {
         return h.view('bps', new ViewModel(request.payload.bpsValue, error)).code(400).takeover()
