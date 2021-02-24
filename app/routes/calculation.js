@@ -1,4 +1,4 @@
-const ViewModel = require('./models/confirmation')
+const ViewModel = require('./models/calculation')
 const calculate = require('../calculation')
 const joi = require('joi')
 
