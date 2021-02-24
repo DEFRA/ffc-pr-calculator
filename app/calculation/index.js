@@ -1,5 +1,11 @@
-module.exports = function calculate (bpsValue) {
+const getPaymentBands = require('./get-payment-band')
+const calculateBand = require('./calculate-band')
+
+function calculate (bpsValue) {
+  const paymentBands = getPaymentBands(bpsValue)
   return {
-    success: true
+    result: paymentBands.map(calculateBand)
   }
 }
+
+module.exports = calculate
