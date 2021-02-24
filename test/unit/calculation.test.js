@@ -472,6 +472,30 @@ describe('calculate', () => {
     expect(result.overallResult.find(x => x.schemeYear === 2024).payment).toBe(15450.36)
   })
 
+  test('100000000 handles correct decimal values for overall 2021', () => {
+    const result = calculate(100000000)
+    expect(result.overallResult.find(x => x.schemeYear === 2021).reduction).toBe(24986000)
+    expect(result.overallResult.find(x => x.schemeYear === 2021).payment).toBe(75014000)
+  })
+
+  test('100000000 handles correct decimal values for overall 2022', () => {
+    const result = calculate(100000000)
+    expect(result.overallResult.find(x => x.schemeYear === 2022).reduction).toBe(39986000)
+    expect(result.overallResult.find(x => x.schemeYear === 2022).payment).toBe(60014000)
+  })
+
+  test('100000000  handles correct decimal values for overall 2023', () => {
+    const result = calculate(100000000)
+    expect(result.overallResult.find(x => x.schemeYear === 2023).reduction).toBe(54986000)
+    expect(result.overallResult.find(x => x.schemeYear === 2023).payment).toBe(45014000)
+  })
+
+  test('100000000 handles correct decimal values for overall 2024', () => {
+    const result = calculate(100000000)
+    expect(result.overallResult.find(x => x.schemeYear === 2024).reduction).toBe(69986000)
+    expect(result.overallResult.find(x => x.schemeYear === 2024).payment).toBe(30014000)
+  })
+
   test('overall result 1000 = result + reduction for 2021', () => {
     const result = calculate(1000)
     const overallResult = result.overallResult.find(x => x.schemeYear === 2021)
