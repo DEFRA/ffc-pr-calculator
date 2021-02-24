@@ -13,7 +13,6 @@ function ViewModel (value, error) {
     classes: 'govuk-input--width-10',
     id: 'bpsValue',
     name: 'bpsValue',
-    type: 'number',
     value
   }
 
