@@ -6,7 +6,7 @@ function calculate (bpsValue) {
   const paymentBands = getPaymentBands(bpsValue)
   const bandResult = paymentBands.map(calculateBand)
   return {
-    overallResult: calculateOverall(bandResult),
+    overallResult: calculateOverall(bpsValue, bandResult),
     bandResult
   }
 }

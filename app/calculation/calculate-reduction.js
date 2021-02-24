@@ -1,12 +1,13 @@
 const round = require('../round')
 
 module.exports = function calculateReduction (bpsValue, reductionRate) {
-  const reduction = round(bpsValue * reductionRate.rate, 2)
+  const reduction = round(bpsValue * reductionRate.rate, 2, false)
+
   return {
     schemeYear: reductionRate.schemeYear,
     bpsValue,
     rate: reductionRate.rate,
     reduction,
-    payment: round(bpsValue - reduction, 2)
+    payment: round(bpsValue - reduction, 2, true)
   }
 }
