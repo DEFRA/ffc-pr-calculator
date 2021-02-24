@@ -29,7 +29,8 @@ describe('calculation route', () => {
     }
 
     const result = await server.inject(options)
-    expect(result.payload).toContain('result')
+    expect(result.payload).toContain('bandResult')
+    expect(result.payload).toContain('overallResult')
   })
 
   test('GET /api/v1/calculation returns 404 if no parameter', async () => {

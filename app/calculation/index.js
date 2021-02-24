@@ -4,7 +4,7 @@ const calculateBand = require('./calculate-band')
 function calculate (bpsValue) {
   const paymentBands = getPaymentBands(bpsValue)
   return {
-    result: paymentBands.map(calculateBand)
+    bandResult: paymentBands.map(calculateBand)
   }
 }
 
