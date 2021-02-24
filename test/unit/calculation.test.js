@@ -112,7 +112,7 @@ describe('calculate', () => {
     expect(result.result[0].result.length).toBe(4)
   })
 
-  test('40000 includes bands 1 and 2', () => {
+  test('75000 includes bands 1 and 2', () => {
     const result = calculate(40000)
     expect(result.result.filter(x => x.band === 1).length).toBe(1)
     expect(result.result.filter(x => x.band === 2).length).toBe(1)
@@ -183,5 +183,91 @@ describe('calculate', () => {
     expect(result.result[1].result.length).toBe(4)
   })
 
-  
+  test('75000 includes bands 1, 2 and 3', () => {
+    const result = calculate(75000)
+    expect(result.result.filter(x => x.band === 1).length).toBe(1)
+    expect(result.result.filter(x => x.band === 2).length).toBe(1)
+    expect(result.result.filter(x => x.band === 3).length).toBe(1)
+    expect(result.result.length).toBe(3)
+  })
+
+  test('75000 calculates 2021 reduction', () => {
+    const result = calculate(75000)
+    expect(result.result.find(x => x.band === 1).result.find(x => x.schemeYear === 2021).reduction).toBe(1500)
+    expect(result.result.find(x => x.band === 2).result.find(x => x.schemeYear === 2021).reduction).toBe(2000)
+    expect(result.result.find(x => x.band === 3).result.find(x => x.schemeYear === 2021).reduction).toBe(5000)
+    expect(result.result[0].result.length).toBe(4)
+    expect(result.result[1].result.length).toBe(4)
+    expect(result.result[2].result.length).toBe(4)
+  })
+
+  test('75000 calculates 2022 reduction', () => {
+    const result = calculate(75000)
+    expect(result.result.find(x => x.band === 1).result.find(x => x.schemeYear === 2022).reduction).toBe(6000)
+    expect(result.result.find(x => x.band === 2).result.find(x => x.schemeYear === 2022).reduction).toBe(5000)
+    expect(result.result.find(x => x.band === 3).result.find(x => x.schemeYear === 2022).reduction).toBe(8750)
+    expect(result.result[0].result.length).toBe(4)
+    expect(result.result[1].result.length).toBe(4)
+    expect(result.result[2].result.length).toBe(4)
+  })
+
+  test('75000 calculates 2023 reduction', () => {
+    const result = calculate(75000)
+    expect(result.result.find(x => x.band === 1).result.find(x => x.schemeYear === 2023).reduction).toBe(10500)
+    expect(result.result.find(x => x.band === 2).result.find(x => x.schemeYear === 2023).reduction).toBe(8000)
+    expect(result.result.find(x => x.band === 3).result.find(x => x.schemeYear === 2023).reduction).toBe(12500)
+    expect(result.result[0].result.length).toBe(4)
+    expect(result.result[1].result.length).toBe(4)
+    expect(result.result[2].result.length).toBe(4)
+  })
+
+  test('75000 calculates 2024 reduction', () => {
+    const result = calculate(75000)
+    expect(result.result.find(x => x.band === 1).result.find(x => x.schemeYear === 2024).reduction).toBe(15000)
+    expect(result.result.find(x => x.band === 2).result.find(x => x.schemeYear === 2024).reduction).toBe(11000)
+    expect(result.result.find(x => x.band === 3).result.find(x => x.schemeYear === 2024).reduction).toBe(16250)
+    expect(result.result[0].result.length).toBe(4)
+    expect(result.result[1].result.length).toBe(4)
+    expect(result.result[2].result.length).toBe(4)
+  })
+
+  test('75000 calculates 2021 payment', () => {
+    const result = calculate(75000)
+    expect(result.result.find(x => x.band === 1).result.find(x => x.schemeYear === 2021).payment).toBe(28500)
+    expect(result.result.find(x => x.band === 2).result.find(x => x.schemeYear === 2021).payment).toBe(18000)
+    expect(result.result.find(x => x.band === 3).result.find(x => x.schemeYear === 2021).payment).toBe(20000)
+    expect(result.result[0].result.length).toBe(4)
+    expect(result.result[1].result.length).toBe(4)
+    expect(result.result[2].result.length).toBe(4)
+  })
+
+  test('75000 calculates 2022 payment', () => {
+    const result = calculate(75000)
+    expect(result.result.find(x => x.band === 1).result.find(x => x.schemeYear === 2022).payment).toBe(24000)
+    expect(result.result.find(x => x.band === 2).result.find(x => x.schemeYear === 2022).payment).toBe(15000)
+    expect(result.result.find(x => x.band === 3).result.find(x => x.schemeYear === 2022).payment).toBe(16250)
+    expect(result.result[0].result.length).toBe(4)
+    expect(result.result[1].result.length).toBe(4)
+    expect(result.result[2].result.length).toBe(4)
+  })
+
+  test('75000 calculates 2023 payment', () => {
+    const result = calculate(75000)
+    expect(result.result.find(x => x.band === 1).result.find(x => x.schemeYear === 2023).payment).toBe(19500)
+    expect(result.result.find(x => x.band === 2).result.find(x => x.schemeYear === 2023).payment).toBe(12000)
+    expect(result.result.find(x => x.band === 3).result.find(x => x.schemeYear === 2023).payment).toBe(12500)
+    expect(result.result[0].result.length).toBe(4)
+    expect(result.result[1].result.length).toBe(4)
+    expect(result.result[2].result.length).toBe(4)
+  })
+
+  test('75000 calculates 2024 payment', () => {
+    const result = calculate(75000)
+    expect(result.result.find(x => x.band === 1).result.find(x => x.schemeYear === 2024).payment).toBe(15000)
+    expect(result.result.find(x => x.band === 2).result.find(x => x.schemeYear === 2024).payment).toBe(9000)
+    expect(result.result.find(x => x.band === 3).result.find(x => x.schemeYear === 2024).payment).toBe(8750)
+    expect(result.result[0].result.length).toBe(4)
+    expect(result.result[1].result.length).toBe(4)
+    expect(result.result[2].result.length).toBe(4)
+  })
 })
