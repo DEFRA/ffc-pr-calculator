@@ -1,11 +1,13 @@
 {% extends "govuk/template.njk" %}
 
 {% block head %}
-{% include "./tag-manager/head-content.njk" %}
+  {% if cookiesPolicy.analytics %}
+    {% include "./tag-manager/head-content.njk" %}
+  {% endif %}
   <!--[if !IE 8]><!-->
-
-<link href="/static/css/application.e9415da4aca22e672177.css" rel="stylesheet">
-
+  
+  <link href="/static/css/application.7d7fd50b474fb4b2a754.css" rel="stylesheet">
+  
   <!--<![endif]-->
 
   {# For Internet Explorer 8, you need to compile specific stylesheet #}
@@ -29,7 +31,13 @@
 {% endblock %}
 
 {% block bodyStart %}
-{% include "./tag-manager/body-content.njk" %}
+  {% if not cookiesPolicy.confirmed %}
+    {% include "./cookies/cookie-banner.njk" %}
+  {% endif %}
+
+  {% if cookiesPolicy.analytics %}
+    {% include "./tag-manager/body-content.njk" %}
+  {% endif %}
 {% endblock %}
 
 {% block pageTitle %}
@@ -40,9 +48,22 @@
   <h1 class="govuk-heading-xl">Default page template</h1>
 {% endblock %}
 
+{% block footer %}
+  {{ govukFooter({
+    meta: {
+      items: [
+        {
+          href: "/cookies",
+          text: "Cookies"
+        }
+      ]
+    }
+  }) }}
+{% endblock %}
+
 {% block bodyEnd %}
   {# Run JavaScript at end of the <body>, to avoid blocking the initial render. #}
 
-  <script src="/static/js/bundle.e9415da4aca22e672177.js"></script>
+  <script src="/static/js/bundle.7d7fd50b474fb4b2a754.js"></script>
 
 {% endblock %}
