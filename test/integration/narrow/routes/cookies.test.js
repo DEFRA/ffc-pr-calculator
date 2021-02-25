@@ -1,7 +1,6 @@
 describe('cookies route', () => {
   let createServer
   let server
-  jest. 
 
   beforeEach(async () => {
     createServer = require('../../../../app/server')

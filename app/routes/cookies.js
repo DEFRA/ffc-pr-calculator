@@ -21,9 +21,9 @@ module.exports = [{
     handler: (request, h) => {
       updatePolicy(request, h, request.payload.analytics)
       if (request.payload.async) {
-        return h.response()
+        return h.response('ok')
       }
-      return h.redirect('cookies/?updated=true')
+      return h.redirect('/cookies?updated=true')
     }
   }
 }]
