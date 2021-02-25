@@ -16,7 +16,7 @@ module.exports = [{
     },
     handler: (request, h) => {
       const result = calculate(request.query.bpsValue)
-      return h.view('calculation', new ViewModel(result))
+      return h.view('calculation', new ViewModel(request.query.bpsValue, result))
     }
   }
 }]
