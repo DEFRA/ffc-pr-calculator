@@ -17,7 +17,7 @@
 
 {% block content %}
   <div class="govuk-body">
-    <form method="POST" action="/bps">
+    <form method="POST" action="/bps" novalidate>
       {{ govukInput(model) }}
       {{ govukButton({
         text: "Calculate my payments"
