@@ -69,12 +69,9 @@
       "afterAll",
       "browser",
       "it",
-      "expect",
-      "describe",
-      "jest",
-      "beforeEach",
       "assert",
-      "$"
+      "$",
+      "XMLHttpRequest"
     ],
     "ignore": [
       "app/dist/**/*.js"
