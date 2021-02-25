@@ -73,10 +73,13 @@ function createTableDefinition (calculations, property, text, caption, formatTyp
   }
 }
 
-module.exports = function ViewModel (calculations) {
+module.exports = function ViewModel (bpsValue, calculations) {
   this.model = {
     paymentBand: createTableDefinition(calculations, 'rate', '', 'Payment band', 'percentage', false),
     payment: createTableDefinition(calculations, 'payment', 'Payment value after progressive reductions:', 'Payments within each band'),
-    reduction: createTableDefinition(calculations, 'reduction', 'Total progressive reduction:', 'Reductions within each band')
+    reduction: createTableDefinition(calculations, 'reduction', 'Total progressive reduction:', 'Reductions within each band'),
+    confirmation: {
+      titleText: `Your progressive reductions based on a BPS payment of £${bpsValue} have been estimated`
+    } 
   }
 }
