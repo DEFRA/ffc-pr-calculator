@@ -22,7 +22,7 @@ describe('bps route', () => {
     expect(result.statusCode).toBe(200)
   })
 
-  test('GET / returns home view', async () => {
+  test('GET /bps returns bps view', async () => {
     const options = {
       method: 'GET',
       url: '/bps'
@@ -33,7 +33,7 @@ describe('bps route', () => {
     expect(result.request.response.source.template).toBe('bps')
   })
 
-  test('GET / context includes Header', async () => {
+  test('GET /bps context includes Header', async () => {
     const options = {
       method: 'GET',
       url: '/bps'
