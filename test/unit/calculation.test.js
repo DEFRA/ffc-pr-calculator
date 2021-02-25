@@ -378,49 +378,49 @@ describe('calculate', () => {
 
   test('1000.79 handles correct decimal values for 2021', () => {
     const result = calculate(1000.79)
-    expect(result.bandResult[0].result.find(x => x.schemeYear === 2021).reduction).toBe(50.04)
+    expect(result.bandResult[0].result.find(x => x.schemeYear === 2021).reduction).toBe(50.03)
     expect(result.bandResult[0].result.find(x => x.schemeYear === 2021).payment).toBe(950.76)
   })
 
   test('1000.79 handles correct decimal values for 2022', () => {
     const result = calculate(1000.79)
-    expect(result.bandResult[0].result.find(x => x.schemeYear === 2022).reduction).toBe(200.16)
+    expect(result.bandResult[0].result.find(x => x.schemeYear === 2022).reduction).toBe(200.15)
     expect(result.bandResult[0].result.find(x => x.schemeYear === 2022).payment).toBe(800.64)
   })
 
   test('1000.79 handles correct decimal values for 2023', () => {
     const result = calculate(1000.79)
-    expect(result.bandResult[0].result.find(x => x.schemeYear === 2023).reduction).toBe(350.28)
-    expect(result.bandResult[0].result.find(x => x.schemeYear === 2023).payment).toBe(650.51)
+    expect(result.bandResult[0].result.find(x => x.schemeYear === 2023).reduction).toBe(350.27)
+    expect(result.bandResult[0].result.find(x => x.schemeYear === 2023).payment).toBe(650.52)
   })
 
   test('1000.79 handles correct decimal values for 2024', () => {
     const result = calculate(1000.79)
-    expect(result.bandResult[0].result.find(x => x.schemeYear === 2024).reduction).toBe(500.40)
+    expect(result.bandResult[0].result.find(x => x.schemeYear === 2024).reduction).toBe(500.39)
     expect(result.bandResult[0].result.find(x => x.schemeYear === 2024).payment).toBe(500.40)
   })
 
   test('1000.79 handles correct decimal values for overall 2021', () => {
     const result = calculate(1000.79)
     expect(result.overallResult.find(x => x.schemeYear === 2021).reduction).toBe(50.03)
-    expect(result.overallResult.find(x => x.schemeYear === 2021).payment).toBe(950.75)
+    expect(result.overallResult.find(x => x.schemeYear === 2021).payment).toBe(950.76)
   })
 
   test('1000.79 handles correct decimal values for overall 2022', () => {
     const result = calculate(1000.79)
     expect(result.overallResult.find(x => x.schemeYear === 2022).reduction).toBe(200.15)
-    expect(result.overallResult.find(x => x.schemeYear === 2022).payment).toBe(800.63)
+    expect(result.overallResult.find(x => x.schemeYear === 2022).payment).toBe(800.64)
   })
 
   test('1000.79 handles correct decimal values for overall 2023', () => {
     const result = calculate(1000.79)
-    expect(result.overallResult.find(x => x.schemeYear === 2023).reduction).toBe(350.28)
+    expect(result.overallResult.find(x => x.schemeYear === 2023).reduction).toBe(350.27)
     expect(result.overallResult.find(x => x.schemeYear === 2023).payment).toBe(650.52)
   })
 
   test('1000.79 handles correct decimal values for overall 2024', () => {
     const result = calculate(1000.79)
-    expect(result.overallResult.find(x => x.schemeYear === 2024).reduction).toBe(500.40)
+    expect(result.overallResult.find(x => x.schemeYear === 2024).reduction).toBe(500.39)
     expect(result.overallResult.find(x => x.schemeYear === 2024).payment).toBe(500.40)
   })
 
@@ -451,25 +451,49 @@ describe('calculate', () => {
   test('31000.79 handles correct decimal values for overall 2021', () => {
     const result = calculate(31000.79)
     expect(result.overallResult.find(x => x.schemeYear === 2021).reduction).toBe(1600.07)
-    expect(result.overallResult.find(x => x.schemeYear === 2021).payment).toBe(29400.71)
+    expect(result.overallResult.find(x => x.schemeYear === 2021).payment).toBe(29400.72)
   })
 
   test('31000.79 handles correct decimal values for overall 2022', () => {
     const result = calculate(31000.79)
     expect(result.overallResult.find(x => x.schemeYear === 2022).reduction).toBe(6250.19)
-    expect(result.overallResult.find(x => x.schemeYear === 2022).payment).toBe(24750.59)
+    expect(result.overallResult.find(x => x.schemeYear === 2022).payment).toBe(24750.6)
   })
 
   test('31000.79  handles correct decimal values for overall 2023', () => {
     const result = calculate(31000.79)
     expect(result.overallResult.find(x => x.schemeYear === 2023).reduction).toBe(10900.31)
-    expect(result.overallResult.find(x => x.schemeYear === 2023).payment).toBe(20100.47)
+    expect(result.overallResult.find(x => x.schemeYear === 2023).payment).toBe(20100.48)
   })
 
   test('31000.79 handles correct decimal values for overall 2024', () => {
     const result = calculate(31000.79)
     expect(result.overallResult.find(x => x.schemeYear === 2024).reduction).toBe(15550.43)
     expect(result.overallResult.find(x => x.schemeYear === 2024).payment).toBe(15450.36)
+  })
+
+  test('100000000 handles correct decimal values for overall 2021', () => {
+    const result = calculate(100000000)
+    expect(result.overallResult.find(x => x.schemeYear === 2021).reduction).toBe(24986000)
+    expect(result.overallResult.find(x => x.schemeYear === 2021).payment).toBe(75014000)
+  })
+
+  test('100000000 handles correct decimal values for overall 2022', () => {
+    const result = calculate(100000000)
+    expect(result.overallResult.find(x => x.schemeYear === 2022).reduction).toBe(39986000)
+    expect(result.overallResult.find(x => x.schemeYear === 2022).payment).toBe(60014000)
+  })
+
+  test('100000000  handles correct decimal values for overall 2023', () => {
+    const result = calculate(100000000)
+    expect(result.overallResult.find(x => x.schemeYear === 2023).reduction).toBe(54986000)
+    expect(result.overallResult.find(x => x.schemeYear === 2023).payment).toBe(45014000)
+  })
+
+  test('100000000 handles correct decimal values for overall 2024', () => {
+    const result = calculate(100000000)
+    expect(result.overallResult.find(x => x.schemeYear === 2024).reduction).toBe(69986000)
+    expect(result.overallResult.find(x => x.schemeYear === 2024).payment).toBe(30014000)
   })
 
   test('overall result 1000 = result + reduction for 2021', () => {

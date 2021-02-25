@@ -1,12 +1,14 @@
 const getPaymentBands = require('./get-payment-band')
 const calculateBand = require('./calculate-band')
 const calculateOverall = require('./calculate-overall')
+const { convertStringToPence } = require('./convert-currency')
 
 function calculate (bpsValue) {
-  const paymentBands = getPaymentBands(bpsValue)
+  const bpsValueInPence = convertStringToPence(bpsValue.toString())
+  const paymentBands = getPaymentBands(bpsValueInPence)
   const bandResult = paymentBands.map(calculateBand)
   return {
-    overallResult: calculateOverall(bpsValue, bandResult),
+    overallResult: calculateOverall(bpsValueInPence, bandResult),
     bandResult
   }
 }
