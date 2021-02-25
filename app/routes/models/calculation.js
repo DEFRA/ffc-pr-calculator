@@ -80,6 +80,6 @@ module.exports = function ViewModel (bpsValue, calculations) {
     reduction: createTableDefinition(calculations, 'reduction', 'Total progressive reduction:', 'Reductions within each band'),
     confirmation: {
       titleText: `Your progressive reductions based on a BPS payment of £${bpsValue} have been estimated`
-    } 
+    }
   }
 }
