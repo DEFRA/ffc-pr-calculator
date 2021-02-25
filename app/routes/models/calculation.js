@@ -9,30 +9,34 @@ function toRow (results, property, formatType) {
   const data = []
   data.push({ text: GetBandText(results.band) })
   results.result.map(x => data.push(
-    { 
-      text: (formatType === 'currency'  ? 
-      `£${x[property].toFixed(2)}` : 
-      `${Math.round(x[property] * 100)}%`), format: "numeric" } ))
+    {
+      text: (formatType === 'currency'
+        ? `£${x[property].toFixed(2)}`
+        : `${Math.round(x[property] * 100)}%`),
+      format: 'numeric'
+    }))
   return data
 }
 
 function overallToRow (overallResult, property) {
   const data = []
-  data.push({text : `£${overallResult[property].toFixed(2)}`, 
-            format: "numeric", 
-            classes: "govuk-body govuk-!-font-weight-bold"})
+  data.push({
+    text: `£${overallResult[property].toFixed(2)}`,
+    format: 'numeric',
+    classes: 'govuk-body govuk-!-font-weight-bold'
+  })
   return data
 }
 
 function populateOverall (calculations, property, text) {
   const overall = calculations.overallResult.map(x => overallToRow(x, property))
-  overall.unshift({text: text})
+  overall.unshift({ text: text })
   return overall
 }
 
 function populateData (calculations, property, text, formatType, showOverall) {
   const reductionData = calculations.bandResult.map(x => toRow(x, property, formatType))
-  if(showOverall) {  
+  if (showOverall) {
     reductionData.push(populateOverall(calculations, property, text).flat())
   }
   return reductionData
@@ -50,19 +54,19 @@ function createTableDefinition (calculations, property, text, caption, formatTyp
       },
       {
         text: '2021',
-        format: "numeric"
+        format: 'numeric'
       },
       {
         text: '2022',
-        format: "numeric"
+        format: 'numeric'
       },
       {
         text: '2023',
-        format: "numeric"
+        format: 'numeric'
       },
       {
         text: '2024',
-        format: "numeric"
+        format: 'numeric'
       }
     ],
     rows: populateData(calculations, property, text, formatType, showOverall)
@@ -70,8 +74,9 @@ function createTableDefinition (calculations, property, text, caption, formatTyp
 }
 
 module.exports = function ViewModel (calculations) {
-  this.model = { 
-    paymentBand: createTableDefinition(calculations, 'rate', '', 'Payment band', 'percentage', false), 
-    payment: createTableDefinition(calculations, 'payment', 'Payment value after progressive reductions:', 'Payments within each band'), 
-    reduction: createTableDefinition(calculations, 'reduction', 'Total progressive reduction:', 'Reductions within each band') }
+  this.model = {
+    paymentBand: createTableDefinition(calculations, 'rate', '', 'Payment band', 'percentage', false),
+    payment: createTableDefinition(calculations, 'payment', 'Payment value after progressive reductions:', 'Payments within each band'),
+    reduction: createTableDefinition(calculations, 'reduction', 'Total progressive reduction:', 'Reductions within each band')
+  }
 }
