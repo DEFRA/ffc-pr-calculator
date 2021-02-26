@@ -1,23 +1,19 @@
 
+class Homepage {
+  get startNewCalBtn () { return $('//main/div/div/a') }
+  get homeLink () { return $('a.govuk-breadcrumbs__link') }
 
-class Homepage  {
+  // start() {
+  //     this.startNewCalBtn.click();
+  // }
 
-    get startNewCalBtn() { return $('//main/div/div/a') }
-    get homeLink() { return $('a.govuk-breadcrumbs__link') }
-    
+  open () {
+    browser.url('http://localhost:3000/')
+  }
 
-    // start() {
-    //     this.startNewCalBtn.click();
-    // }
-
-    open () {
-        browser.url("http://localhost:3000/");
-    }
-
-    async start () {
-        await (await this.startNewCalBtn).click();
-    }
-
+  async start () {
+    await (await this.startNewCalBtn).click()
+  }
 }
 
-export default new Homepage();
+export default new Homepage()
