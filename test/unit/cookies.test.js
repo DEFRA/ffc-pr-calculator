@@ -46,7 +46,7 @@ describe('cookies', () => {
     expect(h.state).toHaveBeenCalledTimes(2)
   })
 
-  test('updatePolicy sets updated cookie if does not exist', () => {
+  test('updatePolicy sets confirmed cookie second if does not exist', () => {
     cookies.updatePolicy(request, h, true)
     expect(h.state).toHaveBeenNthCalledWith(2, 'cookies_policy', { confirmed: true, essential: true, analytics: true }, expect.anything())
   })
