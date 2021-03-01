@@ -1,5 +1,5 @@
 const ViewModel = require('./models/calculation')
-const calculate = require('../calculation')
+const { calculateSingle, calculateMultiple } = require('../calculation')
 const joi = require('joi')
 
 module.exports = [{
@@ -15,7 +15,31 @@ module.exports = [{
       }
     },
     handler: (request, h) => {
-      const result = calculate(request.query.bpsValue)
+      const result = calculateSingle (request.query.bpsValue)
+      return h.view('calculation', new ViewModel(request.query.bpsValue, result))
+    }
+  }
+},
+{
+  method: 'GET',
+  path: '/calculation/multiple',
+  options: {
+    validate: {
+      query: joi.object({
+        bps2021Value: joi.number().precision(2).greater(0).required(),
+        bps2022Value: joi.number().precision(2).greater(0).required(),
+        bps2023Value: joi.number().precision(2).greater(0).required(),
+        bps2024Value: joi.number().precision(2).greater(0).required()
+      }),
+      failAction: async (request, h, error) => {
+        return h.redirect('/bps/multiple').takeover()
+      }
+    },
+    handler: (request, h) => {
+      const result = calculateMultiple (request.query.bps2021Value, 
+                        request.query.bps2022Value, 
+                        request.query.bps2023Value, 
+                        request.query.bps2024Value)
       return h.view('calculation', new ViewModel(request.query.bpsValue, result))
     }
   }
