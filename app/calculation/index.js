@@ -30,6 +30,12 @@ function setEmpty(schemeYear) {
   }
 }
 
+function sum(array) {
+  var total = 0
+  for (var i = 0; i < array.length; i++) !isNaN(array[i].payment) ? total += array[i].payment : ''
+  return total
+}
+
 function calculateMultiple (bps2021Value, bps2022Value, bps2023Value, bps2024Value) {
 
   const bps2021Results = calculate (bps2021Value)
@@ -41,12 +47,14 @@ function calculateMultiple (bps2021Value, bps2022Value, bps2023Value, bps2024Val
 
   for (i = 0; i < 4; i++){
     const bandData = {band: i + 1, result: [] }
-    bandData.result.push(bps2021Results.length > i ? bps2021Results[i].result[0] : bandData.result.push(setEmpty(2021)))
-    bandData.result.push(bps2022Results.length > i ? bps2022Results[i].result[1] : bandData.result.push(setEmpty(2022)))
-    bandData.result.push(bps2023Results.length > i ? bps2023Results[i].result[2] : bandData.result.push(setEmpty(2023)))
-    bandData.result.push(bps2024Results.length > i ? bps2024Results[i].result[3] : bandData.result.push(setEmpty(2024)))    
+    bps2021Results.length > i ? bandData.result.push(bps2021Results[i].result[0]) : bandData.result.push(setEmpty(2021))
+    bps2022Results.length > i ? bandData.result.push(bps2022Results[i].result[1]) : bandData.result.push(setEmpty(2022))
+    bps2023Results.length > i ? bandData.result.push(bps2023Results[i].result[2]) : bandData.result.push(setEmpty(2023))
+    bps2024Results.length > i ? bandData.result.push(bps2024Results[i].result[3]) : bandData.result.push(setEmpty(2024))
+    console.table(bandData.result)
     bandData.result.reduce((total, data) => total + data.payment, 0) > 0 ? bandResult.push(bandData) : ''
   }
+
 
   const overallResult = []
 
