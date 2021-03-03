@@ -51,7 +51,6 @@ function calculateMultiple (bps2021Value, bps2022Value, bps2023Value, bps2024Val
     bps2022Results.length > i ? bandData.result.push(bps2022Results[i].result[1]) : bandData.result.push(setEmpty(2022))
     bps2023Results.length > i ? bandData.result.push(bps2023Results[i].result[2]) : bandData.result.push(setEmpty(2023))
     bps2024Results.length > i ? bandData.result.push(bps2024Results[i].result[3]) : bandData.result.push(setEmpty(2024))
-    console.table(bandData.result)
     bandData.result.reduce((total, data) => total + data.payment, 0) > 0 ? bandResult.push(bandData) : ''
   }
 

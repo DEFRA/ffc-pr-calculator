@@ -42,6 +42,20 @@ function populateData (calculations, property, text, formatType, showOverall) {
   return reductionData
 }
 
+function createSummary (bpsValue, bpsMultipleValue) {
+
+  let titleText = ''
+  Object.keys(bpsMultipleValue).length === 0 ? 
+  titleText = `Your progressive reductions based on a BPS payment of £${bpsValue} have been estimated` : 
+  titleText = `Your progressive reductions based on a BPS payments of £${bpsMultipleValue.bps2021Value} in 2021, £${bpsMultipleValue.bps2022Value} in 2022, 
+                £${bpsMultipleValue.bps2023Value} in 2023 and 
+                £${bpsMultipleValue.bps2024Value} in 2024 have been estimated`
+
+  return {
+    titleText
+  }
+}
+
 function createTableDefinition (calculations, property, text, caption, formatType = 'currency', showOverall = true) {
   return {
     caption: caption,
@@ -78,8 +92,6 @@ module.exports = function ViewModel (bpsValue, calculations) {
     paymentBand: createTableDefinition(calculations, 'rate', '', 'Payment band', 'percentage', false),
     payment: createTableDefinition(calculations, 'payment', 'Payment value after progressive reductions:', 'Payments within each band'),
     reduction: createTableDefinition(calculations, 'reduction', 'Total progressive reduction:', 'Reductions within each band'),
-    confirmation: {
-      titleText: `Your progressive reductions based on a BPS payment of £${bpsValue} have been estimated`
-    }
+    confirmation: createSummary(bpsValue, calculations.multipleValues)
   }
 }

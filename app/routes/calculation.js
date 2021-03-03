@@ -16,7 +16,11 @@ module.exports = [{
     },
     handler: (request, h) => {
       const result = calculateSingle (request.query.bpsValue)
-      return h.view('calculation', new ViewModel(request.query.bpsValue, result))
+
+      const values = {multipleValues: {}}
+      const includeMultipleValues = {...result, ...values}
+
+      return h.view('calculation', new ViewModel(request.query.bpsValue, includeMultipleValues))
     }
   }
 },
@@ -40,7 +44,12 @@ module.exports = [{
                         request.query.bps2022Value, 
                         request.query.bps2023Value, 
                         request.query.bps2024Value)
-      return h.view('calculation', new ViewModel(request.query.bpsValue, result))
+
+      const values = {multipleValues: {bps2021Value: request.query.bps2021Value, bps2022Value: request.query.bps2022Value, 
+        bps2023Value: request.query.bps2023Value, bps2024Value : request.query.bps2024Value}}
+
+      const includeMultipleValues = {...result, ...values}
+      return h.view('calculation', new ViewModel(request.query.bpsValue, includeMultipleValues))
     }
   }
 }]
