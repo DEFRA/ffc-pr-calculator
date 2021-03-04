@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import Page from './page';
 import { expect } from 'chai';
 
@@ -61,20 +60,3 @@ class bspvaluepage extends Page{
  }   
 
 export default new bspvaluepage();
-=======
-class Bspvaluepage {
-  /**
-     * define selectors using getter methods
-     */
-  get homeLink () { return $('a.govuk-breadcrumbs__link') }
-  get serviceLink () { return $('a.govuk-link') }
-  get licenseLink () { return $('//span/a') }
-  get titleHeader () { return $('h1.govuk-panel__title') }
-
-  verifyTitlePage () {
-    this.titleHeader.getText()
-  }
-}
-
-export default new Bspvaluepage()
->>>>>>> c2c14e3b1f6d3af3d62e9b37998b0cb73adbf609

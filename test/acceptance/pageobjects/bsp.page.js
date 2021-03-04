@@ -20,11 +20,7 @@ class BSPPage extends Page {
   }
 }
 
-<<<<<<< HEAD
 export default new BSPPage();
 
 
 
-=======
-export default new BSPPage()
->>>>>>> c2c14e3b1f6d3af3d62e9b37998b0cb73adbf609
