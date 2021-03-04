@@ -1,12 +1,13 @@
 
 const bands = require('../../calculation/bands')
+const schemeYears = require('../../calculation/scheme-years')
 
 function GetBandText (band) {
   return bands.find(x => x.band === band).text
 }
 
 function toRow (results, property, formatType) {
-  const data = []
+  let data = []
   data.push({ text: GetBandText(results.band) })
   results.result.map(x => data.push(
     {
@@ -15,6 +16,21 @@ function toRow (results, property, formatType) {
         : `${Math.round(x[property] * 100)}%`),
       format: 'numeric'
     }))
+
+  return [...data, ...fillGaps(results, formatType)]
+}
+
+function fillGaps (results, formatType) {
+  const data = []
+  for (i = 0; i < schemeYears.length - results.result.length; i++) {
+    data.push(
+      {
+        text: (formatType === 'currency'
+          ? `£0.00`
+          : `0%`),
+        format: 'numeric'
+      })
+  }
   return data
 }
 
