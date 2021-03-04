@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Page from './page';
 import { expect } from 'chai';
 
@@ -46,3 +47,24 @@ export default new bspPage();
 
 
 
+=======
+class Bsppage {
+  get inputBPSValue () { return $('#bpsValue') }
+  get calMyPaymentBtn () { return $('button.govuk-button') }
+  get homeLink () { return $('button.govuk-button') }
+
+  async enterBpsValue () {
+    await (await this.inputBPSValue).setValue('500')
+  }
+
+  async calculateBpsValue () {
+    this.calMyPaymentBtn.click()
+  }
+
+  // async start () {
+  //     await (await this.startNewCalBtn).click();
+  // }
+}
+
+export default new Bsppage()
+>>>>>>> c2c14e3b1f6d3af3d62e9b37998b0cb73adbf609
