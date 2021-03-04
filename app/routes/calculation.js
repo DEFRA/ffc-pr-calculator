@@ -15,10 +15,10 @@ module.exports = [{
       }
     },
     handler: (request, h) => {
-      const result = calculateSingle (request.query.bpsValue)
+      const result = calculateSingle(request.query.bpsValue)
 
-      const values = {multipleValues: {}}
-      const includeMultipleValues = {...result, ...values}
+      const values = { multipleValues: {} }
+      const includeMultipleValues = { ...result, ...values }
 
       return h.view('calculation', new ViewModel(request.query.bpsValue, includeMultipleValues))
     }
@@ -40,18 +40,23 @@ module.exports = [{
       }
     },
     handler: (request, h) => {
+      const schemeYearValues = [{ schemeYear: 2021, bpsValue: request.query.bps2021Value },
+        { schemeYear: 2022, bpsValue: request.query.bps2022Value },
+        { schemeYear: 2023, bpsValue: request.query.bps2023Value },
+        { schemeYear: 2024, bpsValue: request.query.bps2024Value }]
 
-      const schemeYearValues = [ {schemeYear: 2021, bpsValue: request.query.bps2021Value}, 
-        {schemeYear: 2022, bpsValue: request.query.bps2022Value},
-        {schemeYear: 2023, bpsValue: request.query.bps2023Value},
-        {schemeYear: 2024, bpsValue: request.query.bps2024Value}]
+      const result = calculateMultiple(schemeYearValues)
 
-      const result = calculateMultiple (schemeYearValues)
+      const values = {
+        multipleValues: {
+          bps2021Value: request.query.bps2021Value,
+          bps2022Value: request.query.bps2022Value,
+          bps2023Value: request.query.bps2023Value,
+          bps2024Value: request.query.bps2024Value
+        }
+      }
 
-      const values = {multipleValues: {bps2021Value: request.query.bps2021Value, bps2022Value: request.query.bps2022Value, 
-        bps2023Value: request.query.bps2023Value, bps2024Value : request.query.bps2024Value}}
-
-      const includeMultipleValues = {...result, ...values}
+      const includeMultipleValues = { ...result, ...values }
       return h.view('calculation', new ViewModel(request.query.bpsValue, includeMultipleValues))
     }
   }

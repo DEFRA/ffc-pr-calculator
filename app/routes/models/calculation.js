@@ -7,7 +7,7 @@ function GetBandText (band) {
 }
 
 function toRow (results, property, formatType) {
-  let data = []
+  const data = []
   data.push({ text: GetBandText(results.band) })
   results.result.map(x => data.push(
     {
@@ -22,12 +22,12 @@ function toRow (results, property, formatType) {
 
 function fillGaps (results, formatType) {
   const data = []
-  for (i = 0; i < schemeYears.length - results.result.length; i++) {
+  for (let i = 0; i < schemeYears.length - results.result.length; i++) {
     data.push(
       {
         text: (formatType === 'currency'
-          ? `£0.00`
-          : `0%`),
+          ? '£0.00'
+          : '0%'),
         format: 'numeric'
       })
   }
@@ -59,11 +59,10 @@ function populateData (calculations, property, text, formatType, showOverall) {
 }
 
 function createSummary (bpsValue, bpsMultipleValue) {
-
   let titleText = ''
-  Object.keys(bpsMultipleValue).length === 0 ? 
-  titleText = `Your progressive reductions based on a BPS payment of £${bpsValue} have been estimated` : 
-  titleText = `Your progressive reductions based on BPS payments of £${bpsMultipleValue.bps2021Value} in 2021, £${bpsMultipleValue.bps2022Value} in 2022, 
+  Object.keys(bpsMultipleValue).length === 0
+    ? titleText = `Your progressive reductions based on a BPS payment of £${bpsValue} have been estimated`
+    : titleText = `Your progressive reductions based on BPS payments of £${bpsMultipleValue.bps2021Value} in 2021, £${bpsMultipleValue.bps2022Value} in 2022, 
                 £${bpsMultipleValue.bps2023Value} in 2023 and 
                 £${bpsMultipleValue.bps2024Value} in 2024 have been estimated`
 

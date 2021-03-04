@@ -12,13 +12,6 @@ describe('bps selection route', () => {
     await server.stop()
   })
 
-  test('GET /bps/selection returns 200', async () => {
-    const options = {
-      method: 'GET',
-      url: '/bps/selection'
-    }
-  })
-
   test('POST /bps/selection  returns 302', async () => {
     const options = {
       method: 'POST',
@@ -28,7 +21,7 @@ describe('bps selection route', () => {
 
     const result = await server.inject(options)
     expect(result.statusCode).toBe(302)
-    expect(result.headers.location).toBe(`/bps/multiple`)
+    expect(result.headers.location).toBe('/bps/multiple')
   })
 
   test('POST /bps/selection  returns 302', async () => {
@@ -40,6 +33,6 @@ describe('bps selection route', () => {
 
     const result = await server.inject(options)
     expect(result.statusCode).toBe(302)
-    expect(result.headers.location).toBe(`/bps`)
+    expect(result.headers.location).toBe('/bps')
   })
 })

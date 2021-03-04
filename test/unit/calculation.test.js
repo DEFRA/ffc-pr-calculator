@@ -1,4 +1,4 @@
-const { calculateSingle, calculateMultiple } = require('../../app/calculation')
+const { calculateSingle } = require('../../app/calculation')
 
 describe('calculate', () => {
   test('1000 returns only band 1', () => {

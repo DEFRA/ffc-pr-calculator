@@ -1,4 +1,4 @@
-const { calculateSingle, calculateMultiple } = require('../../calculation')
+const { calculateSingle } = require('../../calculation')
 const joi = require('joi')
 const boom = require('@hapi/boom')
 

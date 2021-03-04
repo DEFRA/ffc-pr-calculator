@@ -1,4 +1,3 @@
-const schemeYears = require('./scheme-years')
 const { convertToPounds } = require('./convert-currency')
 const { convertStringToPence } = require('./convert-currency')
 

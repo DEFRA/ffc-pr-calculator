@@ -1,4 +1,4 @@
-const { calculateSingle, calculateMultiple } = require('../../app/calculation')
+const { calculateSingle } = require('../../app/calculation')
 
 describe('calculate overall results', () => {
   test('returns 4 results', () => {

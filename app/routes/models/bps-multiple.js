@@ -1,7 +1,7 @@
 function createInput (paymentBand, error, value) {
   return {
     label: {
-      text: `Payment amount for ${paymentBand}`,
+      text: `Payment amount for ${paymentBand}`
     },
     prefix: {
       text: '£'
@@ -16,8 +16,7 @@ function createInput (paymentBand, error, value) {
 }
 
 module.exports = function ViewModel (bps2021Value, bps2022Value, bps2023Value, bps2024Value, error) {
-
-  let errorMessage = {text: ''}
+  const errorMessage = { text: '' }
 
   // If error is passed to model then this error property is added to the model
   if (error) {
