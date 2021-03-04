@@ -1,3 +1,4 @@
+import Page from './page'
 class BspValuePage extends Page {
    
     get homeLink () { return $('a.govuk-breadcrumbs__link') }

@@ -1,23 +1,24 @@
 
+import Page from './page';
 
-class Homepage  {
-
-    get startNewCalBtn() { return $('//main/div/div/a') }
-    get homeLink() { return $('a.govuk-breadcrumbs__link') }
+class homePage extends Page {
+   
+    get startNewCalBtn () { return $('//main/div/div/a'); }
     
-
-    // start() {
-    //     this.startNewCalBtn.click();
-    // }
-
-    open () {
-        browser.url("http://localhost:3000/");
-    }
+    get subTitleHeader () { return $('h2#subsection-title.govuk-heading-m'); }
 
     async start () {
         await (await this.startNewCalBtn).click();
+    }  
+
+    async getUsefulLinkText(usefulLinkMessage) {
+        expect(subTitleHeader).to.equal(usefulLinkMessage);       
     }
+
+    open () {
+       return super.open('bps');
+    } 
 
 }
 
-export default new Homepage();
+export default new homePage();

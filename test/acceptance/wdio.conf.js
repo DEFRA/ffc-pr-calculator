@@ -14,7 +14,7 @@ exports.config = {
     maxInstances: 5,
     browserName: 'chrome',
     'goog:chromeOptions': {
-      args: ['--headless', '--ignore-certificate-errors']
+     // args: ['--headless', '--ignore-certificate-errors']
     }
   }],
   //
