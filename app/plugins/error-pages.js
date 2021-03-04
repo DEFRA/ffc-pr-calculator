@@ -9,7 +9,7 @@ module.exports = {
       server.ext('onPreResponse', (request, h) => {
         const response = request.response
 
-        if (response.isBoom) {
+        if (response.isBoom && !request.path.startsWith('/api/')) {
           // An error was raised during
           // processing the request
           const statusCode = response.output.statusCode

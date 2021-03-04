@@ -1,8 +1,7 @@
 {
   "defaults": {
     "standard": "WCAG2AA",
-    "timeout": 10000,
-    "wait": 5000,
+    "concurrency": 1,
     "chromeLaunchConfig": {
       "args": [
         "--no-sandbox",
@@ -18,6 +17,6 @@
   "urls": [
     "http://ffc-pr-calculator:3000/",
     "http://ffc-pr-calculator:3000/bps",
-    "http://ffc-pr-calculator:3000/calculation"
+    "http://ffc-pr-calculator:3000/calculation?bpsValue=1000"
   ]
 }
