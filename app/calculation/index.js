@@ -5,18 +5,21 @@ const { convertStringToPence } = require('./convert-currency')
 const schemeYears = require('./scheme-years')
 
 function transformResults (bandResults) {
-  return Object.values(bandResults.flat().reduce((r, { band, result }) => {
-    if (!r[band]) {
-      r[band] = {
+  // transform nested array into json object grouped by band.
+  return Object.values(bandResults.flat().reduce((groupedBands, { band, result }) => {
+    // create new band obect if doesn't already exist
+    if (!groupedBands[band]) {
+      groupedBands[band] = {
         band: band,
         result: []
       }
     }
+    // add results to the band group
     result.map((bandResult) => {
-      r[band].result.push(bandResult)
+      groupedBands[band].result.push(bandResult)
       return bandResult
     })
-    return r
+    return groupedBands
   }, {}))
 }
 
