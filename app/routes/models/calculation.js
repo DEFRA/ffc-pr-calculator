@@ -24,7 +24,8 @@ function toRow (results, property, formatType) {
 
 function fillGaps (results, data, formatType) {
   const checkSchemeYears = results.result.map(x => x.schemeYear)
-  const maxYear = Math.max.apply(Math, schemeYears)
+  const maxSchemeYear = Math.max.apply(Math, schemeYears)
+  const minSchemeYear = Math.min.apply(Math, schemeYears)
   const minYear = Math.min.apply(Math, checkSchemeYears)
 
   const missingData = {
@@ -34,7 +35,7 @@ function fillGaps (results, data, formatType) {
     format: 'numeric'
   }
 
-  for (let i = 2021; i <= maxYear; i++) {
+  for (let i = minSchemeYear; i <= maxSchemeYear; i++) {
     if (checkSchemeYears.indexOf(i) < 0) {
       i < minYear
         ? data.splice(1, 0, missingData)
