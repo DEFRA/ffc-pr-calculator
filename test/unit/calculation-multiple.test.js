@@ -326,4 +326,52 @@ describe('calculate', () => {
     expect(overallPayment).toBe(12500)
     expect(overallPayment + overallReduction).toBe(25000)
   })
+
+  test('30001 for 2022 returns overall totals, reduction 6000.25, payment 24000.75 and total 30001', () => {
+    const schemeYearValues = [{ schemeYear: 2021, bpsValue: 100 },
+      { schemeYear: 2022, bpsValue: 30001 },
+      { schemeYear: 2023, bpsValue: 50001 },
+      { schemeYear: 2024, bpsValue: 150001 }]
+
+    const result = calculateFromSchemeYears(schemeYearValues)
+
+    const overallReduction = result.overallResult.find(x => x.schemeYear === 2022).reduction
+    const overallPayment = result.overallResult.find(x => x.schemeYear === 2022).payment
+
+    expect(overallReduction).toBe(6000.25)
+    expect(overallPayment).toBe(24000.75)
+    expect(overallPayment + overallReduction).toBe(30001)
+  })
+
+  test('50001 for 2023 returns overall totals, reduction 18500.50, payment 31500.50 and total 50001', () => {
+    const schemeYearValues = [{ schemeYear: 2021, bpsValue: 100 },
+      { schemeYear: 2022, bpsValue: 30001 },
+      { schemeYear: 2023, bpsValue: 50001 },
+      { schemeYear: 2024, bpsValue: 150001 }]
+
+    const result = calculateFromSchemeYears(schemeYearValues)
+
+    const overallReduction = result.overallResult.find(x => x.schemeYear === 2023).reduction
+    const overallPayment = result.overallResult.find(x => x.schemeYear === 2023).payment
+
+    expect(overallReduction).toBe(18500.50)
+    expect(overallPayment).toBe(31500.50)
+    expect(overallPayment + overallReduction).toBe(50001)
+  })
+
+  test('150001 for 2024 returns overall totals, reduction 91000.70, payment 59000.30 and total 150001', () => {
+    const schemeYearValues = [{ schemeYear: 2021, bpsValue: 100 },
+      { schemeYear: 2022, bpsValue: 30001 },
+      { schemeYear: 2023, bpsValue: 50001 },
+      { schemeYear: 2024, bpsValue: 150001 }]
+
+    const result = calculateFromSchemeYears(schemeYearValues)
+
+    const overallReduction = result.overallResult.find(x => x.schemeYear === 2024).reduction
+    const overallPayment = result.overallResult.find(x => x.schemeYear === 2024).payment
+
+    expect(overallReduction).toBe(91000.70)
+    expect(overallPayment).toBe(59000.30)
+    expect(overallPayment + overallReduction).toBe(150001)
+  })
 })

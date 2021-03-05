@@ -1,5 +1,6 @@
 
 const bands = require('../../calculation/bands')
+const schemeYears = require('../../calculation/scheme-years')
 
 function GetBandText (band) {
   return bands.find(x => x.band === band).text
@@ -23,7 +24,7 @@ function toRow (results, property, formatType) {
 
 function fillGaps (results, data, formatType) {
   const checkSchemeYears = results.result.map(x => x.schemeYear)
-  const maxYear = Math.max.apply(Math, checkSchemeYears)
+  const maxYear = Math.max.apply(Math, schemeYears)
   const minYear = Math.min.apply(Math, checkSchemeYears)
 
   const missingData = {
@@ -33,13 +34,14 @@ function fillGaps (results, data, formatType) {
     format: 'numeric'
   }
 
-  for (let i = 2021; i < maxYear; i++) {
+  for (let i = 2021; i <= maxYear; i++) {
     if (checkSchemeYears.indexOf(i) < 0) {
       i < minYear
         ? data.splice(1, 0, missingData)
         : data.push(missingData)
     }
   }
+
   return data
 }
 
