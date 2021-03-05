@@ -1,4 +1,4 @@
-const { calculateMultiple } = require('../../app/calculation')
+const { calculateFromSchemeYears } = require('../../app/calculation')
 
 describe('calculate', () => {
   test('returns only band 1', () => {
@@ -7,7 +7,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 15000 },
       { schemeYear: 2024, bpsValue: 10000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     expect(result.bandResult.filter(x => x.band === 1).length).toBe(1)
     expect(result.bandResult.filter(x => x.band === 2).length).toBe(0)
@@ -21,7 +21,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 45000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     expect(result.bandResult.filter(x => x.band === 1).length).toBe(1)
     expect(result.bandResult.filter(x => x.band === 2).length).toBe(1)
@@ -35,7 +35,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 55000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     expect(result.bandResult.filter(x => x.band === 1).length).toBe(1)
     expect(result.bandResult.filter(x => x.band === 2).length).toBe(1)
@@ -49,7 +49,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 25000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     expect(result.bandResult.filter(x => x.band === 1).length).toBe(1)
     expect(result.bandResult.filter(x => x.band === 2).length).toBe(1)
@@ -63,7 +63,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 25000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     expect(result.bandResult.find(x => x.band === 1).result.length).toBe(4)
     expect(result.bandResult.find(x => x.band === 2).result.length).toBe(3)
@@ -77,7 +77,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 25000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     expect(result.bandResult.find(x => x.band === 1).result.find(x => x.schemeYear === 2021).reduction).toBe(1500)
     expect(result.bandResult.find(x => x.band === 1).result.find(x => x.schemeYear === 2021).payment).toBe(28500)
@@ -89,7 +89,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 25000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     expect(result.bandResult.find(x => x.band === 1).result.find(x => x.schemeYear === 2022).reduction).toBe(6000)
     expect(result.bandResult.find(x => x.band === 1).result.find(x => x.schemeYear === 2022).payment).toBe(24000)
@@ -101,7 +101,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 25000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     expect(result.bandResult.find(x => x.band === 1).result.find(x => x.schemeYear === 2023).reduction).toBe(10500)
     expect(result.bandResult.find(x => x.band === 1).result.find(x => x.schemeYear === 2023).payment).toBe(19500)
@@ -113,7 +113,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 25000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     expect(result.bandResult.find(x => x.band === 1).result.find(x => x.schemeYear === 2024).reduction).toBe(12500)
     expect(result.bandResult.find(x => x.band === 1).result.find(x => x.schemeYear === 2024).payment).toBe(12500)
@@ -125,7 +125,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 25000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     expect(result.bandResult.find(x => x.band === 2).result.find(x => x.schemeYear === 2021).reduction).toBe(2000)
     expect(result.bandResult.find(x => x.band === 2).result.find(x => x.schemeYear === 2021).payment).toBe(18000)
@@ -137,7 +137,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 25000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     expect(result.bandResult.find(x => x.band === 2).result.find(x => x.schemeYear === 2022).reduction).toBe(5000)
     expect(result.bandResult.find(x => x.band === 2).result.find(x => x.schemeYear === 2022).payment).toBe(15000)
@@ -149,7 +149,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 25000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     expect(result.bandResult.find(x => x.band === 2).result.find(x => x.schemeYear === 2023).reduction).toBe(2000)
     expect(result.bandResult.find(x => x.band === 2).result.find(x => x.schemeYear === 2023).payment).toBe(3000)
@@ -161,7 +161,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 25000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     expect(result.bandResult.find(x => x.band === 2).result.filter(x => x.schemeYear === 2024).length).toBe(0)
     expect(result.bandResult.find(x => x.band === 2).result.filter(x => x.schemeYear === 2024).length).toBe(0)
@@ -173,7 +173,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 25000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     expect(result.bandResult.find(x => x.band === 3).result.find(x => x.schemeYear === 2021).reduction).toBe(20000)
     expect(result.bandResult.find(x => x.band === 3).result.find(x => x.schemeYear === 2021).payment).toBe(80000)
@@ -185,7 +185,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 25000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     expect(result.bandResult.find(x => x.band === 3).result.find(x => x.schemeYear === 2022).reduction).toBe(1750)
     expect(result.bandResult.find(x => x.band === 3).result.find(x => x.schemeYear === 2022).payment).toBe(3250)
@@ -197,7 +197,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 25000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     expect(result.bandResult.find(x => x.band === 3).result.filter(x => x.schemeYear === 2023).length).toBe(0)
     expect(result.bandResult.find(x => x.band === 3).result.filter(x => x.schemeYear === 2023).length).toBe(0)
@@ -209,7 +209,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 25000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     expect(result.bandResult.find(x => x.band === 3).result.filter(x => x.schemeYear === 2024).length).toBe(0)
     expect(result.bandResult.find(x => x.band === 3).result.filter(x => x.schemeYear === 2024).length).toBe(0)
@@ -221,7 +221,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 25000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     expect(result.bandResult.find(x => x.band === 4).result.find(x => x.schemeYear === 2021).reduction).toBe(1250)
     expect(result.bandResult.find(x => x.band === 4).result.find(x => x.schemeYear === 2021).payment).toBe(3750)
@@ -233,7 +233,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 25000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     expect(result.bandResult.find(x => x.band === 4).result.filter(x => x.schemeYear === 2022).length).toBe(0)
     expect(result.bandResult.find(x => x.band === 4).result.filter(x => x.schemeYear === 2022).length).toBe(0)
@@ -245,7 +245,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 25000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     expect(result.bandResult.find(x => x.band === 4).result.filter(x => x.schemeYear === 2023).length).toBe(0)
     expect(result.bandResult.find(x => x.band === 4).result.filter(x => x.schemeYear === 2023).length).toBe(0)
@@ -257,7 +257,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 25000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     expect(result.bandResult.find(x => x.band === 4).result.filter(x => x.schemeYear === 2024).length).toBe(0)
     expect(result.bandResult.find(x => x.band === 4).result.filter(x => x.schemeYear === 2024).length).toBe(0)
@@ -269,7 +269,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 25000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     const overallReduction = result.overallResult.find(x => x.schemeYear === 2021).reduction
     const overallPayment = result.overallResult.find(x => x.schemeYear === 2021).payment
@@ -285,7 +285,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 25000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     const overallReduction = result.overallResult.find(x => x.schemeYear === 2022).reduction
     const overallPayment = result.overallResult.find(x => x.schemeYear === 2022).payment
@@ -301,7 +301,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 25000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     const overallReduction = result.overallResult.find(x => x.schemeYear === 2023).reduction
     const overallPayment = result.overallResult.find(x => x.schemeYear === 2023).payment
@@ -317,7 +317,7 @@ describe('calculate', () => {
       { schemeYear: 2023, bpsValue: 35000 },
       { schemeYear: 2024, bpsValue: 25000 }]
 
-    const result = calculateMultiple(schemeYearValues)
+    const result = calculateFromSchemeYears(schemeYearValues)
 
     const overallReduction = result.overallResult.find(x => x.schemeYear === 2024).reduction
     const overallPayment = result.overallResult.find(x => x.schemeYear === 2024).payment

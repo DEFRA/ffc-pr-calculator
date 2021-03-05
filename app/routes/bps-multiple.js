@@ -26,7 +26,6 @@ module.exports = [{
       }
     },
     handler: async (request, h) => {
-      console.log('payload', request.payload)
       return h.redirect(`/calculation/multiple?bps2021Value=${request.payload.bps2021Value}&bps2022Value=${request.payload.bps2022Value}&bps2023Value=${request.payload.bps2023Value}&bps2024Value=${request.payload.bps2024Value}`)
     }
   }

@@ -12,6 +12,17 @@ describe('bps selection route', () => {
     await server.stop()
   })
 
+  test('GET /bps/selection bps-multiple view', async () => {
+    const options = {
+      method: 'GET',
+      url: '/bps/selection'
+    }
+
+    const result = await server.inject(options)
+    expect(result.request.response.variety).toBe('view')
+    expect(result.request.response.source.template).toBe('bps-selection')
+  })
+
   test('POST /bps/selection  returns 302', async () => {
     const options = {
       method: 'POST',
@@ -34,5 +45,18 @@ describe('bps selection route', () => {
     const result = await server.inject(options)
     expect(result.statusCode).toBe(302)
     expect(result.headers.location).toBe('/bps')
+  })
+
+  test('POST /bps/selection invalid', async () => {
+    const options = {
+      method: 'POST',
+      url: '/bps/selection',
+      payload: { bpsSelection: '' }
+    }
+
+    const result = await server.inject(options)
+    expect(result.request.response.source.template).toBe('bps-selection')
+    expect(result.request.response.source.context.model.errorMessage).toBeDefined()
+    expect(result.statusCode).toBe(400)
   })
 })

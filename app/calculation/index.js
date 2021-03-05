@@ -33,9 +33,8 @@ function calculate (schemeYearValues) {
   return transformResults(bandResults)
 }
 
-function calculateSingle (bpsValue) {
-  const schemeYearValues = []
-  schemeYears.forEach((schemeYear) => schemeYearValues.push({ schemeYear, bpsValue }))
+function calculateFromValue (bpsValue) {
+  const schemeYearValues = schemeYears.map(schemeYear => ({ schemeYear, bpsValue }))
 
   const bandResult = calculate(schemeYearValues)
 
@@ -45,13 +44,12 @@ function calculateSingle (bpsValue) {
   }
 }
 
-function calculateMultiple (schemeYearValues) {
+function calculateFromSchemeYears (schemeYearValues) {
   const bandResult = calculate(schemeYearValues)
-
   return {
     overallResult: calculateOverall(schemeYearValues, bandResult),
     bandResult
   }
 }
 
-module.exports = { calculateSingle, calculateMultiple }
+module.exports = { calculateFromValue, calculateFromSchemeYears }

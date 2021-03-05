@@ -1,6 +1,5 @@
 
 const bands = require('../../calculation/bands')
-const schemeYears = require('../../calculation/scheme-years')
 
 function GetBandText (band) {
   return bands.find(x => x.band === band).text
@@ -9,27 +8,37 @@ function GetBandText (band) {
 function toRow (results, property, formatType) {
   const data = []
   data.push({ text: GetBandText(results.band) })
-  results.result.map(x => data.push(
-    {
-      text: (formatType === 'currency'
-        ? `£${x[property].toFixed(2)}`
-        : `${Math.round(x[property] * 100)}%`),
-      format: 'numeric'
-    }))
-
-  return [...data, ...fillGaps(results, formatType)]
-}
-
-function fillGaps (results, formatType) {
-  const data = []
-  for (let i = 0; i < schemeYears.length - results.result.length; i++) {
+  results.result.map((x) => {
     data.push(
       {
         text: (formatType === 'currency'
-          ? '£0.00'
-          : '0%'),
+          ? `£${x[property].toFixed(2)}`
+          : `${Math.round(x[property] * 100)}%`),
         format: 'numeric'
       })
+    return x
+  })
+  return fillGaps(results, data, formatType)
+}
+
+function fillGaps (results, data, formatType) {
+  const checkSchemeYears = results.result.map(x => x.schemeYear)
+  const maxYear = Math.max.apply(Math, checkSchemeYears)
+  const minYear = Math.min.apply(Math, checkSchemeYears)
+
+  const missingData = {
+    text: (formatType === 'currency'
+      ? '£0.00'
+      : '0%'),
+    format: 'numeric'
+  }
+
+  for (let i = 2021; i < maxYear; i++) {
+    if (checkSchemeYears.indexOf(i) < 0) {
+      i < minYear
+        ? data.splice(1, 0, missingData)
+        : data.push(missingData)
+    }
   }
   return data
 }
@@ -50,10 +59,10 @@ function populateOverall (calculations, property, text) {
   return overall
 }
 
-function populateData (calculations, property, text, formatType, showOverall) {
-  const reductionData = calculations.bandResult.map(x => toRow(x, property, formatType))
-  if (showOverall) {
-    reductionData.push(populateOverall(calculations, property, text).flat())
+function populateData (calculations, options) {
+  const reductionData = calculations.bandResult.map(x => toRow(x, options.property, options.formatType))
+  if (options.showOverall) {
+    reductionData.push(populateOverall(calculations, options.property, options.text).flat())
   }
   return reductionData
 }
@@ -71,9 +80,9 @@ function createSummary (bpsValue, bpsMultipleValue) {
   }
 }
 
-function createTableDefinition (calculations, property, text, caption, formatType = 'currency', showOverall = true) {
+function createTableDefinition (calculations, options) {
   return {
-    caption: caption,
+    caption: options.caption,
     captionClasses: 'govuk-table__caption--l',
     firstCellIsHeader: true,
     head: [
@@ -98,15 +107,15 @@ function createTableDefinition (calculations, property, text, caption, formatTyp
         format: 'numeric'
       }
     ],
-    rows: populateData(calculations, property, text, formatType, showOverall)
+    rows: populateData(calculations, options)
   }
 }
 
 module.exports = function ViewModel (bpsValue, calculations) {
   this.model = {
-    paymentBand: createTableDefinition(calculations, 'rate', '', 'Payment band', 'percentage', false),
-    payment: createTableDefinition(calculations, 'payment', 'Payment value after progressive reductions:', 'Payments within each band'),
-    reduction: createTableDefinition(calculations, 'reduction', 'Total progressive reduction:', 'Reductions within each band'),
+    paymentBand: createTableDefinition(calculations, { property: 'rate', text: '', caption: 'Payment band', formatType: 'percentage', showOverall: false }),
+    payment: createTableDefinition(calculations, { property: 'payment', text: 'Payment value after progressive reductions:', caption: 'Payments within each band', formatType: 'currency', showOverall: true }),
+    reduction: createTableDefinition(calculations, { property: 'reduction', text: 'Total progressive reduction:', caption: 'Reductions within each band', formatType: 'currency', showOverall: true }),
     confirmation: createSummary(bpsValue, calculations.multipleValues)
   }
 }

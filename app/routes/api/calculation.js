@@ -1,4 +1,4 @@
-const { calculateSingle } = require('../../calculation')
+const { calculateFromValue } = require('../../calculation')
 const joi = require('joi')
 const boom = require('@hapi/boom')
 
@@ -15,7 +15,7 @@ module.exports = [{
       }
     },
     handler: (request, h) => {
-      const result = calculateSingle(request.params.bpsValue)
+      const result = calculateFromValue(request.params.bpsValue)
       return h.response(result)
     }
   }

@@ -12,6 +12,17 @@ describe('bps multiple route', () => {
     await server.stop()
   })
 
+  test('GET /bps/multiple bps-multiple view', async () => {
+    const options = {
+      method: 'GET',
+      url: '/bps/multiple'
+    }
+
+    const result = await server.inject(options)
+    expect(result.request.response.variety).toBe('view')
+    expect(result.request.response.source.template).toBe('bps-multiple')
+  })
+
   test('POST /bps/multiple  returns 302', async () => {
     const bps2021Value = 5000
     const bps2022Value = 4000
@@ -38,7 +49,7 @@ describe('bps multiple route', () => {
 
     const result = await server.inject(options)
     expect(result.request.response.source.template).toBe('bps-multiple')
-    // expect(result.request.response.source.context.model.errorMessage).toBeDefined()
+    expect(result.request.response.source.context.model.errorMessage).toBeDefined()
     expect(result.statusCode).toBe(400)
   })
 })

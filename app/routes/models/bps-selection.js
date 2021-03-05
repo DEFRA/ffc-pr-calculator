@@ -10,7 +10,7 @@ function ViewModel (value, error) {
       }
     },
     hint: {
-      text: 'e.g. you will claim on more, or less, land entitlements.'
+      text: 'For example, if you will claim on more, or less, land entitlements.'
     },
     items: [
       {
@@ -24,6 +24,13 @@ function ViewModel (value, error) {
     ],
     id: 'bpsSelection',
     name: 'bpsSelection'
+  }
+
+  // If error is passed to model then this error property is added to the model
+  if (error) {
+    this.model.errorMessage = {
+      text: 'Please select if your BPS claim change in future years.'
+    }
   }
 }
 

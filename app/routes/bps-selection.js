@@ -23,7 +23,6 @@ module.exports = [{
       }
     },
     handler: async (request, h) => {
-      console.log(request.payload.bpsSelection)
       const redirect = request.payload.bpsSelection === 'multiple' ? '/bps/multiple' : '/bps'
       return h.redirect(redirect)
     }

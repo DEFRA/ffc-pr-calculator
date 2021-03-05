@@ -1,5 +1,5 @@
 const ViewModel = require('./models/calculation')
-const { calculateSingle, calculateMultiple } = require('../calculation')
+const { calculateFromValue, calculateFromSchemeYears } = require('../calculation')
 const joi = require('joi')
 
 module.exports = [{
@@ -15,7 +15,7 @@ module.exports = [{
       }
     },
     handler: (request, h) => {
-      const result = calculateSingle(request.query.bpsValue)
+      const result = calculateFromValue(request.query.bpsValue)
 
       const values = { multipleValues: {} }
       const includeMultipleValues = { ...result, ...values }
@@ -30,10 +30,10 @@ module.exports = [{
   options: {
     validate: {
       query: joi.object({
-        bps2021Value: joi.number().precision(2).greater(0).required(),
-        bps2022Value: joi.number().precision(2).greater(0).required(),
-        bps2023Value: joi.number().precision(2).greater(0).required(),
-        bps2024Value: joi.number().precision(2).greater(0).required()
+        bps2021Value: joi.number().precision(2).required(),
+        bps2022Value: joi.number().precision(2).required(),
+        bps2023Value: joi.number().precision(2).required(),
+        bps2024Value: joi.number().precision(2).required()
       }),
       failAction: async (request, h, error) => {
         return h.redirect('/bps/multiple').takeover()
@@ -45,7 +45,7 @@ module.exports = [{
         { schemeYear: 2023, bpsValue: request.query.bps2023Value },
         { schemeYear: 2024, bpsValue: request.query.bps2024Value }]
 
-      const result = calculateMultiple(schemeYearValues)
+      const result = calculateFromSchemeYears(schemeYearValues)
 
       const values = {
         multipleValues: {
