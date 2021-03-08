@@ -15,7 +15,7 @@ function createInput (paymentBand, error, value) {
   }
 }
 
-module.exports = function ViewModel (bps2021Value, bps2022Value, bps2023Value, bps2024Value, error) {
+module.exports = function ViewModel (payload, error) {
   const errorMessage = { text: '' }
 
   // If error is passed to model then this error property is added to the model
@@ -24,10 +24,10 @@ module.exports = function ViewModel (bps2021Value, bps2022Value, bps2023Value, b
   }
 
   this.model = {
-    band2021: createInput('2021', error, bps2021Value),
-    band2022: createInput('2022', error, bps2022Value),
-    band2023: createInput('2023', error, bps2023Value),
-    band2024: createInput('2024', error, bps2024Value),
+    band2021: createInput('2021', error, payload.bps2021Value),
+    band2022: createInput('2022', error, payload.bps2022Value),
+    band2023: createInput('2023', error, payload.bps2023Value),
+    band2024: createInput('2024', error, payload.bps2024Value),
     errorMessage
   }
 }

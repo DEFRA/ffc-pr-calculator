@@ -30,20 +30,20 @@ module.exports = [{
   options: {
     validate: {
       query: joi.object({
-        bps2021Value: joi.number().precision(2).required(),
-        bps2022Value: joi.number().precision(2).required(),
-        bps2023Value: joi.number().precision(2).required(),
-        bps2024Value: joi.number().precision(2).required()
-      }),
+        bps2021Value: joi.number().empty('').allow(null).precision(2).greater(0).less(1000000000),
+        bps2022Value: joi.number().empty('').allow(null).precision(2).greater(0).less(1000000000),
+        bps2023Value: joi.number().empty('').allow(null).precision(2).greater(0).less(1000000000),
+        bps2024Value: joi.number().empty('').allow(null).precision(2).greater(0).less(1000000000)
+      }).min(1),
       failAction: async (request, h, error) => {
         return h.redirect('/bps/multiple').takeover()
       }
     },
     handler: (request, h) => {
-      const schemeYearValues = [{ schemeYear: 2021, bpsValue: request.query.bps2021Value },
-        { schemeYear: 2022, bpsValue: request.query.bps2022Value },
-        { schemeYear: 2023, bpsValue: request.query.bps2023Value },
-        { schemeYear: 2024, bpsValue: request.query.bps2024Value }]
+      const schemeYearValues = [{ schemeYear: 2021, bpsValue: request.query.bps2021Value || 0 },
+        { schemeYear: 2022, bpsValue: request.query.bps2022Value || 0 },
+        { schemeYear: 2023, bpsValue: request.query.bps2023Value || 0 },
+        { schemeYear: 2024, bpsValue: request.query.bps2024Value || 0 }]
 
       const result = calculateFromSchemeYears(schemeYearValues)
 
