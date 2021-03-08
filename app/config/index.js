@@ -5,7 +5,7 @@ const schema = joi.object({
   serviceName: joi.string().default('Calculate my progressive reductions'),
   port: joi.number().default(3000),
   env: joi.string().valid('development', 'test', 'production').default('development'),
-  googleTagManagerKey: joi.string().default('GTM'),
+  googleTagManagerKey: joi.string().default('GTM-5XJKV8F'),
   cookieOptions: joi.object({
     ttl: joi.number().default(1000 * 60 * 60 * 24 * 365),
     encoding: joi.string().valid('base64json').default('base64json'),

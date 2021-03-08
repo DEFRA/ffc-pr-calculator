@@ -1,18 +1,18 @@
-const calculate = require('../../app/calculation')
+const { calculateFromValue } = require('../../app/calculation')
 
 describe('calculate overall results', () => {
   test('returns 4 results', () => {
-    const result = calculate(50000)
+    const result = calculateFromValue(50000)
     expect(result.overallResult.length).toBe(4)
   })
 
   test('returns amount lower still returns 4 results', () => {
-    const result = calculate(1000)
+    const result = calculateFromValue(1000)
     expect(result.overallResult.length).toBe(4)
   })
 
   test('returns correct values for 1000', () => {
-    const result = calculate(1000)
+    const result = calculateFromValue(1000)
     expect(result.overallResult.length).toBe(4)
     expect(result.overallResult[0].schemeYear).toBe(2021)
     expect(result.overallResult[0].bpsValue).toBe(1000)
@@ -36,7 +36,7 @@ describe('calculate overall results', () => {
   })
 
   test('returns correct values for 35000', () => {
-    const result = calculate(35000)
+    const result = calculateFromValue(35000)
     expect(result.overallResult.length).toBe(4)
     expect(result.overallResult[0].schemeYear).toBe(2021)
     expect(result.overallResult[0].bpsValue).toBe(35000)
@@ -60,7 +60,7 @@ describe('calculate overall results', () => {
   })
 
   test('returns correct values for 55000', () => {
-    const result = calculate(55000)
+    const result = calculateFromValue(55000)
     expect(result.overallResult.length).toBe(4)
     expect(result.overallResult[0].schemeYear).toBe(2021)
     expect(result.overallResult[0].bpsValue).toBe(55000)
@@ -84,7 +84,7 @@ describe('calculate overall results', () => {
   })
 
   test('returns correct values for 155000', () => {
-    const result = calculate(155000)
+    const result = calculateFromValue(155000)
     expect(result.overallResult.length).toBe(4)
     expect(result.overallResult[0].schemeYear).toBe(2021)
     expect(result.overallResult[0].bpsValue).toBe(155000)
@@ -108,7 +108,7 @@ describe('calculate overall results', () => {
   })
 
   test('returns overall reductions get higher', () => {
-    const result = calculate(155000)
+    const result = calculateFromValue(155000)
 
     expect(result.overallResult[3].payment).toBeLessThan(result.overallResult[2].payment)
     expect(result.overallResult[2].payment).toBeLessThan(result.overallResult[1].payment)
@@ -116,26 +116,26 @@ describe('calculate overall results', () => {
   })
 
   test('returns overall payments get lower', () => {
-    const result = calculate(155000)
+    const result = calculateFromValue(155000)
     expect(result.overallResult[0].payment).toBeGreaterThan(result.overallResult[1].payment)
     expect(result.overallResult[1].payment).toBeGreaterThan(result.overallResult[2].payment)
     expect(result.overallResult[2].payment).toBeGreaterThan(result.overallResult[3].payment)
   })
 
   test('returns overall reductions get higher', () => {
-    const result = calculate(1000)
+    const result = calculateFromValue(1000)
     expect(result.overallResult[3].payment).toBeLessThan(result.overallResult[2].payment)
     expect(result.overallResult[2].payment).toBeLessThan(result.overallResult[1].payment)
     expect(result.overallResult[1].payment).toBeLessThan(result.overallResult[0].payment)
   })
 
   test('returns overall reduction and payment in 2024 are the same for 1000', () => {
-    const result = calculate(1000)
+    const result = calculateFromValue(1000)
     expect(result.overallResult[3].payment).toEqual(result.overallResult[3].reduction)
   })
 
   test('returns overall reduction and payment in 2024 are the same for 15000', () => {
-    const result = calculate(15000)
+    const result = calculateFromValue(15000)
     expect(result.overallResult[3].payment).toEqual(result.overallResult[3].reduction)
   })
 })

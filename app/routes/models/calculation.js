@@ -1,5 +1,6 @@
 
 const bands = require('../../calculation/bands')
+const schemeYears = require('../../calculation/scheme-years')
 
 function GetBandText (band) {
   return bands.find(x => x.band === band).text
@@ -8,13 +9,40 @@ function GetBandText (band) {
 function toRow (results, property, formatType) {
   const data = []
   data.push({ text: GetBandText(results.band) })
-  results.result.map(x => data.push(
-    {
-      text: (formatType === 'currency'
-        ? `£${x[property].toFixed(2)}`
-        : `${Math.round(x[property] * 100)}%`),
-      format: 'numeric'
-    }))
+  results.result.map((x) => {
+    data.push(
+      {
+        text: (formatType === 'currency'
+          ? `£${x[property].toFixed(2)}`
+          : `${Math.round(x[property] * 100)}%`),
+        format: 'numeric'
+      })
+    return x
+  })
+  return fillGaps(results, data, formatType)
+}
+
+function fillGaps (results, data, formatType) {
+  const checkSchemeYears = results.result.map(x => x.schemeYear)
+  const maxSchemeYear = Math.max.apply(Math, schemeYears)
+  const minSchemeYear = Math.min.apply(Math, schemeYears)
+
+  const missingData = {
+    text: (formatType === 'currency'
+      ? '£0.00'
+      : '0%'),
+    format: 'numeric'
+  }
+
+  let yearIncrementCount = 0
+
+  for (let i = minSchemeYear; i <= maxSchemeYear; i++) {
+    yearIncrementCount++
+    if (checkSchemeYears.indexOf(i) < 0) {
+      data.splice(yearIncrementCount, 0, missingData)
+    }
+  }
+
   return data
 }
 
@@ -34,17 +62,30 @@ function populateOverall (calculations, property, text) {
   return overall
 }
 
-function populateData (calculations, property, text, formatType, showOverall) {
-  const reductionData = calculations.bandResult.map(x => toRow(x, property, formatType))
-  if (showOverall) {
-    reductionData.push(populateOverall(calculations, property, text).flat())
+function populateData (calculations, options) {
+  const reductionData = calculations.bandResult.map(x => toRow(x, options.property, options.formatType))
+  if (options.showOverall) {
+    reductionData.push(populateOverall(calculations, options.property, options.text).flat())
   }
   return reductionData
 }
 
-function createTableDefinition (calculations, property, text, caption, formatType = 'currency', showOverall = true) {
+function createSummary (bpsValue, bpsMultipleValue) {
+  let titleText = ''
+  Object.keys(bpsMultipleValue).length === 0
+    ? titleText = `Your progressive reductions based on a BPS payment of £${bpsValue} have been estimated`
+    : titleText = `Your progressive reductions based on BPS payments of £${bpsMultipleValue.bps2021Value} in 2021, £${bpsMultipleValue.bps2022Value} in 2022, 
+                £${bpsMultipleValue.bps2023Value} in 2023 and 
+                £${bpsMultipleValue.bps2024Value} in 2024 have been estimated`
+
   return {
-    caption: caption,
+    titleText
+  }
+}
+
+function createTableDefinition (calculations, options) {
+  return {
+    caption: options.caption,
     captionClasses: 'govuk-table__caption--l',
     firstCellIsHeader: true,
     head: [
@@ -69,17 +110,15 @@ function createTableDefinition (calculations, property, text, caption, formatTyp
         format: 'numeric'
       }
     ],
-    rows: populateData(calculations, property, text, formatType, showOverall)
+    rows: populateData(calculations, options)
   }
 }
 
 module.exports = function ViewModel (bpsValue, calculations) {
   this.model = {
-    paymentBand: createTableDefinition(calculations, 'rate', '', 'Payment band', 'percentage', false),
-    payment: createTableDefinition(calculations, 'payment', 'Payment value after progressive reductions:', 'Payments within each band'),
-    reduction: createTableDefinition(calculations, 'reduction', 'Total progressive reduction:', 'Reductions within each band'),
-    confirmation: {
-      titleText: `Your progressive reductions based on a BPS payment of £${bpsValue} have been estimated`
-    }
+    paymentBand: createTableDefinition(calculations, { property: 'rate', text: '', caption: 'Payment band', formatType: 'percentage', showOverall: false }),
+    payment: createTableDefinition(calculations, { property: 'payment', text: 'Payment value after progressive reductions:', caption: 'Payments within each band', formatType: 'currency', showOverall: true }),
+    reduction: createTableDefinition(calculations, { property: 'reduction', text: 'Total progressive reduction:', caption: 'Reductions within each band', formatType: 'currency', showOverall: true }),
+    confirmation: createSummary(bpsValue, calculations.multipleValues)
   }
 }

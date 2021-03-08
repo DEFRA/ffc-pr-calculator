@@ -1,0 +1,31 @@
+{% extends 'layout.njk' %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/error-message/macro.njk" import govukErrorMessage %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      }]
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-body">
+  <h1 class="govuk-heading-l">What are the values of your BPS payments over future years?</h1>
+    <form method="POST" action="/bps/multiple" novalidate>
+      {{ govukInput(model.band2021) }}
+      {{ govukInput(model.band2022) }}
+      {{ govukInput(model.band2023) }}
+      {{ govukInput(model.band2024) }}
+      {{ govukButton({
+        text: "Calculate my payments"
+      }) }}
+    </form>
+  </div>
+{% endblock %}
