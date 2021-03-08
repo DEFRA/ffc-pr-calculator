@@ -1,7 +1,11 @@
+'use strict'
+
 const { ReportAggregator, HtmlReporter } = require('@rpii/wdio-html-reporter')
 const log4js = require('@log4js-node/log4js-api')
 const logger = log4js.getLogger('default')
 const envRoot = (process.env.TEST_ENVIRONMENT_ROOT_URL || 'http://host.docker.internal:3000')
+
+const chromeArgs = process.env.CHROME_DEBUG_MODE ? [] : ['--headless', '--ignore-certificate-errors', '--ignore-certificate-errors', '--verbose', '--disable-web-security', '--allow-running-insecure-content', '--allow-insecure-localhost', '--no-sandbox' ]
 
 exports.config = {
   hostname: 'selenium',
@@ -9,12 +13,14 @@ exports.config = {
  // specs: ['./features/**/*.feature'],
   specs: ['./features/*.feature'],
   exclude: ['./scratch/**'],
-  maxInstances: 10,
+  maxInstances: 1,
   capabilities: [{
-    maxInstances: 5,
+    maxInstances: 1,
     browserName: 'chrome',
+    acceptInsecureCerts: true,
     'goog:chromeOptions': {
-     // args: ['--headless', '--ignore-certificate-errors']
+     args: chromeArgs
+     //args: ['--headless', '--ignore-certificate-errors', '--verbose', '--verbose', '--disable-web-security', '--allow-running-insecure-content', '--allow-insecure-localhost', '--no-sandbox']
     }
   }],
   //

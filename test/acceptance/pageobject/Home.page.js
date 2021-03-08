@@ -17,7 +17,7 @@ class homePage extends Page {
 
     open () {
        return super.open('bps');
-    } 
+    }    
 
 }
 

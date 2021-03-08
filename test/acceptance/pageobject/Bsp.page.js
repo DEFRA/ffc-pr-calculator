@@ -14,7 +14,7 @@ class bspPage extends Page {
     }
 
     async calculateBpsValue() {
-        this.calMyPaymentBtn.click();
+        await (await this.calMyPaymentBtn).click();
     }
 
     async getErrorTextMessage(errormessage) {
