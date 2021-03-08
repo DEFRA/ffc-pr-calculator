@@ -24,10 +24,10 @@ module.exports = function ViewModel (payload, error) {
   }
 
   this.model = {
-    band2021: createInput('2021', error, payload.bps2021Value),
-    band2022: createInput('2022', error, payload.bps2022Value),
-    band2023: createInput('2023', error, payload.bps2023Value),
-    band2024: createInput('2024', error, payload.bps2024Value),
+    band2021: createInput('2021', error, payload?.bps2021Value),
+    band2022: createInput('2022', error, payload?.bps2022Value),
+    band2023: createInput('2023', error, payload?.bps2023Value),
+    band2024: createInput('2024', error, payload?.bps2024Value),
     errorMessage
   }
 }

@@ -49,10 +49,10 @@ module.exports = [{
 
       const values = {
         multipleValues: {
-          bps2021Value: request.query.bps2021Value,
-          bps2022Value: request.query.bps2022Value,
-          bps2023Value: request.query.bps2023Value,
-          bps2024Value: request.query.bps2024Value
+          bps2021Value: request.query.bps2021Value || 0,
+          bps2022Value: request.query.bps2022Value || 0,
+          bps2023Value: request.query.bps2023Value || 0,
+          bps2024Value: request.query.bps2024Value || 0
         }
       }
 
