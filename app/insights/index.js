@@ -7,6 +7,8 @@ function setup () {
     const cloudRoleTag = appInsights.defaultClient.context.keys.cloudRole
     const appName = process.env.APPINSIGHTS_CLOUDROLE
     appInsights.defaultClient.context.tags[cloudRoleTag] = appName
+    appInsights.loadAppInsights()
+    appInsights.trackPageView()
   } else {
     console.log('App Insights Not Running!')
   }

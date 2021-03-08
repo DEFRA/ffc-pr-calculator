@@ -13,8 +13,8 @@ function toRow (results, property, formatType) {
     data.push(
       {
         text: (formatType === 'currency'
-          ? `£${x[property].toFixed(2)}`
-          : `${Math.round(x[property] * 100)}%`),
+          ? `£${x[property]}`
+          : `${(x[property] * 100)}%`),
         format: 'numeric'
       })
     return x
@@ -49,7 +49,7 @@ function fillGaps (results, data, formatType) {
 function overallToRow (overallResult, property) {
   const data = []
   data.push({
-    text: `£${overallResult[property].toFixed(2)}`,
+    text: `£${overallResult[property]}`,
     format: 'numeric',
     classes: 'govuk-body govuk-!-font-weight-bold'
   })
