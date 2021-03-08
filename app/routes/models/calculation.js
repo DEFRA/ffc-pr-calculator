@@ -13,8 +13,8 @@ function toRow (results, property, formatType) {
     data.push(
       {
         text: (formatType === 'currency'
-          ? `£${x[property]}`
-          : `${(x[property] * 100)}%`),
+          ? `£${x[property].toFixed(2)}`
+          : `${Math.round(x[property] * 100)}%`),
         format: 'numeric'
       })
     return x
@@ -26,7 +26,6 @@ function fillGaps (results, data, formatType) {
   const checkSchemeYears = results.result.map(x => x.schemeYear)
   const maxSchemeYear = Math.max.apply(Math, schemeYears)
   const minSchemeYear = Math.min.apply(Math, schemeYears)
-  const minYear = Math.min.apply(Math, checkSchemeYears)
 
   const missingData = {
     text: (formatType === 'currency'
@@ -35,11 +34,12 @@ function fillGaps (results, data, formatType) {
     format: 'numeric'
   }
 
+  let yearIncrementCount = 0
+
   for (let i = minSchemeYear; i <= maxSchemeYear; i++) {
+    yearIncrementCount++
     if (checkSchemeYears.indexOf(i) < 0) {
-      i < minYear
-        ? data.splice(1, 0, missingData)
-        : data.push(missingData)
+      data.splice(yearIncrementCount, 0, missingData)
     }
   }
 
@@ -49,7 +49,7 @@ function fillGaps (results, data, formatType) {
 function overallToRow (overallResult, property) {
   const data = []
   data.push({
-    text: `£${overallResult[property]}`,
+    text: `£${overallResult[property].toFixed(2)}`,
     format: 'numeric',
     classes: 'govuk-body govuk-!-font-weight-bold'
   })

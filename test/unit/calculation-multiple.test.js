@@ -374,4 +374,112 @@ describe('calculate', () => {
     expect(overallPayment).toBe(59000.30)
     expect(overallPayment + overallReduction).toBe(150001)
   })
+
+  test('5 for 2023 returns a reduction of 0 and payment of 0 in band 2', () => {
+    const schemeYearValues = [{ schemeYear: 2021, bpsValue: 50000 },
+      { schemeYear: 2022, bpsValue: 1500000 },
+      { schemeYear: 2023, bpsValue: 5 },
+      { schemeYear: 2024, bpsValue: 51000 }]
+
+    const result = calculateFromSchemeYears(schemeYearValues)
+
+    expect(result.bandResult.find(x => x.band === 2).result.filter(x => x.schemeYear === 2023).length).toBe(0)
+    expect(result.bandResult.find(x => x.band === 2).result.filter(x => x.schemeYear === 2023).length).toBe(0)
+  })
+
+  test('5 for 2023 returns a reduction of 0 and payment of 0 in band 3', () => {
+    const schemeYearValues = [{ schemeYear: 2021, bpsValue: 50000 },
+      { schemeYear: 2022, bpsValue: 1500000 },
+      { schemeYear: 2023, bpsValue: 5 },
+      { schemeYear: 2024, bpsValue: 51000 }]
+
+    const result = calculateFromSchemeYears(schemeYearValues)
+
+    expect(result.bandResult.find(x => x.band === 3).result.filter(x => x.schemeYear === 2023).length).toBe(0)
+    expect(result.bandResult.find(x => x.band === 3).result.filter(x => x.schemeYear === 2023).length).toBe(0)
+  })
+
+  test('5 for 2023 returns a reduction of 0 and payment of 0 in band 4', () => {
+    const schemeYearValues = [{ schemeYear: 2021, bpsValue: 50000 },
+      { schemeYear: 2022, bpsValue: 1500000 },
+      { schemeYear: 2023, bpsValue: 5 },
+      { schemeYear: 2024, bpsValue: 51000 }]
+
+    const result = calculateFromSchemeYears(schemeYearValues)
+
+    expect(result.bandResult.find(x => x.band === 4).result.filter(x => x.schemeYear === 2023).length).toBe(0)
+    expect(result.bandResult.find(x => x.band === 4).result.filter(x => x.schemeYear === 2023).length).toBe(0)
+  })
+
+  test('5 for 2022 returns a reduction of 0 and payment of 0 in band 2', () => {
+    const schemeYearValues = [{ schemeYear: 2021, bpsValue: 50000 },
+      { schemeYear: 2022, bpsValue: 5 },
+      { schemeYear: 2023, bpsValue: 1500000 },
+      { schemeYear: 2024, bpsValue: 51000 }]
+
+    const result = calculateFromSchemeYears(schemeYearValues)
+
+    expect(result.bandResult.find(x => x.band === 2).result.filter(x => x.schemeYear === 2022).length).toBe(0)
+    expect(result.bandResult.find(x => x.band === 2).result.filter(x => x.schemeYear === 2022).length).toBe(0)
+  })
+
+  test('5 for 2022 returns a reduction of 0 and payment of 0 in band 3', () => {
+    const schemeYearValues = [{ schemeYear: 2021, bpsValue: 50000 },
+      { schemeYear: 2022, bpsValue: 5 },
+      { schemeYear: 2023, bpsValue: 1500000 },
+      { schemeYear: 2024, bpsValue: 51000 }]
+
+    const result = calculateFromSchemeYears(schemeYearValues)
+
+    expect(result.bandResult.find(x => x.band === 3).result.filter(x => x.schemeYear === 2022).length).toBe(0)
+    expect(result.bandResult.find(x => x.band === 3).result.filter(x => x.schemeYear === 2022).length).toBe(0)
+  })
+
+  test('5 for 2022 returns a reduction of 0 and payment of 0 in band 4', () => {
+    const schemeYearValues = [{ schemeYear: 2021, bpsValue: 50000 },
+      { schemeYear: 2022, bpsValue: 5 },
+      { schemeYear: 2023, bpsValue: 1500000 },
+      { schemeYear: 2024, bpsValue: 51000 }]
+
+    const result = calculateFromSchemeYears(schemeYearValues)
+
+    expect(result.bandResult.find(x => x.band === 4).result.filter(x => x.schemeYear === 2022).length).toBe(0)
+    expect(result.bandResult.find(x => x.band === 4).result.filter(x => x.schemeYear === 2022).length).toBe(0)
+  })
+
+  test('5 for 2024 returns a reduction of 0 and payment of 0 in band 2', () => {
+    const schemeYearValues = [{ schemeYear: 2021, bpsValue: 50000 },
+      { schemeYear: 2022, bpsValue: 51000 },
+      { schemeYear: 2023, bpsValue: 1500000 },
+      { schemeYear: 2024, bpsValue: 5 }]
+
+    const result = calculateFromSchemeYears(schemeYearValues)
+
+    expect(result.bandResult.find(x => x.band === 2).result.filter(x => x.schemeYear === 2024).length).toBe(0)
+    expect(result.bandResult.find(x => x.band === 2).result.filter(x => x.schemeYear === 2024).length).toBe(0)
+  })
+
+  test('5 for 2024 returns a reduction of 0 and payment of 0 in band 3', () => {
+    const schemeYearValues = [{ schemeYear: 2021, bpsValue: 50000 },
+      { schemeYear: 2022, bpsValue: 51000 },
+      { schemeYear: 2023, bpsValue: 1500000 },
+      { schemeYear: 2024, bpsValue: 5 }]
+
+    const result = calculateFromSchemeYears(schemeYearValues)
+
+    expect(result.bandResult.find(x => x.band === 3).result.filter(x => x.schemeYear === 2024).length).toBe(0)
+    expect(result.bandResult.find(x => x.band === 3).result.filter(x => x.schemeYear === 2024).length).toBe(0)
+  })
+
+  test('5 for 2024 returns a reduction of 0 and payment of 0 in band 4', () => {
+    const schemeYearValues = [{ schemeYear: 2021, bpsValue: 50000 },
+      { schemeYear: 2022, bpsValue: 51000 },
+      { schemeYear: 2023, bpsValue: 1500000 },
+      { schemeYear: 2024, bpsValue: 5 }]
+
+    const result = calculateFromSchemeYears(schemeYearValues)
+
+    expect(result.bandResult.find(x => x.band === 4).result.filter(x => x.schemeYear === 2024).length).toBe(0)
+    expect(result.bandResult.find(x => x.band === 4).result.filter(x => x.schemeYear === 2024).length).toBe(0)
+  })
 })
