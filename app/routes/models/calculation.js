@@ -2,6 +2,12 @@
 const bands = require('../../calculation/bands')
 const schemeYears = require('../../calculation/scheme-years')
 
+function thousandsSeparators (num) {
+  const numParts = num.toString().split('.')
+  numParts[0] = numParts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  return numParts.join('.')
+}
+
 function GetBandText (band) {
   return bands.find(x => x.band === band).text
 }
@@ -13,7 +19,7 @@ function toRow (results, property, formatType) {
     data.push(
       {
         text: (formatType === 'currency'
-          ? `£${x[property].toFixed(2)}`
+          ? `£${thousandsSeparators(x[property].toFixed(2))}`
           : `${Math.round(x[property] * 100)}%`),
         format: 'numeric'
       })
@@ -49,7 +55,7 @@ function fillGaps (results, data, formatType) {
 function overallToRow (overallResult, property) {
   const data = []
   data.push({
-    text: `£${overallResult[property].toFixed(2)}`,
+    text: `£${thousandsSeparators(overallResult[property].toFixed(2))}`,
     format: 'numeric',
     classes: 'govuk-body govuk-!-font-weight-bold'
   })
