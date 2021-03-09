@@ -18,11 +18,11 @@
 
 {% block content %}
   <div class="govuk-body">
-  <h1 class="govuk-heading-l">What are the values of your BPS payments over future years?</h1>
+    {% if model.errors %}
+      {{ govukErrorSummary(model.errors) }}
+    {% endif %}
+    <h1 class="govuk-heading-l">What are the values of your BPS payments over future years?</h1>
     <form method="POST" action="/bps/multiple" novalidate>
-      {% if model.errors %}
-        {{ govukErrorSummary(model.errors) }}
-      {% endif %}
       {{ govukInput(model.band2021) }}
       {{ govukInput(model.band2022) }}
       {{ govukInput(model.band2023) }}
