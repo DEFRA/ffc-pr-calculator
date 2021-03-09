@@ -14,10 +14,10 @@ function createInput (paymentBand, error, value) {
     value
   }
 
-  const checkErrorMessage = error?.errorList.find((error) => error.text.indexOf(paymentBand) > 0)
+  const checkIfErrorMessage = error?.errorList.find((errorMessage) => errorMessage.text.indexOf(paymentBand) >= 0)
 
-  if (checkErrorMessage) {
-    schemeYearInput.errorMessage = { text: checkErrorMessage.text }
+  if (checkIfErrorMessage) {
+    schemeYearInput.errorMessage = { text: checkIfErrorMessage.text }
   }
 
   return schemeYearInput
