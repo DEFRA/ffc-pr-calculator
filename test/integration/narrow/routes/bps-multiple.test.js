@@ -84,6 +84,7 @@ describe('bps multiple route', () => {
     }
 
     const result = await server.inject(options)
+    expect(result.request.response.source.template).toBe('bps-multiple')
     expect(result.request.response.source.context.model.errors.errorList.length).toBe(1)
     expect(result.statusCode).toBe(400)
   })
@@ -96,6 +97,7 @@ describe('bps multiple route', () => {
     }
 
     const result = await server.inject(options)
+    expect(result.request.response.source.template).toBe('bps-multiple')
     expect(result.request.response.source.context.model.errors.errorList.length).toBe(1)
     expect(result.statusCode).toBe(400)
   })
