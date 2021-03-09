@@ -12,7 +12,7 @@ describe('calculation multiple route', () => {
     await server.stop()
   })
 
-  test('GET /calculation returns calculation view', async () => {
+  test('GET /calculation/multiple returns calculation view', async () => {
     const options = {
       method: 'GET',
       url: '/calculation/multiple?bps2021Value=10000&bps2022Value=8000&bps2023Value=5000&bps2024Value=2000'
@@ -53,5 +53,49 @@ describe('calculation multiple route', () => {
 
     const result = await server.inject(options)
     expect(result.headers.location).toBe('/bps/multiple')
+  })
+
+  test('GET /calculation/multiple returns calculation view if only 2021', async () => {
+    const options = {
+      method: 'GET',
+      url: '/calculation/multiple?bps2021Value=10000'
+    }
+
+    const result = await server.inject(options)
+    expect(result.request.response.variety).toBe('view')
+    expect(result.request.response.source.template).toBe('calculation')
+  })
+
+  test('GET /calculation/multiple returns calculation view if only 2022', async () => {
+    const options = {
+      method: 'GET',
+      url: '/calculation/multiple?bps2022Value=8000'
+    }
+
+    const result = await server.inject(options)
+    expect(result.request.response.variety).toBe('view')
+    expect(result.request.response.source.template).toBe('calculation')
+  })
+
+  test('GET /calculation/multiple returns calculation view if only 2023', async () => {
+    const options = {
+      method: 'GET',
+      url: '/calculation/multiple?bps2023Value=8000'
+    }
+
+    const result = await server.inject(options)
+    expect(result.request.response.variety).toBe('view')
+    expect(result.request.response.source.template).toBe('calculation')
+  })
+
+  test('GET /calculation/multiple returns calculation view if only 2024', async () => {
+    const options = {
+      method: 'GET',
+      url: '/calculation/multiple?bps2024Value=8000'
+    }
+
+    const result = await server.inject(options)
+    expect(result.request.response.variety).toBe('view')
+    expect(result.request.response.source.template).toBe('calculation')
   })
 })
