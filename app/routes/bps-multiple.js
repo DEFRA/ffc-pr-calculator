@@ -40,7 +40,6 @@ module.exports = [{
         return errors
       }),
       failAction: async (request, h, error) => {
-        console.log(error.details)
         return h.view('bps-multiple', new ViewModel(request.payload, error)).code(400).takeover()
       }
     },

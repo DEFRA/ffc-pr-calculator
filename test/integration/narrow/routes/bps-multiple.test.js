@@ -40,16 +40,74 @@ describe('bps multiple route', () => {
     expect(result.headers.location).toBe(`/calculation/multiple?bps2021Value=${bps2021Value}&bps2022Value=${bps2022Value}&bps2023Value=${bps2023Value}&bps2024Value=${bps2024Value}`)
   })
 
-  test('POST /bps/multiple invalid', async () => {
+  test('POST /bps/multiple invalid value 0', async () => {
     const options = {
       method: 'POST',
       url: '/bps/multiple',
-      payload: { bps2001Value: 2001 }
+      payload: { bps2022Value: 0 }
     }
 
     const result = await server.inject(options)
     expect(result.request.response.source.template).toBe('bps-multiple')
-    expect(result.request.response.source.context.model.errorMessage).toBeDefined()
+    expect(result.request.response.source.context.model.errors.errorList.length).toBe(1)
     expect(result.statusCode).toBe(400)
+  })
+
+  test('POST /bps/multiple invalid all values 0', async () => {
+    const options = {
+      method: 'POST',
+      url: '/bps/multiple',
+      payload: { bps2021Value: 0, bps2022Value: 0, bps2023Value: 0, bps2024Value: 0 }
+    }
+
+    const result = await server.inject(options)
+    expect(result.request.response.source.template).toBe('bps-multiple')
+    expect(result.request.response.source.context.model.errors.errorList.length).toBe(4)
+    expect(result.statusCode).toBe(400)
+  })
+
+  test('POST /bps/multiple value less than 1000000000', async () => {
+    const options = {
+      method: 'POST',
+      url: '/bps/multiple',
+      payload: { bps2023Value: 999999999 }
+    }
+
+    const result = await server.inject(options)
+    expect(result.statusCode).toBe(302)
+  })
+
+  test('POST /bps/multiple invalid no values', async () => {
+    const options = {
+      method: 'POST',
+      url: '/bps/multiple'
+    }
+
+    const result = await server.inject(options)
+    expect(result.request.response.source.context.model.errors.errorList.length).toBe(1)
+    expect(result.statusCode).toBe(400)
+  })
+
+  test('POST /bps/multiple invalid greater than 999999999', async () => {
+    const options = {
+      method: 'POST',
+      url: '/bps/multiple',
+      payload: { bps2023Value: 1000000000 }
+    }
+
+    const result = await server.inject(options)
+    expect(result.request.response.source.context.model.errors.errorList.length).toBe(1)
+    expect(result.statusCode).toBe(400)
+  })
+
+  test('POST /bps/multiple at least 1 value', async () => {
+    const options = {
+      method: 'POST',
+      url: '/bps/multiple',
+      payload: { bps2021Value: 500000 }
+    }
+
+    const result = await server.inject(options)
+    expect(result.statusCode).toBe(302)
   })
 })
