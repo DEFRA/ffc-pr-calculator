@@ -1,5 +1,5 @@
 function createInput (paymentBand, error, value) {
-  return {
+  const schemeYearInput = {
     label: {
       text: `Payment amount for ${paymentBand}`
     },
@@ -13,6 +13,14 @@ function createInput (paymentBand, error, value) {
     autocomplete: 'off',
     value
   }
+
+  const checkErrorMessage = error?.errorList.find((error) => error.text.indexOf(paymentBand) > 0)
+
+  if (checkErrorMessage) {
+    schemeYearInput.errorMessage = { text: checkErrorMessage.text }
+  }
+
+  return schemeYearInput
 }
 
 function createErrorSummary (errorDetails) {
@@ -26,11 +34,13 @@ function createErrorSummary (errorDetails) {
 }
 
 module.exports = function ViewModel (payload, error) {
+  const errors = createErrorSummary(error?.details)
+
   this.model = {
-    band2021: createInput('2021', error, payload?.bps2021Value),
-    band2022: createInput('2022', error, payload?.bps2022Value),
-    band2023: createInput('2023', error, payload?.bps2023Value),
-    band2024: createInput('2024', error, payload?.bps2024Value),
-    errors: createErrorSummary(error?.details)
+    band2021: createInput('2021', errors, payload?.bps2021Value),
+    band2022: createInput('2022', errors, payload?.bps2022Value),
+    band2023: createInput('2023', errors, payload?.bps2023Value),
+    band2024: createInput('2024', errors, payload?.bps2024Value),
+    errors
   }
 }
