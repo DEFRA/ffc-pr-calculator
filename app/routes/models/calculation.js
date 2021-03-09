@@ -1,6 +1,7 @@
 
 const bands = require('../../calculation/bands')
 const schemeYears = require('../../calculation/scheme-years')
+const toCurrencyString = require('../../utils/to-currency-string')
 
 function thousandsSeparators (num) {
   const numParts = num.toString().split('.')
@@ -19,7 +20,7 @@ function toRow (results, property, formatType) {
     data.push(
       {
         text: (formatType === 'currency'
-          ? `£${thousandsSeparators(x[property].toFixed(2))}`
+          ? toCurrencyString(x[property])
           : `${Math.round(x[property] * 100)}%`),
         format: 'numeric'
       })
@@ -55,7 +56,7 @@ function fillGaps (results, data, formatType) {
 function overallToRow (overallResult, property) {
   const data = []
   data.push({
-    text: `£${thousandsSeparators(overallResult[property].toFixed(2))}`,
+    text: toCurrencyString(overallResult[property]),
     format: 'numeric',
     classes: 'govuk-body govuk-!-font-weight-bold'
   })

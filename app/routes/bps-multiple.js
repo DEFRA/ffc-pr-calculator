@@ -28,12 +28,16 @@ module.exports = [{
               err.message = 'There needs to be a least one payment amount for a scheme year.'
               break
             case 'number.greater':
-              err.message = `The payment amount for a ${err.local.key.replace('bps', '').replace('Value', '')} needs to be greater than 0 and less than 1000000000.`
+              err.message = `The value for ${err.local.key.replace('bps', '').replace('Value', '')} needs to be greater than 0.`
               break
             case 'number.less':
-              err.message = `The payment amount for a ${err.local.key.replace('bps', '').replace('Value', '')} needs to be greater than 0 and less than 1000000000.`
+              err.message = `The value amount for ${err.local.key.replace('bps', '').replace('Value', '')} needs to be less than 1000000000.`
+              break
+            case 'number.base':
+              err.message = `The value amount for ${err.local.key.replace('bps', '').replace('Value', '')} must be a number`
               break
             default:
+              err.message = `The value amount for ${err.local.key.replace('bps', '').replace('Value', '')} is invalid`
               break
           }
         })
