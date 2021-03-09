@@ -113,4 +113,16 @@ describe('bps multiple route', () => {
     const result = await server.inject(options)
     expect(result.statusCode).toBe(302)
   })
+
+  test('POST /bps/multiple no values', async () => {
+    const options = {
+      method: 'POST',
+      url: '/bps/multiple'
+    }
+
+    const result = await server.inject(options)
+    expect(result.request.response.source.template).toBe('bps-multiple')
+    expect(result.request.response.source.context.model.errors.errorList.length).toBe(1)
+    expect(result.statusCode).toBe(400)
+  })
 })
