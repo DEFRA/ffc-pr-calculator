@@ -77,10 +77,11 @@ describe('bps multiple route', () => {
     expect(result.statusCode).toBe(302)
   })
 
-  test('POST /bps/multiple invalid no values', async () => {
+  test('POST /bps/multiple invalid empty values', async () => {
     const options = {
       method: 'POST',
-      url: '/bps/multiple'
+      url: '/bps/multiple',
+      payload: { bps2021Value: '', bps2022Value: '', bps2023Value: '', bps2024Value: '' }
     }
 
     const result = await server.inject(options)
