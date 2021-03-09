@@ -6,7 +6,6 @@ services:
       context: .
       target: production
     image: ffc-pr-calculator
-    container_name: ffc-pr-calculator
     environment:
       APPINSIGHTS_CLOUDROLE: ffc-pr-calculator-local
       APPINSIGHTS_INSTRUMENTATIONKEY: ${APPINSIGHTS_INSTRUMENTATIONKEY}
