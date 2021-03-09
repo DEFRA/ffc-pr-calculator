@@ -1,23 +1,23 @@
-jest.mock('applicationinsights', () => {
-  return {
-    setup: jest.fn().mockReturnThis(),
-    start: jest.fn(),
-    defaultClient: {
-      context: {
-        keys: [],
-        tags: []
-      }
-    }
-  }
-})
-const applicationInsights = require('applicationinsights')
-
 describe('Application Insights', () => {
   const DEFAULT_ENV = process.env
+  let applicationInsights
 
   beforeEach(() => {
     // important to clear the cache when mocking environment variables
     jest.resetModules()
+    jest.mock('applicationinsights', () => {
+      return {
+        setup: jest.fn().mockReturnThis(),
+        start: jest.fn(),
+        defaultClient: {
+          context: {
+            keys: [],
+            tags: []
+          }
+        }
+      }
+    })
+    applicationInsights = require('applicationinsights')
     process.env = { ...DEFAULT_ENV }
   })
 
