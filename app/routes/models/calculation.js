@@ -3,12 +3,6 @@ const bands = require('../../calculation/bands')
 const schemeYears = require('../../calculation/scheme-years')
 const toCurrencyString = require('../../utils/to-currency-string')
 
-function thousandsSeparators (num) {
-  const numParts = num.toString().split('.')
-  numParts[0] = numParts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-  return numParts.join('.')
-}
-
 function GetBandText (band) {
   return bands.find(x => x.band === band).text
 }
