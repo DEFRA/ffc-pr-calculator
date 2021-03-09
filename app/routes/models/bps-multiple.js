@@ -18,7 +18,6 @@ function createInput (paymentBand, error, value) {
 function createErrorSummary (errorDetails) {
   if (errorDetails) {
     const errorList = errorDetails.map((error) => ({ text: error.message, href: `#${error.path}` }))
-
     return {
       titleText: 'There is a problem',
       errorList
