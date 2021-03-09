@@ -15,7 +15,7 @@ function toRow (results, property, formatType) {
       {
         text: (formatType === 'currency'
           ? toCurrencyString(x[property])
-          : `${Math.round(x[property] * 100)}%`),
+          : `${x[property] > 0 ? Math.round(x[property] * 100) : 0}%`),
         format: 'numeric'
       })
     return x
@@ -74,10 +74,8 @@ function populateData (calculations, options) {
 function createSummary (bpsValue, bpsMultipleValue) {
   let titleText = ''
   Object.keys(bpsMultipleValue).length === 0
-    ? titleText = `Your progressive reductions based on a BPS payment of £${bpsValue} have been estimated`
-    : titleText = `Your progressive reductions based on BPS payments of £${bpsMultipleValue.bps2021Value} in 2021, £${bpsMultipleValue.bps2022Value} in 2022, 
-                £${bpsMultipleValue.bps2023Value} in 2023 and 
-                £${bpsMultipleValue.bps2024Value} in 2024 have been estimated`
+    ? titleText = `Your progressive reductions based on a direct payment of ${toCurrencyString(bpsValue)} have been estimated`
+    : titleText = 'Your progressive reductions based on direct payments have been estimated'
 
   return {
     titleText
