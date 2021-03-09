@@ -15,12 +15,16 @@ function toRow (results, property, formatType) {
       {
         text: (formatType === 'currency'
           ? toCurrencyString(x[property])
-          : `${x[property] > 0 ? Math.round(x[property] * 100) : 0}%`),
+          : calculatePercentage(x, property)),
         format: 'numeric'
       })
     return x
   })
   return fillGaps(results, data, formatType)
+}
+
+function calculatePercentage (x, property) {
+  return `${x.payment > 0 ? Math.round(x[property] * 100) : 0}%`
 }
 
 function fillGaps (results, data, formatType) {
