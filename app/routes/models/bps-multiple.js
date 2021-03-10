@@ -1,5 +1,5 @@
 function createInput (paymentBand, error, value) {
-  return {
+  const schemeYearInput = {
     label: {
       text: `Payment amount for ${paymentBand}`
     },
@@ -13,21 +13,34 @@ function createInput (paymentBand, error, value) {
     autocomplete: 'off',
     value
   }
+
+  const checkIfErrorMessage = error?.errorList.find((errorMessage) => errorMessage.text.indexOf(paymentBand) >= 0)
+
+  if (checkIfErrorMessage) {
+    schemeYearInput.errorMessage = { text: checkIfErrorMessage.text }
+  }
+
+  return schemeYearInput
+}
+
+function createErrorSummary (errorDetails) {
+  if (errorDetails) {
+    const errorList = errorDetails.map((error) => ({ text: error.message, href: `#${error.path}` }))
+    return {
+      titleText: 'There is a problem',
+      errorList
+    }
+  }
 }
 
 module.exports = function ViewModel (payload, error) {
-  const errorMessage = { text: '' }
-
-  // If error is passed to model then this error property is added to the model
-  if (error) {
-    errorMessage.text = 'Your BPS value must be greater than £0 and less than £1,000,000,000'
-  }
+  const errors = createErrorSummary(error?.details)
 
   this.model = {
-    band2021: createInput('2021', error, payload?.bps2021Value),
-    band2022: createInput('2022', error, payload?.bps2022Value),
-    band2023: createInput('2023', error, payload?.bps2023Value),
-    band2024: createInput('2024', error, payload?.bps2024Value),
-    errorMessage
+    band2021: createInput('2021', errors, payload?.bps2021Value),
+    band2022: createInput('2022', errors, payload?.bps2022Value),
+    band2023: createInput('2023', errors, payload?.bps2023Value),
+    band2024: createInput('2024', errors, payload?.bps2024Value),
+    errors
   }
 }

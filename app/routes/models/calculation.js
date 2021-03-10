@@ -1,6 +1,7 @@
 
 const bands = require('../../calculation/bands')
 const schemeYears = require('../../calculation/scheme-years')
+const toCurrencyString = require('../../utils/to-currency-string')
 
 function GetBandText (band) {
   return bands.find(x => x.band === band).text
@@ -13,13 +14,17 @@ function toRow (results, property, formatType) {
     data.push(
       {
         text: (formatType === 'currency'
-          ? `£${x[property].toFixed(2)}`
-          : `${Math.round(x[property] * 100)}%`),
+          ? toCurrencyString(x[property])
+          : calculatePercentage(x, property)),
         format: 'numeric'
       })
     return x
   })
   return fillGaps(results, data, formatType)
+}
+
+function calculatePercentage (x, property) {
+  return `${x.payment > 0 ? Math.round(x[property] * 100) : 0}%`
 }
 
 function fillGaps (results, data, formatType) {
@@ -49,7 +54,7 @@ function fillGaps (results, data, formatType) {
 function overallToRow (overallResult, property) {
   const data = []
   data.push({
-    text: `£${overallResult[property].toFixed(2)}`,
+    text: toCurrencyString(overallResult[property]),
     format: 'numeric',
     classes: 'govuk-body govuk-!-font-weight-bold'
   })
@@ -73,10 +78,8 @@ function populateData (calculations, options) {
 function createSummary (bpsValue, bpsMultipleValue) {
   let titleText = ''
   Object.keys(bpsMultipleValue).length === 0
-    ? titleText = `Your progressive reductions based on a BPS payment of £${bpsValue} have been estimated`
-    : titleText = `Your progressive reductions based on BPS payments of £${bpsMultipleValue.bps2021Value} in 2021, £${bpsMultipleValue.bps2022Value} in 2022, 
-                £${bpsMultipleValue.bps2023Value} in 2023 and 
-                £${bpsMultipleValue.bps2024Value} in 2024 have been estimated`
+    ? titleText = `Your progressive reductions based on a direct payment of ${toCurrencyString(bpsValue)} have been estimated`
+    : titleText = 'Your progressive reductions based on direct payments have been estimated'
 
   return {
     titleText

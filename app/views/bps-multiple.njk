@@ -2,6 +2,7 @@
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/error-message/macro.njk" import govukErrorMessage %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
 
@@ -17,7 +18,10 @@
 
 {% block content %}
   <div class="govuk-body">
-  <h1 class="govuk-heading-l">What are the values of your BPS payments over future years?</h1>
+    {% if model.errors %}
+      {{ govukErrorSummary(model.errors) }}
+    {% endif %}
+    <h1 class="govuk-heading-l">What are the values of your BPS payments over future years?</h1>
     <form method="POST" action="/bps/multiple" novalidate>
       {{ govukInput(model.band2021) }}
       {{ govukInput(model.band2022) }}
