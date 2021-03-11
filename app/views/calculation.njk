@@ -5,13 +5,7 @@
 {% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
 
 {% block beforeContent %}
-  {{ govukBreadcrumbs({
-    items: [
-      {
-        text: "Home",
-        href: "/"
-      }]
-  }) }}
+  {{ govukBreadcrumbs(model.breadcrumb) }}
 {% endblock %}
 
 {% block content %}

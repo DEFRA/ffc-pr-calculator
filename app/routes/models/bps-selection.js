@@ -4,13 +4,13 @@ function ViewModel (value, error) {
     classes: 'govuk-radios--inline',
     fieldset: {
       legend: {
-        text: 'Will your BPS claim change in future years?',
-        isPageHeading: true,
-        classes: 'govuk-fieldset__legend--l'
+        text: 'Starting payment amounts: Do you wish to enter a single value, or separate values, for the scheme years 2021 to 2024?',
+        isPageHeading: false,
+        classes: 'govuk-fieldset__legend--m'
       }
     },
     hint: {
-      text: 'For example, if you will claim on more, or less, land entitlements.'
+      text: ''
     },
     items: [
       {

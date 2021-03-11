@@ -12,6 +12,10 @@
       {
         text: "Home",
         href: "/"
+      },
+      {
+        text: "Starting payment amounts",
+        href: "/bps/selection"
       }]
   }) }}
 {% endblock %}
@@ -21,14 +25,14 @@
     {% if model.errors %}
       {{ govukErrorSummary(model.errors) }}
     {% endif %}
-    <h1 class="govuk-heading-l">What are the values of your BPS payments over future years?</h1>
+    <h1 class="govuk-heading-l">Enter a starting payment amount for each of the scheme years 2021 to 2024:</h1>
     <form method="POST" action="/bps/multiple" novalidate>
       {{ govukInput(model.band2021) }}
       {{ govukInput(model.band2022) }}
       {{ govukInput(model.band2023) }}
       {{ govukInput(model.band2024) }}
       {{ govukButton({
-        text: "Calculate my payments"
+        text: "Calculate my progressive reductions"
       }) }}
     </form>
   </div>

@@ -78,7 +78,7 @@ function populateData (calculations, options) {
 function createSummary (bpsValue, bpsMultipleValue) {
   let titleText = ''
   Object.keys(bpsMultipleValue).length === 0
-    ? titleText = `Your progressive reductions based on a direct payment of ${toCurrencyString(bpsValue)} have been estimated`
+    ? titleText = `Your estimated progressive reductions are based on a starting payment amount of ${toCurrencyString(bpsValue)}`
     : titleText = 'Your progressive reductions based on direct payments have been estimated'
 
   return {
@@ -116,12 +116,32 @@ function createTableDefinition (calculations, options) {
     rows: populateData(calculations, options)
   }
 }
+function createBreadcrumb (calculationType) {
+  const breadcrumb = {
+    items: [
+      {
+        text: 'Home',
+        href: '/'
+      },
+      {
+        text: 'Starting payment amounts',
+        href: '/bps/selection'
+      }]
+  }
 
-module.exports = function ViewModel (bpsValue, calculations) {
+  calculationType === 'single'
+    ? breadcrumb.items.push({ text: 'Single payment amounts', href: '/bps' })
+    : breadcrumb.items.push({ text: 'Separate values, for the scheme years 2021 to 2024', href: '/bps/multiple' })
+
+  return breadcrumb
+}
+
+module.exports = function ViewModel (bpsValue, calculations, calculationType) {
   this.model = {
-    paymentBand: createTableDefinition(calculations, { property: 'rate', text: '', caption: 'Payment band', formatType: 'percentage', showOverall: false }),
-    payment: createTableDefinition(calculations, { property: 'payment', text: 'Payment value after progressive reductions:', caption: 'Payments within each band', formatType: 'currency', showOverall: true }),
-    reduction: createTableDefinition(calculations, { property: 'reduction', text: 'Total progressive reduction:', caption: 'Reductions within each band', formatType: 'currency', showOverall: true }),
-    confirmation: createSummary(bpsValue, calculations.multipleValues)
+    paymentBand: createTableDefinition(calculations, { property: 'rate', text: '', caption: 'Progressive reductions', formatType: 'percentage', showOverall: false }),
+    payment: createTableDefinition(calculations, { property: 'payment', text: 'Payment value after progressive reductions:', caption: 'Your payments after progressive reductions', formatType: 'currency', showOverall: true }),
+    reduction: createTableDefinition(calculations, { property: 'reduction', text: 'Total progressive reduction:', caption: 'Your progressive reductions', formatType: 'currency', showOverall: true }),
+    confirmation: createSummary(bpsValue, calculations.multipleValues),
+    breadcrumb: createBreadcrumb(calculationType)
   }
 }

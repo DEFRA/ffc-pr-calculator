@@ -11,6 +11,10 @@
       {
         text: "Home",
         href: "/"
+      },
+      {
+        text: "Starting payment amounts",
+        href: "/bps/selection"
       }]
   }) }}
 {% endblock %}
@@ -20,7 +24,7 @@
     <form method="POST" action="/bps" novalidate>
       {{ govukInput(model) }}
       {{ govukButton({
-        text: "Calculate my payments"
+        text: "Calculate my progressive reductions"
       }) }}
     </form>
   </div>

@@ -1,7 +1,7 @@
 function createInput (paymentBand, error, value) {
   const schemeYearInput = {
     label: {
-      text: `Payment amount for ${paymentBand}`
+      text: `${paymentBand}`
     },
     prefix: {
       text: '£'

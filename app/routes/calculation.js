@@ -20,7 +20,7 @@ module.exports = [{
       const values = { multipleValues: {} }
       const includeMultipleValues = { ...result, ...values }
 
-      return h.view('calculation', new ViewModel(request.query.bpsValue, includeMultipleValues))
+      return h.view('calculation', new ViewModel(request.query.bpsValue, includeMultipleValues, 'single'))
     }
   }
 },
@@ -57,7 +57,7 @@ module.exports = [{
       }
 
       const includeMultipleValues = { ...result, ...values }
-      return h.view('calculation', new ViewModel(request.query.bpsValue, includeMultipleValues))
+      return h.view('calculation', new ViewModel(request.query.bpsValue, includeMultipleValues, 'multiple'))
     }
   }
 }]
