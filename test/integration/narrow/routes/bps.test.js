@@ -40,7 +40,7 @@ describe('bps route', () => {
     }
 
     const result = await server.inject(options)
-    expect(result.request.response._payload._data).toContain('Calculate my payments')
+    expect(result.request.response._payload._data).toContain('Calculate my progressive reductions')
   })
 
   test('POST /bps returns 302', async () => {
