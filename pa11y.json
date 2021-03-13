@@ -19,6 +19,6 @@
     "http://ffc-pr-calculator:3000/input-type",
     "http://ffc-pr-calculator:3000/value",
     "http://ffc-pr-calculator:3000/values",
-    "http://ffc-pr-calculator:3000/calculation?bpsValue=1000"
+    "http://ffc-pr-calculator:3000/calculation?value=1000"
   ]
 }
