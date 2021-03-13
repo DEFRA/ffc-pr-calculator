@@ -2,6 +2,7 @@
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/error-message/macro.njk" import govukErrorMessage %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 
@@ -14,8 +15,15 @@
 
 {% block content %}
   <div class="govuk-body">
-    <form method="POST" action="/bps" novalidate>
-      {{ govukInput(model) }}
+    {% if model.errors %}
+      {{ govukErrorSummary(model.errors) }}
+    {% endif %}
+    <h1 class="govuk-heading-l">Enter a starting payment amount for each of the scheme years 2021 to 2024:</h1>
+    <form method="POST" action="/values" novalidate>
+      {{ govukInput(model.band2021) }}
+      {{ govukInput(model.band2022) }}
+      {{ govukInput(model.band2023) }}
+      {{ govukInput(model.band2024) }}
       {{ govukButton({
         text: "Calculate my progressive reductions"
       }) }}

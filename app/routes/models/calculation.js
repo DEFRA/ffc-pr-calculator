@@ -119,7 +119,7 @@ function createTableDefinition (calculations, options) {
 function createBackLink (calculationType) {
   return {
     text: 'Back',
-    href: calculationType === 'single' ? '/bps' : '/bps/multiple'
+    href: calculationType === 'single' ? '/value' : '/values'
   }
 }
 

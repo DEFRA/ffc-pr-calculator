@@ -23,7 +23,7 @@ module.exports = [{
       }
     },
     handler: async (request, h) => {
-      const redirect = request.payload.inputType === 'multiple' ? '/bps/multiple' : '/bps'
+      const redirect = request.payload.inputType === 'multiple' ? '/values' : '/value'
       return h.redirect(redirect)
     }
   }

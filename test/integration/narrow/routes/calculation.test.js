@@ -15,7 +15,7 @@ describe('calculation route', () => {
   test('GET /calculation returns 200', async () => {
     const options = {
       method: 'GET',
-      url: '/calculation?bpsValue=1000'
+      url: '/calculation?value=1000'
     }
 
     const result = await server.inject(options)
@@ -25,7 +25,7 @@ describe('calculation route', () => {
   test('GET /calculation returns calculation view', async () => {
     const options = {
       method: 'GET',
-      url: '/calculation?bpsValue=1000'
+      url: '/calculation?value=1000'
     }
 
     const result = await server.inject(options)
@@ -36,7 +36,7 @@ describe('calculation route', () => {
   test('GET /calculation includes table', async () => {
     const options = {
       method: 'GET',
-      url: '/calculation?bpsValue=1000'
+      url: '/calculation?value=1000'
     }
 
     const result = await server.inject(options)
@@ -62,6 +62,6 @@ describe('calculation route', () => {
     }
 
     const result = await server.inject(options)
-    expect(result.headers.location).toBe('/bps')
+    expect(result.headers.location).toBe('/value')
   })
 })

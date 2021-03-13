@@ -8,8 +8,8 @@ function createInput (paymentBand, error, value) {
     },
     spellcheck: false,
     classes: 'govuk-input--width-10',
-    id: `bps${paymentBand}Value`,
-    name: `bps${paymentBand}Value`,
+    id: `value${paymentBand}`,
+    name: `value${paymentBand}`,
     autocomplete: 'off',
     value
   }
@@ -37,10 +37,10 @@ module.exports = function ViewModel (payload, error) {
   const errors = createErrorSummary(error?.details)
 
   this.model = {
-    band2021: createInput('2021', errors, payload?.bps2021Value),
-    band2022: createInput('2022', errors, payload?.bps2022Value),
-    band2023: createInput('2023', errors, payload?.bps2023Value),
-    band2024: createInput('2024', errors, payload?.bps2024Value),
+    band2021: createInput('2021', errors, payload?.value2021),
+    band2022: createInput('2022', errors, payload?.value2022),
+    band2023: createInput('2023', errors, payload?.value2023),
+    band2024: createInput('2024', errors, payload?.value2024),
     errors
   }
 }

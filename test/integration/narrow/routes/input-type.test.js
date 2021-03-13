@@ -12,7 +12,7 @@ describe('input-type route', () => {
     await server.stop()
   })
 
-  test('GET /input-type bps-multiple view', async () => {
+  test('GET /input-type returns view', async () => {
     const options = {
       method: 'GET',
       url: '/input-type'
@@ -32,7 +32,7 @@ describe('input-type route', () => {
 
     const result = await server.inject(options)
     expect(result.statusCode).toBe(302)
-    expect(result.headers.location).toBe('/bps/multiple')
+    expect(result.headers.location).toBe('/values')
   })
 
   test('POST /input-type  returns 302', async () => {
@@ -44,7 +44,7 @@ describe('input-type route', () => {
 
     const result = await server.inject(options)
     expect(result.statusCode).toBe(302)
-    expect(result.headers.location).toBe('/bps')
+    expect(result.headers.location).toBe('/value')
   })
 
   test('POST /input-type invalid', async () => {

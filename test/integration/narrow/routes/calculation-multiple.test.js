@@ -15,7 +15,7 @@ describe('calculation multiple route', () => {
   test('GET /calculation/multiple returns calculation view', async () => {
     const options = {
       method: 'GET',
-      url: '/calculation/multiple?bps2021Value=10000&bps2022Value=8000&bps2023Value=5000&bps2024Value=2000'
+      url: '/calculation/multiple?value2021=10000&value2022=8000&value2023=5000&value2024=2000'
     }
 
     const result = await server.inject(options)
@@ -26,7 +26,7 @@ describe('calculation multiple route', () => {
   test('GET /calculation/multiple includes table', async () => {
     const options = {
       method: 'GET',
-      url: '/calculation/multiple?bps2021Value=10000&bps2022Value=8000&bps2023Value=5000&bps2024Value=2000'
+      url: '/calculation/multiple?value2021=10000&value2022=8000&value2023=5000&value2024=2000'
     }
 
     const result = await server.inject(options)
@@ -45,20 +45,20 @@ describe('calculation multiple route', () => {
     expect(result.statusCode).toBe(302)
   })
 
-  test('GET /calculation/multiple redirect to bps view if no querystring', async () => {
+  test('GET /calculation/multiple redirect to value view if no querystring', async () => {
     const options = {
       method: 'GET',
       url: '/calculation/multiple'
     }
 
     const result = await server.inject(options)
-    expect(result.headers.location).toBe('/bps/multiple')
+    expect(result.headers.location).toBe('/values')
   })
 
   test('GET /calculation/multiple returns calculation view if only 2021', async () => {
     const options = {
       method: 'GET',
-      url: '/calculation/multiple?bps2021Value=10000'
+      url: '/calculation/multiple?value2021=10000'
     }
 
     const result = await server.inject(options)
@@ -69,7 +69,7 @@ describe('calculation multiple route', () => {
   test('GET /calculation/multiple returns calculation view if only 2022', async () => {
     const options = {
       method: 'GET',
-      url: '/calculation/multiple?bps2022Value=8000'
+      url: '/calculation/multiple?value2022=8000'
     }
 
     const result = await server.inject(options)
@@ -80,7 +80,7 @@ describe('calculation multiple route', () => {
   test('GET /calculation/multiple returns calculation view if only 2023', async () => {
     const options = {
       method: 'GET',
-      url: '/calculation/multiple?bps2023Value=8000'
+      url: '/calculation/multiple?value2023=8000'
     }
 
     const result = await server.inject(options)
@@ -91,7 +91,7 @@ describe('calculation multiple route', () => {
   test('GET /calculation/multiple returns calculation view if only 2024', async () => {
     const options = {
       method: 'GET',
-      url: '/calculation/multiple?bps2024Value=8000'
+      url: '/calculation/multiple?value2024=8000'
     }
 
     const result = await server.inject(options)

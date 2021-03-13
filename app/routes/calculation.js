@@ -8,19 +8,19 @@ module.exports = [{
   options: {
     validate: {
       query: joi.object({
-        bpsValue: joi.number().precision(2).greater(0).required()
+        value: joi.number().precision(2).greater(0).required()
       }),
       failAction: async (request, h, error) => {
-        return h.redirect('/bps').takeover()
+        return h.redirect('/value').takeover()
       }
     },
     handler: (request, h) => {
-      const result = calculateFromValue(request.query.bpsValue)
+      const result = calculateFromValue(request.query.value)
 
       const values = { multipleValues: {} }
       const includeMultipleValues = { ...result, ...values }
 
-      return h.view('calculation', new ViewModel(request.query.bpsValue, includeMultipleValues, 'single'))
+      return h.view('calculation', new ViewModel(request.query.value, includeMultipleValues, 'single'))
     }
   }
 },
@@ -30,34 +30,34 @@ module.exports = [{
   options: {
     validate: {
       query: joi.object({
-        bps2021Value: joi.number().empty('').allow(null).precision(2).greater(0).less(1000000000),
-        bps2022Value: joi.number().empty('').allow(null).precision(2).greater(0).less(1000000000),
-        bps2023Value: joi.number().empty('').allow(null).precision(2).greater(0).less(1000000000),
-        bps2024Value: joi.number().empty('').allow(null).precision(2).greater(0).less(1000000000)
+        value2021: joi.number().empty('').allow(null).precision(2).greater(0).less(1000000000),
+        value2022: joi.number().empty('').allow(null).precision(2).greater(0).less(1000000000),
+        value2023: joi.number().empty('').allow(null).precision(2).greater(0).less(1000000000),
+        value2024: joi.number().empty('').allow(null).precision(2).greater(0).less(1000000000)
       }).min(1),
       failAction: async (request, h, error) => {
-        return h.redirect('/bps/multiple').takeover()
+        return h.redirect('/values').takeover()
       }
     },
     handler: (request, h) => {
-      const schemeYearValues = [{ schemeYear: 2021, bpsValue: request.query.bps2021Value || 0 },
-        { schemeYear: 2022, bpsValue: request.query.bps2022Value || 0 },
-        { schemeYear: 2023, bpsValue: request.query.bps2023Value || 0 },
-        { schemeYear: 2024, bpsValue: request.query.bps2024Value || 0 }]
+      const schemeYearValues = [{ schemeYear: 2021, bpsValue: request.query.value2021 || 0 },
+        { schemeYear: 2022, bpsValue: request.query.value2022 || 0 },
+        { schemeYear: 2023, bpsValue: request.query.value2023 || 0 },
+        { schemeYear: 2024, bpsValue: request.query.value2024 || 0 }]
 
       const result = calculateFromSchemeYears(schemeYearValues)
 
       const values = {
         multipleValues: {
-          bps2021Value: request.query.bps2021Value || 0,
-          bps2022Value: request.query.bps2022Value || 0,
-          bps2023Value: request.query.bps2023Value || 0,
-          bps2024Value: request.query.bps2024Value || 0
+          bps2021Value: request.query.value2021 || 0,
+          bps2022Value: request.query.value2022 || 0,
+          bps2023Value: request.query.value2023 || 0,
+          bps2024Value: request.query.value2024 || 0
         }
       }
 
       const includeMultipleValues = { ...result, ...values }
-      return h.view('calculation', new ViewModel(request.query.bpsValue, includeMultipleValues, 'multiple'))
+      return h.view('calculation', new ViewModel(request.query.value, includeMultipleValues, 'multiple'))
     }
   }
 }]
