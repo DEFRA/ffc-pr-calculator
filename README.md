@@ -1,5 +1,7 @@
 # FFC Progressive Reduction Calculator
 
+Calculate how progressive reductions could affect Direct Payments (currently paid through the Basic Payment Scheme) for scheme years 2021 to 2024
+
 ## Prerequisites
 
 - Docker
