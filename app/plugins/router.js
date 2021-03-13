@@ -5,7 +5,7 @@ const routes = [].concat(
   require('../routes/home'),
   require('../routes/bps'),
   require('../routes/bps-multiple'),
-  require('../routes/bps-selection'),
+  require('../routes/input-type'),
   require('../routes/calculation'),
   require('../routes/cookies'),
   require('../routes/api/calculation')

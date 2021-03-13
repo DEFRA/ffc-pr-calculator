@@ -1,4 +1,4 @@
-describe('bps selection route', () => {
+describe('input-type route', () => {
   let createServer
   let server
 
@@ -12,22 +12,22 @@ describe('bps selection route', () => {
     await server.stop()
   })
 
-  test('GET /bps/selection bps-multiple view', async () => {
+  test('GET /input-type bps-multiple view', async () => {
     const options = {
       method: 'GET',
-      url: '/bps/selection'
+      url: '/input-type'
     }
 
     const result = await server.inject(options)
     expect(result.request.response.variety).toBe('view')
-    expect(result.request.response.source.template).toBe('bps-selection')
+    expect(result.request.response.source.template).toBe('input-type')
   })
 
-  test('POST /bps/selection  returns 302', async () => {
+  test('POST /input-type  returns 302', async () => {
     const options = {
       method: 'POST',
-      url: '/bps/selection ',
-      payload: { bpsSelection: 'multiple' }
+      url: '/input-type ',
+      payload: { inputType: 'multiple' }
     }
 
     const result = await server.inject(options)
@@ -35,11 +35,11 @@ describe('bps selection route', () => {
     expect(result.headers.location).toBe('/bps/multiple')
   })
 
-  test('POST /bps/selection  returns 302', async () => {
+  test('POST /input-type  returns 302', async () => {
     const options = {
       method: 'POST',
-      url: '/bps/selection ',
-      payload: { bpsSelection: 'single' }
+      url: '/input-type ',
+      payload: { inputType: 'single' }
     }
 
     const result = await server.inject(options)
@@ -47,15 +47,15 @@ describe('bps selection route', () => {
     expect(result.headers.location).toBe('/bps')
   })
 
-  test('POST /bps/selection invalid', async () => {
+  test('POST /input-type invalid', async () => {
     const options = {
       method: 'POST',
-      url: '/bps/selection',
-      payload: { bpsSelection: '' }
+      url: '/input-type',
+      payload: { inputType: '' }
     }
 
     const result = await server.inject(options)
-    expect(result.request.response.source.template).toBe('bps-selection')
+    expect(result.request.response.source.template).toBe('input-type')
     expect(result.request.response.source.context.model.errorMessage).toBeDefined()
     expect(result.statusCode).toBe(400)
   })

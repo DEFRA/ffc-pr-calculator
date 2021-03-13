@@ -22,14 +22,14 @@ function ViewModel (value, error) {
         text: 'No'
       }
     ],
-    id: 'bpsSelection',
-    name: 'bpsSelection'
+    id: 'inputType',
+    name: 'inputType'
   }
 
   // If error is passed to model then this error property is added to the model
   if (error) {
     this.model.errorMessage = {
-      text: 'Please select if your BPS claim change in future years.'
+      text: 'Please select whether you want to enter a single value.'
     }
   }
 }

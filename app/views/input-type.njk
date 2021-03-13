@@ -27,7 +27,7 @@
     <p class="govuk-body">
       The calculator allows you to enter a single value for scheme years 2021 to 2024, which assumes that your claim won’t change during these years. If you expect that your claim will change, for example, because you plan to expand your farm, you can enter a different starting payment amount for each year. There is no limit to the number of times you can use this calculator. 
     </p>
-    <form method="POST" action="/bps/selection" novalidate>
+    <form method="POST" action="/input-type" novalidate>
       {{ govukRadios(model) }}
       {{ govukButton({
         text: "Continue"
