@@ -9,7 +9,7 @@ function ViewModel (values, calculations) {
     paymentBand: createTableDefinition(calculations, { property: 'rate', text: '', caption: 'Progressive reductions', formatType: 'percentage', showOverall: false }),
     payment: createTableDefinition(calculations, { property: 'payment', text: 'Payment value after progressive reductions:', caption: 'Your payments after progressive reductions', formatType: 'currency', showOverall: true }),
     reduction: createTableDefinition(calculations, { property: 'reduction', text: 'Total progressive reduction:', caption: 'Your progressive reductions', formatType: 'currency', showOverall: true }),
-    backLink: createBackLink(values.value === undefined)
+    backLink: createBackLink(values.value !== undefined)
   }
 }
 
