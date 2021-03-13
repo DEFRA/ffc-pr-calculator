@@ -1,11 +1,10 @@
 {% extends 'layout.njk' %}
 {% set mainClasses = "govuk-main-wrapper--auto-spacing" %}
 {% from "govuk/components/panel/macro.njk" import govukPanel %}
-
-{% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 
 {% block beforeContent %}
-  {{ govukBreadcrumbs(model.breadcrumb) }}
+  {{ govukBackLink(model.backLink) }}
 {% endblock %}
 
 {% block content %}
