@@ -37,7 +37,7 @@ describe('values route', () => {
 
     const result = await server.inject(options)
     expect(result.statusCode).toBe(302)
-    expect(result.headers.location).toBe(`/calculation/multiple?value2021=${value2021}&value2022=${value2022}&value2023=${value2023}&value2024=${value2024}`)
+    expect(result.headers.location).toBe(`/calculation?value2021=${value2021}&value2022=${value2022}&value2023=${value2023}&value2024=${value2024}`)
   })
 
   test('POST /values invalid value 0', async () => {

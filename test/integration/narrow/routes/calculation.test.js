@@ -62,6 +62,6 @@ describe('calculation route', () => {
     }
 
     const result = await server.inject(options)
-    expect(result.headers.location).toBe('/value')
+    expect(result.headers.location).toBe('/input-type')
   })
 })

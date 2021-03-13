@@ -49,7 +49,7 @@ module.exports = [{
     },
     handler: async (request, h) => {
       const queryString = buildQueryString(request.payload)
-      return h.redirect(`/calculation/multiple?${queryString}`)
+      return h.redirect(`/calculation?${queryString}`)
     }
   }
 }]

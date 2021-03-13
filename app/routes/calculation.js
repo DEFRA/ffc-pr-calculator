@@ -7,57 +7,46 @@ module.exports = [{
   path: '/calculation',
   options: {
     validate: {
-      query: joi.object({
+      query: joi.alternatives().try(joi.object({
         value: joi.number().precision(2).greater(0).required()
-      }),
-      failAction: async (request, h, error) => {
-        return h.redirect('/value').takeover()
-      }
-    },
-    handler: (request, h) => {
-      const result = calculateFromValue(request.query.value)
-
-      const values = { multipleValues: {} }
-      const includeMultipleValues = { ...result, ...values }
-
-      return h.view('calculation', new ViewModel(request.query.value, includeMultipleValues, 'single'))
-    }
-  }
-},
-{
-  method: 'GET',
-  path: '/calculation/multiple',
-  options: {
-    validate: {
-      query: joi.object({
+      }), joi.object({
         value2021: joi.number().empty('').allow(null).precision(2).greater(0).less(1000000000),
         value2022: joi.number().empty('').allow(null).precision(2).greater(0).less(1000000000),
         value2023: joi.number().empty('').allow(null).precision(2).greater(0).less(1000000000),
         value2024: joi.number().empty('').allow(null).precision(2).greater(0).less(1000000000)
-      }).min(1),
+      }).min(1)),
       failAction: async (request, h, error) => {
-        return h.redirect('/values').takeover()
+        return h.redirect('/input-type').takeover()
       }
     },
     handler: (request, h) => {
-      const schemeYearValues = [{ schemeYear: 2021, bpsValue: request.query.value2021 || 0 },
-        { schemeYear: 2022, bpsValue: request.query.value2022 || 0 },
-        { schemeYear: 2023, bpsValue: request.query.value2023 || 0 },
-        { schemeYear: 2024, bpsValue: request.query.value2024 || 0 }]
+      if (request.query.value) {
+        const result = calculateFromValue(request.query.value)
 
-      const result = calculateFromSchemeYears(schemeYearValues)
+        const values = { multipleValues: {} }
+        const includeMultipleValues = { ...result, ...values }
 
-      const values = {
-        multipleValues: {
-          bps2021Value: request.query.value2021 || 0,
-          bps2022Value: request.query.value2022 || 0,
-          bps2023Value: request.query.value2023 || 0,
-          bps2024Value: request.query.value2024 || 0
+        return h.view('calculation', new ViewModel(request.query.value, includeMultipleValues, 'single'))
+      } else {
+        const schemeYearValues = [{ schemeYear: 2021, bpsValue: request.query.value2021 || 0 },
+          { schemeYear: 2022, bpsValue: request.query.value2022 || 0 },
+          { schemeYear: 2023, bpsValue: request.query.value2023 || 0 },
+          { schemeYear: 2024, bpsValue: request.query.value2024 || 0 }]
+
+        const result = calculateFromSchemeYears(schemeYearValues)
+
+        const values = {
+          multipleValues: {
+            bps2021Value: request.query.value2021 || 0,
+            bps2022Value: request.query.value2022 || 0,
+            bps2023Value: request.query.value2023 || 0,
+            bps2024Value: request.query.value2024 || 0
+          }
         }
-      }
 
-      const includeMultipleValues = { ...result, ...values }
-      return h.view('calculation', new ViewModel(request.query.value, includeMultipleValues, 'multiple'))
+        const includeMultipleValues = { ...result, ...values }
+        return h.view('calculation', new ViewModel(request.query.value, includeMultipleValues, 'multiple'))
+      }
     }
   }
 }]
