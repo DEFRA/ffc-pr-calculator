@@ -1,4 +1,4 @@
-const { calculateFromValue } = require('../../calculation')
+const calculate = require('../../calculation')
 const joi = require('joi')
 const boom = require('@hapi/boom')
 
@@ -15,7 +15,7 @@ module.exports = [{
       }
     },
     handler: (request, h) => {
-      const result = calculateFromValue(request.params.value)
+      const result = calculate(request.params.value)
       return h.response(result)
     }
   }
