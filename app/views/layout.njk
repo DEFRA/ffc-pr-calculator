@@ -6,7 +6,7 @@
   {% endif %}
   <!--[if !IE 8]><!-->
   
-  <link href="/static/css/application.26cd7896b96d5d096fee.css" rel="stylesheet">
+  <link href="/static/css/application.bad929e036631fd136ef.css" rel="stylesheet">
   
   <!--<![endif]-->
 
@@ -25,7 +25,9 @@
 {% block header %}
   {{ govukHeader({
     homepageUrl: "https://www.gov.uk/",
-    containerClasses: "govuk-width-container"
+    containerClasses: "govuk-width-container",
+    serviceName: serviceName,
+    serviceUrl: "/"
   }) }}
 {% endblock %}
 
@@ -63,6 +65,6 @@
 {% block bodyEnd %}
   {# Run JavaScript at end of the <body>, to avoid blocking the initial render. #}
 
-  <script src="/static/js/bundle.26cd7896b96d5d096fee.js"></script>
+  <script src="/static/js/bundle.bad929e036631fd136ef.js"></script>
 
 {% endblock %}
