@@ -556,4 +556,62 @@ describe('calculate', () => {
     expect(result.bandResult.find(x => x.band === 4).result.filter(x => x.schemeYear === 2024).length).toBe(0)
     expect(result.bandResult.find(x => x.band === 4).result.filter(x => x.schemeYear === 2024).length).toBe(0)
   })
+
+  test('returns if only one value', () => {
+    const values = {
+      value2021: 5
+    }
+
+    const result = calculate(values)
+
+    expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2021)[0].payment).toBeGreaterThan(0)
+    expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2022)[0].payment).toBe(0)
+    expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2023)[0].payment).toBe(0)
+    expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2024)[0].payment).toBe(0)
+  })
+
+  test('returns if only two values', () => {
+    const values = {
+      value2021: 5,
+      value2022: 6
+    }
+
+    const result = calculate(values)
+
+    expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2021)[0].payment).toBeGreaterThan(0)
+    expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2022)[0].payment).toBeGreaterThan(0)
+    expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2023)[0].payment).toBe(0)
+    expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2024)[0].payment).toBe(0)
+  })
+
+  test('returns if only three values', () => {
+    const values = {
+      value2021: 5,
+      value2022: 6,
+      value2023: 7
+    }
+
+    const result = calculate(values)
+
+    expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2021)[0].payment).toBeGreaterThan(0)
+    expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2022)[0].payment).toBeGreaterThan(0)
+    expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2023)[0].payment).toBeGreaterThan(0)
+    expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2024)[0].payment).toBe(0)
+  })
+
+  test('returns if only three values', () => {
+    const values = {
+      value2021: 5,
+      value2022: 6,
+      value2023: 7,
+      value2024: 8
+    }
+
+    const result = calculate(values)
+
+    expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2021)[0].payment).toBeGreaterThan(0)
+    expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2022)[0].payment).toBeGreaterThan(0)
+    expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2023)[0].payment).toBeGreaterThan(0)
+    expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2024)[0].payment).toBeGreaterThan(0)
+  })
 })
