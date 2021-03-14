@@ -599,7 +599,7 @@ describe('calculate', () => {
     expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2024)[0].payment).toBe(0)
   })
 
-  test('returns if only three values', () => {
+  test('returns if four values', () => {
     const values = {
       value2021: 5,
       value2022: 6,
@@ -612,6 +612,21 @@ describe('calculate', () => {
     expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2021)[0].payment).toBeGreaterThan(0)
     expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2022)[0].payment).toBeGreaterThan(0)
     expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2023)[0].payment).toBeGreaterThan(0)
+    expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2024)[0].payment).toBeGreaterThan(0)
+  })
+
+  test('returns if only three values and sequence gap', () => {
+    const values = {
+      value2021: 5,
+      value2022: 6,
+      value2024: 8
+    }
+
+    const result = calculate(values)
+
+    expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2021)[0].payment).toBeGreaterThan(0)
+    expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2022)[0].payment).toBeGreaterThan(0)
+    expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2023)[0].payment).toBe(0)
     expect(result.bandResult.find(x => x.band === 1).result.filter(x => x.schemeYear === 2024)[0].payment).toBeGreaterThan(0)
   })
 })
