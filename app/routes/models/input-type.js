@@ -4,21 +4,21 @@ function ViewModel (value, error) {
     classes: 'govuk-radios--inline',
     fieldset: {
       legend: {
-        text: 'Starting payment amounts: Do you wish to enter a single value, or separate values, for the scheme years 2021 to 2024?',
-        isPageHeading: false,
-        classes: 'govuk-fieldset__legend--m'
+        text: 'Do you wish to enter a single payment amount?',
+        isPageHeading: true,
+        classes: 'govuk-fieldset__legend--l'
       }
     },
     hint: {
-      text: ''
+      text: 'A single value assumes your claim value won\'t change between 2021 and 2024'
     },
     items: [
       {
-        value: 'multiple',
+        value: 'single',
         text: 'Yes'
       },
       {
-        value: 'single',
+        value: 'multiple',
         text: 'No'
       }
     ],
