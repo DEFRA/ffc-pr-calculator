@@ -1,17 +1,6 @@
 {% extends 'layout.njk' %}
 
-{% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
-
-{% block beforeContent %}
-  {{ govukBreadcrumbs({
-    items: [
-      {
-        text: "Home",
-        href: "#"
-      }]
-  }) }}
-{% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
@@ -21,21 +10,35 @@
       <p class="govuk-body">Use this service to:</p>
 
       <ul class="govuk-list govuk-list--bullet">
-        <li>calculate your indicitive direct progressive reduction payments</li>
+        <li>see how progressive reductions could affect your Direct Payment (currently paid through the Basic Payment Scheme) for scheme years 2021 to 2024</li>
       </ul>
 
-      <p class="govuk-body">Calculation takes around 5 minutes.</p>
+      <p class="govuk-body">Calculation takes around 5 minutes. No information which you input will be recorded or retained.</p>
 
       {{ govukButton({
         classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8",
-        href: "/bps/selection",
+        href: "/input-type",
         isStartButton: true,
         text: "Start new calculation"
       }) }}
 
-      <h2 class="govuk-heading-m">Before you start</h2>
+      <h2 class="govuk-heading-m">What are progressive reductions?</h2>
 
-      <p class="govuk-body">You will need to know the value of your BPS payment.</p>
+      <p class="govuk-body">
+        We plan to phase out Direct Payments in England from 2021 to 2027. Our approach is designed to help everyone manage the transition away from Direct Payments as smoothly as possible. The same amount will be available to the farming sector in every year of this Parliament, though the way it is distributed will change. Funds will be redirected straight back into Countryside Stewardship and our new schemes.
+      </p>
+
+      <p class="govuk-body">
+        Progressive reductions will be made to BPS payments from the 2021 scheme year, and then to delinked payments when these replace BPS. We currently plan to delink payments in 2024. All BPS payments will be reduced from 2021, but there will initially be bigger reductions in higher payment bands. These bands will work like income tax bands      
+      </p>
+
+      <p class="govuk-body">
+        We have announced the reductions we intend to apply for each of the years 2021 to 2024. We intend to continue to make gradual reductions to the payments in the later years of the agricultural transition, with the last payments made for the 2027 scheme year      
+      </p>
+
+      <p class="govuk-body">
+        For more information about the 2021 to 2024 reductions to Direct Payments, the other support available during the transition period and delinked payments please see 'The Path to Sustainable Farming: An Agricultural Transition Plan 2021 to 2024' and our 'Farming is Changing' leaflet, linked above.
+      <p>
     </div>
     <div class="govuk-grid-column-one-third">
       <aside class="app-related-items" role="complementary">
@@ -45,8 +48,13 @@
         <nav role="navigation" aria-labelledby="subsection-title">
           <ul class="govuk-list govuk-!-font-size-16">
             <li>
-              <a class="govuk-link" href="#">
-                Progressive reductions support
+              <a class="govuk-link" href="https://www.gov.uk/government/publications/agricultural-transition-plan-2021-to-2024">
+                Agricultural Transition Plan 2021 to 2024 
+              </a>
+            </li>
+            <li>
+              <a class="govuk-link" href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/939683/farming-changing.pdf">
+                Farming is changing
               </a>
             </li>
           </ul>
