@@ -10,7 +10,7 @@ function ViewModel (value, error) {
       }
     },
     hint: {
-      text: 'A single value assumes this value won\'t change between 2021 and 2024.'
+      text: 'The starting payment is your expected Direct Payment value.  A single value assumes this will not change between 2021 and 2024.'
     },
     items: [
       {
