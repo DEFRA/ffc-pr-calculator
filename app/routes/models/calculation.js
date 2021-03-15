@@ -4,52 +4,105 @@ const schemeYears = require('../../calculation/scheme-years')
 const toCurrencyString = require('../../utils/to-currency-string')
 
 function ViewModel (values, calculations) {
+  const isSingleValue = isSingleValueOnly(values)
   this.model = {
-    confirmation: createSummary(values),
+    isSingleValue,
+    confirmation: createSummary(isSingleValue, values),
+    startingAmount: isSingleValue ? undefined : createStartingAmountTable(values),
     paymentBand: createTableDefinition(calculations, { property: 'rate', text: '', caption: 'Progressive reductions', formatType: 'percentage', showOverall: false }),
-    payment: createTableDefinition(calculations, { property: 'payment', text: 'Payment value after progressive reductions:', caption: 'Your payments after progressive reductions', formatType: 'currency', showOverall: true }),
     reduction: createTableDefinition(calculations, { property: 'reduction', text: 'Total progressive reduction:', caption: 'Your progressive reductions', formatType: 'currency', showOverall: true }),
-    backLink: createBackLink(values.value !== undefined)
+    payment: createPaymentTable(calculations),
+    backLink: createBackLink(isSingleValue)
   }
 }
 
-function createSummary (values) {
+function isSingleValueOnly (values) {
+  return values.value !== undefined
+}
+
+function createSummary (isSingleValue, values) {
+  return isSingleValue
+    ? `Your estimated progressive reductions are based on a starting payment amount of ${toCurrencyString(values.value)}.`
+    : 'Your estimated progressive reductions are based on starting payment amounts of:'
+}
+
+function createStartingAmountTable (values) {
   return {
-    titleText: values.value !== undefined
-      ? `Your estimated progressive reductions are based on a starting payment amount of ${toCurrencyString(values.value)}`
-      : 'Your progressive reductions based on direct payments have been estimated'
+    caption: 'Starting amounts',
+    captionClasses: 'govuk-table__caption--m',
+    firstCellIsHeader: true,
+    head: getHeaderRow(),
+    rows: [
+      [
+        {
+          text: 'Starting amount'
+        },
+        {
+          text: values.value2021 ? toCurrencyString(values.value2021) : '£0.00',
+          format: 'numeric'
+        },
+        {
+          text: values.value2022 ? toCurrencyString(values.value2022) : '£0.00',
+          format: 'numeric'
+        },
+        {
+          text: values.value2023 ? toCurrencyString(values.value2023) : '£0.00',
+          format: 'numeric'
+        },
+        {
+          text: values.value2024 ? toCurrencyString(values.value2024) : '£0.00',
+          format: 'numeric'
+        }
+      ]
+    ]
   }
 }
 
 function createTableDefinition (calculations, options) {
   return {
     caption: options.caption,
-    captionClasses: 'govuk-table__caption--l',
+    captionClasses: 'govuk-table__caption--m',
     firstCellIsHeader: true,
-    head: [
-      {
-        text: 'scheme year',
-        classes: 'govuk-!-width-one-half'
-      },
-      {
-        text: '2021',
-        format: 'numeric'
-      },
-      {
-        text: '2022',
-        format: 'numeric'
-      },
-      {
-        text: '2023',
-        format: 'numeric'
-      },
-      {
-        text: '2024',
-        format: 'numeric'
-      }
-    ],
+    head: getHeaderRow(),
     rows: populateData(calculations, options)
   }
+}
+
+function createPaymentTable (calculations) {
+  return {
+    caption: 'Your payments after progressive reductions',
+    captionClasses: 'govuk-table__caption--m',
+    firstCellIsHeader: true,
+    head: getHeaderRow(),
+    rows: [
+      populateOverall(calculations, 'payment', 'Payment value after progressive reductions:').flat()
+    ]
+  }
+}
+
+function getHeaderRow () {
+  return [
+    {
+      text: 'Scheme year',
+      classes: 'govuk-!-width-one-half'
+    },
+    {
+      text: '2021',
+      format: 'numeric'
+    },
+    {
+      text: '2022',
+      format: 'numeric'
+    },
+    {
+      text: '2023',
+      format: 'numeric'
+    },
+    {
+      text: '2024',
+      format: 'numeric'
+    }
+  ]
 }
 
 function populateData (calculations, options) {
