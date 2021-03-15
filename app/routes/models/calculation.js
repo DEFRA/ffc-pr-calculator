@@ -10,8 +10,8 @@ function ViewModel (values, calculations) {
     confirmation: createSummary(isSingleValue, values),
     startingAmount: isSingleValue ? undefined : createStartingAmountTable(values),
     paymentBand: createTableDefinition(calculations, { property: 'rate', text: '', caption: 'Progressive reductions', formatType: 'percentage', showOverall: false }),
-    payment: createTableDefinition(calculations, { property: 'payment', text: 'Payment value after progressive reductions:', caption: 'Your payments after progressive reductions', formatType: 'currency', showOverall: true }),
     reduction: createTableDefinition(calculations, { property: 'reduction', text: 'Total progressive reduction:', caption: 'Your progressive reductions', formatType: 'currency', showOverall: true }),
+    payment: createPaymentTable(calculations),
     backLink: createBackLink(isSingleValue)
   }
 }
@@ -31,27 +31,7 @@ function createStartingAmountTable (values) {
     caption: 'Starting amounts',
     captionClasses: 'govuk-table__caption--l',
     firstCellIsHeader: true,
-    head: [
-      {
-        text: 'Scheme year'
-      },
-      {
-        text: '2021',
-        format: 'numeric'
-      },
-      {
-        text: '2022',
-        format: 'numeric'
-      },
-      {
-        text: '2023',
-        format: 'numeric'
-      },
-      {
-        text: '2024',
-        format: 'numeric'
-      }
-    ],
+    head: getHeaderRow(),
     rows: [
       [
         {
@@ -83,30 +63,46 @@ function createTableDefinition (calculations, options) {
     caption: options.caption,
     captionClasses: 'govuk-table__caption--l',
     firstCellIsHeader: true,
-    head: [
-      {
-        text: 'Scheme year',
-        classes: 'govuk-!-width-one-half'
-      },
-      {
-        text: '2021',
-        format: 'numeric'
-      },
-      {
-        text: '2022',
-        format: 'numeric'
-      },
-      {
-        text: '2023',
-        format: 'numeric'
-      },
-      {
-        text: '2024',
-        format: 'numeric'
-      }
-    ],
+    head: getHeaderRow(),
     rows: populateData(calculations, options)
   }
+}
+
+function createPaymentTable (calculations) {
+  return {
+    caption: 'Your payments after progressive reductions',
+    captionClasses: 'govuk-table__caption--l',
+    firstCellIsHeader: true,
+    head: getHeaderRow(),
+    rows: [
+      populateOverall(calculations, 'payment', 'Payment value after progressive reductions:').flat()
+    ]
+  }
+}
+
+function getHeaderRow () {
+  return [
+    {
+      text: 'Scheme year',
+      classes: 'govuk-!-width-one-half'
+    },
+    {
+      text: '2021',
+      format: 'numeric'
+    },
+    {
+      text: '2022',
+      format: 'numeric'
+    },
+    {
+      text: '2023',
+      format: 'numeric'
+    },
+    {
+      text: '2024',
+      format: 'numeric'
+    }
+  ]
 }
 
 function populateData (calculations, options) {
