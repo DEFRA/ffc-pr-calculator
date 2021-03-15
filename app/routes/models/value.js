@@ -2,7 +2,7 @@ function ViewModel (value, error) {
   // Constructor function to create logic dependent nunjucks page
   this.model = {
     label: {
-      text: 'Enter a starting payment amount:',
+      text: 'What is your starting payment amount?',
       classes: 'govuk-label--l',
       isPageHeading: true
     },

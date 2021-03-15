@@ -2,6 +2,7 @@
 {% set mainClasses = "govuk-main-wrapper--auto-spacing" %}
 {% from "govuk/components/panel/macro.njk" import govukPanel %}
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/table/macro.njk" import govukTable %}    
 
 {% block beforeContent %}
   {{ govukBackLink(model.backLink) }}
@@ -9,9 +10,15 @@
 
 {% block content %}
   <div class="govuk-grid-row">
-    {{ govukPanel(model.confirmation) }}
+    {{ govukPanel({
+      titleText: "Calculation complete"
+    }) }}
 
-    {% from "govuk/components/table/macro.njk" import govukTable %}    
+    <p class="govuk-body">{{ model.confirmation }}</p>
+
+    {% if not model.isSingleValue %}
+      {{ govukTable(model.startingAmount) }}
+    {% endif %}
 
     {{ govukTable(model.paymentBand) }}
     {{ govukTable(model.reduction) }}
