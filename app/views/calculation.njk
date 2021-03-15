@@ -9,19 +9,21 @@
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-grid-row">
-    {{ govukPanel({
-      titleText: "Calculation complete"
-    }) }}
+  <div class="govuk-width-container">
+    <div class="govuk-grid-row">
+      {{ govukPanel({
+        titleText: "Calculation complete"
+      }) }}
 
-    <p class="govuk-body">{{ model.confirmation }}</p>
+      <p class="govuk-body">{{ model.confirmation }}</p>
 
-    {% if not model.isSingleValue %}
-      {{ govukTable(model.startingAmount) }}
-    {% endif %}
+      {% if not model.isSingleValue %}
+        {{ govukTable(model.startingAmount) }}
+      {% endif %}
 
-    {{ govukTable(model.paymentBand) }}
-    {{ govukTable(model.reduction) }}
-    {{ govukTable(model.payment) }}
+      {{ govukTable(model.paymentBand) }}
+      {{ govukTable(model.reduction) }}
+      {{ govukTable(model.payment) }}
+    </div>
   </div>
 {% endblock %}
