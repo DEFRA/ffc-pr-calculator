@@ -15,12 +15,15 @@ import setCookie from '../support/action/setCookie'
 import setInputField from '../support/action/setInputField'
 import setPromptText from '../support/action/setPromptText'
 
+import BpsselectionPage from '../pageobjects/bpsselection.page'
+
 const { When } = require('cucumber')
 
 When(
   /^I (click|doubleclick) on the (link|button|element) "([^"]*)?"$/,
   clickElement
 )
+
 
 
 
@@ -38,11 +41,19 @@ When(
 )
 
 
+
 When(
   /^I (click) on Next (button) "([^"]*)?"$/,
   clickElement
 )
 
+//When I click on Next button
+
+When(/^I click on Next button$/, () => {
+     
+  //bspPage.calculateBpsValue();
+  BpsselectionPage.continue();
+});
 
 
 When(

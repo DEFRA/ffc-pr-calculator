@@ -1,6 +1,6 @@
 import Page from './page'
 
-class bpsSelectionPage extends Page {
+class BpsselectionPage extends Page {
   /**
   * define elements
   */
@@ -12,8 +12,10 @@ class bpsSelectionPage extends Page {
 //   get usertrackConsent () { return $('//button[contains(., "Acc")]') }
   // get startNewClaim()    { return $('//button[contains(., "Start new claim")]');}
   get noRadioButton () { return $('#bpsSelection-2') }
-  get nextButton () { return $('button.govuk-button') }    //main[@id='main-content']/div/form/button
-  //get nextButton () { return $('.govuk-button') } 
+  //get nextButton () { return $('button.govuk-button') }    //main[@id='main-content']/div/form/button
+  //get nextButton () { return $('govuk-button') }    //button
+  get nextButton () { return $('//button') } 
+
 
   /**
      * define or overwrite page methods
@@ -47,17 +49,37 @@ class bpsSelectionPage extends Page {
     
   }
 
-  waitForloginPageToLoad () {
-    if (!this.nextButton.isDisplayed()) {
-      this.nextButton.waitForDisplayed(10000)
-    }
+  // waitForloginPageToLoad () {
+  //   if (!this.nextButton.isDisplayed()) {
+  //     this.nextButton.waitForDisplayed(10000)
+  //   }
+  // }
+
+  // checkApplicationComplete () {
+  //   this.applicationComplete.waitForDisplayed(1000)
+  //   return this.applicationComplete.isDisplayed()
+  // }
+
+  // //.waitForDisplayed();
+
+  // Continue () {
+  //   //this.nextButton.waitForDisplayed(10000)
+  //   if (!this.nextButton.isDisplayed()) {
+  //     this.nextButton.waitForDisplayed(10000)
+  //   }
+  //   this.nextButton.click()
+  // }
+
+  continue() {
+     this.nextButton.click();
   }
 
-  Continue () {
-    this.nextButton.click()
-  }
+  // continue() {
+  //   this.nextButton.waitForDisplayed(10000)
+  //   return this.nextButton.isDisplayed()
+  // }
 
 
 }
 
-export default new bpsSelectionPage()
+export default new BpsselectionPage()
