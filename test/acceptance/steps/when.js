@@ -15,7 +15,7 @@ import setCookie from '../support/action/setCookie'
 import setInputField from '../support/action/setInputField'
 import setPromptText from '../support/action/setPromptText'
 
-import BpsselectionPage from '../pageobjects/bpsselection.page'
+import InputTypePage from '../pageobjects/inputType.page'
 
 const { When } = require('cucumber')
 
@@ -36,7 +36,7 @@ When(
 //When I click on start new calculator button
 
 When( 
-  /^I (click) on No option (button) "([^"]*)?"$/,
+  /^I (click) on option (button) "([^"]*)?"$/,
   clickElement
 )
 
@@ -49,17 +49,19 @@ When(
 
 //When I click on Next button
 
-When(/^I click on Next button$/, () => {
+ When(/^I click on Next button$/, () => {
      
-  //bspPage.calculateBpsValue();
-  BpsselectionPage.continue();
-});
+   //bspPage.calculateBpsValue();
+   InputTypePage.continue();
+ });
 
 
 When(
   /^I (add|set) "([^"]*)?" to the inputfield "([^"]*)?"$/,
   setInputField
 )
+
+
 
 When(
   /^I clear the inputfield "([^"]*)?"$/,
