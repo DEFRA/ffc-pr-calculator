@@ -13,15 +13,17 @@
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-body">
-    <form method="POST" action="/input-type" novalidate>
-      {{ govukRadios(model) }}
-      {{ govukButton({
-        text: "Continue",
-        attributes: {
-          id: "submit"
-        }
-      }) }}
-    </form>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="POST" action="/input-type" novalidate>
+        {{ govukRadios(model) }}
+        {{ govukButton({
+          text: "Continue",
+          attributes: {
+            id: "submit"
+          }
+        }) }}
+      </form>
+    </div>
   </div>
 {% endblock %}
