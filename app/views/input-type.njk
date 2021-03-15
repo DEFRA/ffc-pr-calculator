@@ -1,0 +1,37 @@
+{% extends 'layout.njk' %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/error-message/macro.njk" import govukErrorMessage %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-body">
+    <h1 class="govuk-heading-l">Starting payment amounts:</h1>
+    <p class="govuk-body">
+      This calculator will apply progressive reductions to a ‘starting payment amount’ for the scheme years 2021 to 2024
+    </p>
+    <p class="govuk-body">
+      This starting value will be the total payment you would have been due in each scheme year, before progressive reductions are applied. While we operate BPS, the progressive reductions will be applied to the total BPS payment (including any young farmer payment), after all other reductions and penalties have been applied.  As now, this BPS payment value will be calculated each year, once financial ceilings for the scheme are set, and will depend on the BPS entitlements and eligible area you claim in that year.
+    </p>
+    <p class="govuk-body">
+      We currently plan to introduce delinked payments in 2024. For delinked payments, we plan to apply progressive reductions to a 'reference amount', based on the BPS payment you received during a reference period. This may be similar to the value of your current payment.
+    </p>
+    <p class="govuk-body">
+      The calculator allows you to enter a single value for scheme years 2021 to 2024, which assumes that your claim won’t change during these years. If you expect that your claim will change, for example, because you plan to expand your farm, you can enter a different starting payment amount for each year. There is no limit to the number of times you can use this calculator. 
+    </p>
+    <form method="POST" action="/input-type" novalidate>
+      {{ govukRadios(model) }}
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+  </div>
+{% endblock %}

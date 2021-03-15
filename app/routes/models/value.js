@@ -2,7 +2,7 @@ function ViewModel (value, error) {
   // Constructor function to create logic dependent nunjucks page
   this.model = {
     label: {
-      text: 'What is the value of your BPS payment?',
+      text: 'Enter a starting payment amount:',
       classes: 'govuk-label--l',
       isPageHeading: true
     },
@@ -11,8 +11,8 @@ function ViewModel (value, error) {
     },
     spellcheck: false,
     classes: 'govuk-input--width-10',
-    id: 'bpsValue',
-    name: 'bpsValue',
+    id: 'value',
+    name: 'value',
     autocomplete: 'off',
     value
   }
@@ -20,7 +20,7 @@ function ViewModel (value, error) {
   // If error is passed to model then this error property is added to the model
   if (error) {
     this.model.errorMessage = {
-      text: 'Your BPS value must be greater than £0 and less than £1,000,000,000'
+      text: 'Your value must be greater than £0 and less than £1,000,000,000'
     }
   }
 }
