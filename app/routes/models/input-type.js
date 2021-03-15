@@ -4,13 +4,13 @@ function ViewModel (value, error) {
     classes: 'govuk-radios--inline',
     fieldset: {
       legend: {
-        text: 'Do you wish to enter a single payment amount?',
+        text: 'Do you wish to enter a single starting payment amount?',
         isPageHeading: true,
         classes: 'govuk-fieldset__legend--l'
       }
     },
     hint: {
-      text: 'A single value assumes your claim value won\'t change between 2021 and 2024'
+      text: 'A single value assumes this value won\'t change between 2021 and 2024.'
     },
     items: [
       {

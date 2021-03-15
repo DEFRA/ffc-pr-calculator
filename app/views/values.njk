@@ -18,15 +18,26 @@
     {% if model.errors %}
       {{ govukErrorSummary(model.errors) }}
     {% endif %}
-    <h1 class="govuk-heading-l">Enter a starting payment amount for each of the scheme years 2021 to 2024:</h1>
     <form method="POST" action="/values" novalidate>
-      {{ govukInput(model.band2021) }}
-      {{ govukInput(model.band2022) }}
-      {{ govukInput(model.band2023) }}
-      {{ govukInput(model.band2024) }}
-      {{ govukButton({
-        text: "Calculate my progressive reductions"
-      }) }}
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              What are your starting payment amounts?
+            </h1>
+          </legend>
+          <div id="changed-name-hint" class="govuk-hint">
+            You only need to provide a value for the years you expect a payment.
+          </div>
+            {{ govukInput(model.band2021) }}
+            {{ govukInput(model.band2022) }}
+            {{ govukInput(model.band2023) }}
+            {{ govukInput(model.band2024) }}
+        </fieldset>
+      </div>
+        {{ govukButton({
+          text: "Calculate my progressive reductions"
+        }) }}
     </form>
   </div>
 {% endblock %}
