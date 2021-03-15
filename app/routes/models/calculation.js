@@ -20,8 +20,8 @@ function isSingleValueOnly (values) {
   return values.value !== undefined
 }
 
-function createSummary (hasSingleValue, values) {
-  return hasSingleValue
+function createSummary (isSingleValue, values) {
+  return isSingleValue
     ? `Your estimated progressive reductions are based on a starting payment amount of ${toCurrencyString(values.value)}.`
     : 'Your estimated progressive reductions are based on starting payment amounts of:'
 }
@@ -29,7 +29,7 @@ function createSummary (hasSingleValue, values) {
 function createStartingAmountTable (values) {
   return {
     caption: 'Starting amounts',
-    captionClasses: 'govuk-table__caption--l',
+    captionClasses: 'govuk-table__caption--m',
     firstCellIsHeader: true,
     head: getHeaderRow(),
     rows: [
@@ -38,19 +38,19 @@ function createStartingAmountTable (values) {
           text: 'Starting amount'
         },
         {
-          text: toCurrencyString(values.value2021),
+          text: values.value2021 ? toCurrencyString(values.value2021) : '£0.00',
           format: 'numeric'
         },
         {
-          text: toCurrencyString(values.value2022),
+          text: values.value2022 ? toCurrencyString(values.value2022) : '£0.00',
           format: 'numeric'
         },
         {
-          text: toCurrencyString(values.value2023),
+          text: values.value2023 ? toCurrencyString(values.value2023) : '£0.00',
           format: 'numeric'
         },
         {
-          text: toCurrencyString(values.value2024),
+          text: values.value2024 ? toCurrencyString(values.value2024) : '£0.00',
           format: 'numeric'
         }
       ]
@@ -61,7 +61,7 @@ function createStartingAmountTable (values) {
 function createTableDefinition (calculations, options) {
   return {
     caption: options.caption,
-    captionClasses: 'govuk-table__caption--l',
+    captionClasses: 'govuk-table__caption--m',
     firstCellIsHeader: true,
     head: getHeaderRow(),
     rows: populateData(calculations, options)
@@ -71,7 +71,7 @@ function createTableDefinition (calculations, options) {
 function createPaymentTable (calculations) {
   return {
     caption: 'Your payments after progressive reductions',
-    captionClasses: 'govuk-table__caption--l',
+    captionClasses: 'govuk-table__caption--m',
     firstCellIsHeader: true,
     head: getHeaderRow(),
     rows: [
