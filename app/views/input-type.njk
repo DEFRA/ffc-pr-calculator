@@ -1,4 +1,5 @@
 {% extends 'layout.njk' %}
+{% set mainClasses = "govuk-main-wrapper--auto-spacing" %}
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/error-message/macro.njk" import govukErrorMessage %}
@@ -13,15 +14,19 @@
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-body">
-    <form method="POST" action="/input-type" novalidate>
-      {{ govukRadios(model) }}
-      {{ govukButton({
-        text: "Continue",
-        attributes: {
-          id: "submit"
-        }
-      }) }}
-    </form>
+  <div class="govuk-width-container">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <form method="POST" action="/input-type" novalidate>
+          {{ govukRadios(model) }}
+          {{ govukButton({
+            text: "Continue",
+            attributes: {
+              id: "submit"
+            }
+          }) }}
+        </form>
+      </div>
+    </div>
   </div>
 {% endblock %}
