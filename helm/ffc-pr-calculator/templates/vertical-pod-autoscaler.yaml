@@ -1,3 +1,0 @@
-{{- include "ffc-helm-library.vertical-pod-autoscaler" (list . "ffc-pr-calculator.vertical-pod-autoscaler") -}}
-{{- define "ffc-pr-calculator.vertical-pod-autoscaler" -}}
-{{- end -}}
