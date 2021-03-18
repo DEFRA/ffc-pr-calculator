@@ -80,4 +80,56 @@ describe('value route', () => {
     expect(result.statusCode).toBe(302)
     expect(result.headers.location).toBe(`/calculation?value=${value}`)
   })
+
+  test('POST /value 0', async () => {
+    const options = {
+      method: 'POST',
+      url: '/value',
+      payload: { value: '0' }
+    }
+
+    const result = await server.inject(options)
+    expect(result.request.response.source.template).toBe('value')
+    expect(result.request.response.source.context.model.errorMessage.text).toContain('The value needs to be greater than £0.')
+    expect(result.statusCode).toBe(400)
+  })
+
+  test('POST /value above £1,000,000,000.', async () => {
+    const options = {
+      method: 'POST',
+      url: '/value',
+      payload: { value: '1000000000.' }
+    }
+
+    const result = await server.inject(options)
+    expect(result.request.response.source.template).toBe('value')
+    expect(result.request.response.source.context.model.errorMessage.text).toContain('The value needs to be less than £1,000,000,000.')
+    expect(result.statusCode).toBe(400)
+  })
+
+  test('POST /value not a number', async () => {
+    const options = {
+      method: 'POST',
+      url: '/value',
+      payload: { value: 'abc' }
+    }
+
+    const result = await server.inject(options)
+    expect(result.request.response.source.template).toBe('value')
+    expect(result.request.response.source.context.model.errorMessage.text).toContain('The value must be a number.')
+    expect(result.statusCode).toBe(400)
+  })
+
+  test('POST /value too high to be number', async () => {
+    const options = {
+      method: 'POST',
+      url: '/value',
+      payload: { value: '10000000000000000000' }
+    }
+
+    const result = await server.inject(options)
+    expect(result.request.response.source.template).toBe('value')
+    expect(result.request.response.source.context.model.errorMessage.text).toContain('The value must be between £0 and £1,000,000,000.')
+    expect(result.statusCode).toBe(400)
+  })
 })
