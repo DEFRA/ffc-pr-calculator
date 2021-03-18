@@ -43,7 +43,7 @@ container:
   readOnlyRootFilesystem: true
   allowPrivilegeEscalation: false
   port: 3000
-  googleTagManagerKey: tbc
+  googleTagManagerKey: GTM-5XJKV8F
 
 ingress:
   class: nginx

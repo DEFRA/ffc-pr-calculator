@@ -10,7 +10,7 @@ function ViewModel (value, error) {
       }
     },
     hint: {
-      text: 'The starting payment is your expected Direct Payment value.  A single value assumes this will not change between 2021 and 2024.'
+      text: 'The starting value will be the total payment you would have been due in each scheme year, before progressive reductions are applied.  A single value assumes this will not change between 2021 and 2024.'
     },
     items: [
       {
