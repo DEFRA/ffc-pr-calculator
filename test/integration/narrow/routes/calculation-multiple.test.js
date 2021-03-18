@@ -52,7 +52,7 @@ describe('calculation multiple route', () => {
     }
 
     const result = await server.inject(options)
-    expect(result.headers.location).toBe('/input-type')
+    expect(result.headers.location).toBe('/value')
   })
 
   test('GET /calculation returns calculation view if only 2021', async () => {
