@@ -20,7 +20,7 @@ function ViewModel (value, error) {
   // If error is passed to model then this error property is added to the model
   if (error) {
     this.model.errorMessage = {
-      text: 'Your value must be greater than £0 and less than £1,000,000,000'
+      text: error.message
     }
   }
 }
