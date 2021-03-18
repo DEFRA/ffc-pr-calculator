@@ -28,16 +28,16 @@ module.exports = [{
               err.message = 'There needs to be a least one value for a scheme year.'
               break
             case 'number.greater':
-              err.message = `The value for ${err.local.key.replace('value', '')} needs to be greater than 0.`
+              err.message = `The value for ${err.local.key.replace('value', '')} needs to be greater than £0.`
               break
             case 'number.less':
-              err.message = `The value for ${err.local.key.replace('value', '')} needs to be less than 1000000000.`
+              err.message = `The value for ${err.local.key.replace('value', '')} needs to be less than £1,000,000,000.`
               break
             case 'number.base':
-              err.message = `The value for ${err.local.key.replace('value', '')} must be a number`
+              err.message = `The value for ${err.local.key.replace('value', '')} must be a number.`
               break
             default:
-              err.message = `The value for ${err.local.key.replace('value', '')} is invalid`
+              err.message = `The value for ${err.local.key.replace('value', '')} must be between £0 and £1,000,000,000.`
               break
           }
         })
