@@ -16,6 +16,9 @@ import setInputField from '../support/action/setInputField'
 import setPromptText from '../support/action/setPromptText'
 
 import InputTypePage from '../pageobjects/inputType.page'
+import homePage from '../pageobjects/home.page'
+import inputTypePage from '../pageobjects/inputType.page'
+
 
 const { When } = require('cucumber')
 
@@ -23,9 +26,6 @@ When(
   /^I (click|doubleclick) on the (link|button|element) "([^"]*)?"$/,
   clickElement
 )
-
-
-
 
 When(
   /^I (click) on start new calculator (button) "([^"]*)?"$/,
@@ -40,19 +40,34 @@ When(
   clickElement
 )
 
-
-
 When(
   /^I (click) on Next (button) "([^"]*)?"$/,
   clickElement
 )
 
-//When I click on Next button
 
- When(/^I click on Next button$/, () => {
-     
+ When(/^I click on Next button$/, () => {  
    //bspPage.calculateBpsValue();
    InputTypePage.continue();
+ });
+
+//  When( /^I (click) on the (link) "([^"]*)?"$/,
+//   clickElement
+// )
+
+
+When(/^I click on the backlink$/, function ()  {
+   inputTypePage.clickBackLink();
+  
+});
+
+
+ When(/^I click on usefullink$/, () => {
+    homePage.ProgressiveReductionSupport();
+ });
+
+ When(/^I click on usefullink farming$/, () => {
+     homePage.FarmingIsChanging();
  });
 
 

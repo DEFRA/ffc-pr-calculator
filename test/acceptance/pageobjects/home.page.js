@@ -1,6 +1,6 @@
 import Page from './page'
 
-class StartPage extends Page {
+class HomePage extends Page {
   /**
   * define elements
   */
@@ -11,6 +11,12 @@ class StartPage extends Page {
 //   get cookiesGotIt () { return $('//button[contains(., "Got it!")]') }
 //   get usertrackConsent () { return $('//button[contains(., "Acc")]') }
   // get startNewClaim()    { return $('//button[contains(., "Start new claim")]');}
+
+  
+  get supportLink () { return $('=Agricultural Transition Plan 2021 to 2024'); } 
+  get farmingLink () { return $('=Farming is changing'); }
+  get cookiesLink () { return $('=Cookies'); }
+  get openGovtLink () { return $('=Open Government Licence v3.0'); }
   get startNewCal () { return $('//main/div/div/a') }
 
   /**
@@ -39,10 +45,27 @@ class StartPage extends Page {
 //     this.loginButton.click()
 //   }
 
-startNewCalculation () {
-    // this.waitForloginPageToLoad();
+  startNewCalculation () {
     this.startNewCal.click()
   }
+
+  clickOnprogressiveReductionSupport() {
+    this.supportLink.click()
+  }
+
+  ClickOnfarmingIsChanging() {
+    this.farmingLink.click()
+  }
+
+  clickOncookiesLink() {
+    this.cookiesLink.click()
+  }
+
+  ClickOpenGovtLicense() {
+    this.openGovtLink.click()
+  }
+
+
 }
 
-export default new StartPage()
+export default new HomePage()
