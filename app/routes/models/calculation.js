@@ -175,7 +175,6 @@ function populateOverallSummary (calculations, property, text) {
     const overallResults = overallToRow(x, property, index)
     return { key: { text: overallResults[0].schemeYear }, value: { text: overallResults[0].text } }
   })
-  console.log('overall', overall)
   return overall
 }
 
