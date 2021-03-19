@@ -5,6 +5,7 @@ const toCurrencyString = require('../../utils/to-currency-string')
 
 function ViewModel (values, calculations) {
   const isSingleValue = isSingleValueOnly(values)
+  console.log(createPaymentSummary(calculations))
   this.model = {
     isSingleValue,
     confirmation: createSummary(isSingleValue, values),
@@ -12,6 +13,7 @@ function ViewModel (values, calculations) {
     paymentBand: createTableDefinition(calculations, { property: 'rate', text: '', caption: 'Progressive reductions', formatType: 'percentage', showOverall: false }),
     reduction: createTableDefinition(calculations, { property: 'reduction', text: 'Total progressive reduction:', caption: 'Your progressive reductions', formatType: 'currency', showOverall: true }),
     payment: createPaymentTable(calculations),
+    paymentSummary: createPaymentSummary(calculations),
     backLink: createBackLink(isSingleValue)
   }
 }
@@ -77,6 +79,13 @@ function createPaymentTable (calculations) {
     rows: [
       populateOverall(calculations, 'payment', 'Payment value after progressive reductions:').flat()
     ]
+  }
+}
+
+function createPaymentSummary (calculations) {
+  return {
+    classes: 'govuk-summary-list',
+    rows: populateOverallSummary(calculations, 'payment', 'Payment value after progressive reductions:').flat()
   }
 }
 
@@ -161,15 +170,23 @@ function fillGaps (results, data, formatType) {
   return data
 }
 
+function populateOverallSummary (calculations, property, text) {
+  return calculations.overallResult.map((x, index) => {
+    const overallResults = overallToRow(x, property, index)
+    return { key: { text: overallResults[0].schemeYear }, value: { text: overallResults[0].text } }
+  })
+}
+
 function populateOverall (calculations, property, text) {
-  const overall = calculations.overallResult.map(x => overallToRow(x, property))
+  const overall = calculations.overallResult.map((x, index) => overallToRow(x, property, index))
   overall.unshift({ text: text })
   return overall
 }
 
-function overallToRow (overallResult, property) {
+function overallToRow (overallResult, property, index) {
   const data = []
   data.push({
+    schemeYear: schemeYears[index],
     text: toCurrencyString(overallResult[property]),
     format: 'numeric',
     classes: 'govuk-body govuk-!-font-weight-bold'
