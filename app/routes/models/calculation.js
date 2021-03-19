@@ -171,11 +171,10 @@ function fillGaps (results, data, formatType) {
 }
 
 function populateOverallSummary (calculations, property, text) {
-  const overall = calculations.overallResult.map((x, index) => {
+  return calculations.overallResult.map((x, index) => {
     const overallResults = overallToRow(x, property, index)
     return { key: { text: overallResults[0].schemeYear }, value: { text: overallResults[0].text } }
   })
-  return overall
 }
 
 function populateOverall (calculations, property, text) {
