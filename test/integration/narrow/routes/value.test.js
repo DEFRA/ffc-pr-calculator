@@ -116,7 +116,7 @@ describe('value route', () => {
 
     const result = await server.inject(options)
     expect(result.request.response.source.template).toBe('value')
-    expect(result.request.response.source.context.model.errorMessage.text).toContain('The value must be a number.')
+    expect(result.request.response.source.context.model.errorMessage.text).toContain('The value must be between £0 and £1,000,000,000.')
     expect(result.statusCode).toBe(400)
   })
 
