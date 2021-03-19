@@ -17,7 +17,7 @@ module.exports = [{
           value2024: joi.number().empty('').allow(null).precision(2).greater(0).less(1000000000)
         }).min(1)),
       failAction: async (request, h, error) => {
-        return h.redirect('/input-type').takeover()
+        return h.redirect('/value').takeover()
       }
     },
     handler: (request, h) => {
