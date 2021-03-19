@@ -26,9 +26,6 @@ module.exports = [{
             case 'number.less':
               err.message = 'The value needs to be less than £1,000,000,000.'
               break
-            case 'number.base':
-              err.message = 'The value must be a number.'
-              break
             default:
               err.message = 'The value must be between £0 and £1,000,000,000.'
               break
