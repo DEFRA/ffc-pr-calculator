@@ -4,8 +4,6 @@ const routes = [].concat(
   require('../routes/static'),
   require('../routes/home'),
   require('../routes/value'),
-  require('../routes/values'),
-  require('../routes/input-type'),
   require('../routes/calculation'),
   require('../routes/cookies'),
   require('../routes/api/calculation')
