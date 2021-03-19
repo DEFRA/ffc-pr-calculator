@@ -53,13 +53,13 @@ ingress:
 livenessProbe:
   path: /healthz
   port: 3000
-  initialDelaySeconds: 10
+  initialDelaySeconds: 15
   periodSeconds: 10
   failureThreshold: 3
 
 readinessProbe:
   path: /healthy
   port: 3000
-  initialDelaySeconds: 10
+  initialDelaySeconds: 15
   periodSeconds: 10
   failureThreshold: 3
