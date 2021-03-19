@@ -33,7 +33,6 @@ deployment:
   maxReplicas: 3
   cpuThreshold: 80
   memoryThreshold: 80
-  updateMode: Off
 
 container:
   imagePullPolicy: IfNotPresent
