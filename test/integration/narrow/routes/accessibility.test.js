@@ -12,20 +12,20 @@ describe('accessiblity route', () => {
     await server.stop()
   })
 
-  test('GET /guidance/accessibility-statement returns 200', async () => {
+  test('GET /accessibility returns 200', async () => {
     const options = {
       method: 'GET',
-      url: '/guidance/accessibility-statement'
+      url: '/accessibility'
     }
 
     const result = await server.inject(options)
     expect(result.statusCode).toBe(200)
   })
 
-  test('GET /guidance/accessibility-statement returns accessibility view', async () => {
+  test('GET /accessibility returns accessibility view', async () => {
     const options = {
       method: 'GET',
-      url: '/guidance/accessibility-statement'
+      url: '/accessibility'
     }
 
     const result = await server.inject(options)
