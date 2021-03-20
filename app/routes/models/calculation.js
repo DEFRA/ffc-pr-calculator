@@ -5,7 +5,6 @@ const toCurrencyString = require('../../utils/to-currency-string')
 
 function ViewModel (values, calculations) {
   const isSingleValue = isSingleValueOnly(values)
-  console.log(createPaymentSummary(calculations))
   this.model = {
     isSingleValue,
     confirmation: createSummary(isSingleValue, values),

@@ -30,9 +30,9 @@ deployment:
   runAsNonRoot: true
   runAsUser: 1000
   minReplicas: 1
-  maxReplicas: 3
-  cpuThreshold: 80
-  memoryThreshold: 80
+  maxReplicas: 5
+  cpuThreshold: 60
+  memoryThreshold: 60
 
 container:
   imagePullPolicy: IfNotPresent
@@ -53,13 +53,13 @@ ingress:
 livenessProbe:
   path: /healthz
   port: 3000
-  initialDelaySeconds: 15
+  initialDelaySeconds: 20
   periodSeconds: 10
-  failureThreshold: 3
+  failureThreshold: 5
 
 readinessProbe:
   path: /healthy
   port: 3000
-  initialDelaySeconds: 15
+  initialDelaySeconds: 20
   periodSeconds: 10
-  failureThreshold: 3
+  failureThreshold: 5
