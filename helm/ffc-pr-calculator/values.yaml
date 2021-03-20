@@ -26,7 +26,6 @@ deployment:
   priorityClassName: high
   replicas: 1
   minReadySeconds: 0
-  redeployOnChange: update this field to force a change
   runAsNonRoot: true
   runAsUser: 1000
   minReplicas: 1
