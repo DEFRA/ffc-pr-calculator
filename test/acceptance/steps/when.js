@@ -14,10 +14,9 @@ import selectOptionByIndex from '../support/action/selectOptionByIndex'
 import setCookie from '../support/action/setCookie'
 import setInputField from '../support/action/setInputField'
 import setPromptText from '../support/action/setPromptText'
-
-import InputTypePage from '../pageobjects/inputType.page'
+import valuePage from '../pageobjects/value.page'
 import homePage from '../pageobjects/home.page'
-import inputTypePage from '../pageobjects/inputType.page'
+
 
 
 const { When } = require('cucumber')
@@ -57,7 +56,7 @@ When(
 
 
 When(/^I click on the backlink$/, function ()  {
-   inputTypePage.clickBackLink();
+   valuePage.clickBackLink
   
 });
 

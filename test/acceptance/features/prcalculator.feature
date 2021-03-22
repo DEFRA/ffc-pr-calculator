@@ -19,14 +19,12 @@ Scenario: 003-User can click on Farming is changing link
 Given I open the url "/"
 When I click on the link "Farming is changing"
 Then I expect that the url contains "/939683/farming-changing.pdf"
-#Then I expect that element "h1" contains the text "Farming is changing"
-
 
 Scenario: 004-User can click on Agricultural transition link
 Given I open the url "/"
 When I click on the link "Open Government Licence v3.0"
 Then I expect that the url contains "/open-government-licence/version/3/"
-#Then I expect that element "h1" contains the text ""
+
 
 Scenario: 005-User can click on Agricultural transition link
 Given I open the url "/"
@@ -58,19 +56,15 @@ When I click on the link "Accessibility statement"
 Then I expect that the url contains "accessibility"
 Then I expect that element "h1" contains the text "Accessibility statement"
 
-
-
-Scenario: 008-Calculate BPS single payment for a farmer
+Scenario: 008-Can navigate back to previous page
 Given I open the url "/"
 When I click on start new calculator button ".govuk-button--start"
 And I add "500" to the inputfield "#value"
-And I click on Next button "#submit"   
-#When I click on the link "back"
-And I click on the backlink
-#And I click on the link ".govuk-back-link"
-Then I expect that the url contains "/cookies"
-#When I click on the link "back"
-#And I click on the backlink 
-#Then I expect that the url contains "/cookies"
-#And I click on the backlink 
-#Then I expect that the url contains "/cookies"
+And I click on Next button "#submit"  
+Then I expect that the url contains "/calculation" 
+When I click on the link "Back"
+Then I expect that the url contains "/value"
+When I click on the link "Back"
+Then I expect that the url contains "http://host.docker.internal:3000/"
+
+
