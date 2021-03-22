@@ -11,6 +11,10 @@ class ValuePage extends Page {
   get valueField22 () { return $('#value2022') }
   get valueField23 () { return $('#value2023') }
   get valueField24 () { return $('#value2024') }
+  get errortext21 () { return $('#value2021-error') }
+  get errortext22 () { return $('#value2022-error') }
+  get errortext23 () { return $('#value2023-error') }
+  get errortext24 () { return $('#value2024-error') }
 
   /**
      * define or overwrite page methods
@@ -39,6 +43,8 @@ class ValuePage extends Page {
   entervalue24(value) {
     this.valueField24.setValue(value); 
   }
+
+
 
   // continue() {
   //   this.nextButton.waitForDisplayed(10000)
