@@ -50,17 +50,27 @@ When I click on the link "Calculate my progressive reductions"
 Then I expect that the url contains "http://host.docker.internal:3000/"
 Then I expect that element "h1" contains the text "Calculate my progressive reductions"
 
+Scenario: 008-User can click on Accessibility statement link
+Given I open the url "/"
+When I click on start new calculator button ".govuk-button--start"
+Then I expect that the url contains "/value"
+When I click on the link "Accessibility statement"
+Then I expect that the url contains "accessibility"
+Then I expect that element "h1" contains the text "Accessibility statement"
+
+
+
 Scenario: 008-Calculate BPS single payment for a farmer
 Given I open the url "/"
 When I click on start new calculator button ".govuk-button--start"
 And I add "500" to the inputfield "#value"
 And I click on Next button "#submit"   
-When I click on the link "back"
-#And I click on the backlink
+#When I click on the link "back"
+And I click on the backlink
 #And I click on the link ".govuk-back-link"
 Then I expect that the url contains "/cookies"
-When I click on the link "back"
+#When I click on the link "back"
 #And I click on the backlink 
-Then I expect that the url contains "/cookies"
-And I click on the backlink 
-Then I expect that the url contains "/cookies"
+#Then I expect that the url contains "/cookies"
+#And I click on the backlink 
+#Then I expect that the url contains "/cookies"
