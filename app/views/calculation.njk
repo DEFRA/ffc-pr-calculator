@@ -6,7 +6,11 @@
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
 {% block beforeContent %}
-  {{ govukBackLink(model.backLink) }}
+  {{ govukBackLink({
+        text: "Back",
+        href: "/",
+        classes: "govuk-!-margin-bottom-7"
+      }) }}
 {% endblock %}
 
 {% block content %}
