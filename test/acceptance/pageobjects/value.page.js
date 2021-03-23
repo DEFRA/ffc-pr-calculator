@@ -4,16 +4,14 @@ import Page from './page'
 class ValuePage extends Page {
   
   // define elements
-  
-
   get valueField () { return $('#value') }
   get backLink () { return $('#back') }
   get nextButton () { return $('//button') } 
-  get errorValue (){ return $('value-error')}
-
-
- 
-     
+  get errorValue (){ return $('value-error')}  
+  get calculateprreductn(){ return $('Calculate my progressive reductions')}    
+  get calculateprreductn(){ return $('GOV.UK')}    
+  
+  
   open () {
     super.open('')
     browser.pause(3000)
