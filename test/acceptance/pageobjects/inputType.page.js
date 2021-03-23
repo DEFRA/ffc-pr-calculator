@@ -12,9 +12,9 @@ class InputTypePage extends Page {
   get backLink () { return $('//div[2]/a') }          
 
 
-  /**
-     * define or overwrite page methods
-     */
+  
+  // define or overwrite page methods
+
   open () {
     super.open('')
     browser.pause(3000)
@@ -37,12 +37,6 @@ class InputTypePage extends Page {
   clickBackLink() {
     this.backLink.click();
  }
-
-  // continue() {
-  //   this.nextButton.waitForDisplayed(10000)
-  //   return this.nextButton.isDisplayed()
-  // }
-
 
 }
 
