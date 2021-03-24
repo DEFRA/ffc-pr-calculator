@@ -76,7 +76,8 @@
       "XMLHttpRequest"
     ],
     "ignore": [
-      "app/dist/**/*.js"
+      "app/dist/**/*.js",
+      "test/acceptance/**/*.js"
     ]
   },
   "nodemonConfig": {
