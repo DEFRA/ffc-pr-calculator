@@ -22,9 +22,15 @@ import homePage from '../pageobjects/home.page'
 const { When } = require('cucumber')
 
 When(
-  /^I (click|doubleclick) on the (link|button|element) "([^"]*)?"$/,
+  /^I (click|doubleclick) on the (link|button|element) "([^"]*)?"$/, 
   clickElement
 )
+
+When(
+  /^I (click|doubleclick) on the delink (link|button|element) "([^"]*)?"$/, (delink)  =>
+ {
+    clickElement(delink)
+ });
 
 When(
   /^I (click) on start new calculator (button) "([^"]*)?"$/,

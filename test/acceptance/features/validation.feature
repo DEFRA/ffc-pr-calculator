@@ -27,3 +27,11 @@ And I click on Next button "#submit"
 Then I expect that the url contains "/value"
 Then I expect that element "#value-error" contains the text "The value needs to be greater than £0."
 
+Scenario: 003-Validate blank value thrown error
+Given I open the url "/"
+When I click on start new calculator button ".govuk-button--start"
+Then I expect that the url contains "/value"
+When I add " " to the inputfield "#value"
+And I click on Next button "#submit" 
+Then I expect that the url contains "/value"
+Then I expect that element "#value-error" contains the text "The value must be between £0 and £1,000,000,000."
