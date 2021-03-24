@@ -8,8 +8,12 @@ class ValuePage extends Page {
   get backLink () { return $('#back') }
   get nextButton () { return $('//button') } 
   get errorValue (){ return $('value-error')}  
-  get calculateprreductn(){ return $('Calculate my progressive reductions')}    
-  get calculateprreductn(){ return $('GOV.UK')}    
+  get calProReductnLink(){ return $('Calculate my progressive reductions')}    
+  get govUKLink(){ return $('GOV.UK')}    
+  get cookiesLink () { return $('=Cookies'); }
+  get openGovtLink () { return $('=Open Government Licence v3.0'); }
+  get accessStatementLink () { return $('=Accessibility statement'); }
+  get copyRightLink () { return $('= © Crown copyright'); }
   
   
   open () {
@@ -29,6 +33,13 @@ class ValuePage extends Page {
   this.nextButton.click();
   }
   
+  getErrorMessage(){
+    
+  }
+
+  clickOnLink(){
+    this.calProReductnLink.click();
+  }
 }
 
 export default new ValuePage()
