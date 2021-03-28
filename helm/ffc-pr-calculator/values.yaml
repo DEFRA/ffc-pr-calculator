@@ -35,9 +35,9 @@ deployment:
 
 container:
   imagePullPolicy: IfNotPresent
-  requestMemory: 40Mi
+  requestMemory: 60Mi
   requestCpu: 60m
-  limitMemory: 40Mi
+  limitMemory: 60Mi
   limitCpu: 60m
   readOnlyRootFilesystem: true
   allowPrivilegeEscalation: false
