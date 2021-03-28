@@ -24,7 +24,7 @@ service:
 deployment:
   restartPolicy: Always
   priorityClassName: high
-  replicas: 1
+  replicas: 5
   minReadySeconds: 0
   runAsNonRoot: true
   runAsUser: 1000
