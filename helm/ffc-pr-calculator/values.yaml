@@ -28,8 +28,8 @@ deployment:
   minReadySeconds: 0
   runAsNonRoot: true
   runAsUser: 1000
-  minReplicas: 1
-  maxReplicas: 5
+  minReplicas: 5
+  maxReplicas: 10
   cpuThreshold: 60
   memoryThreshold: 60
 
