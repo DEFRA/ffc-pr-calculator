@@ -24,21 +24,21 @@ service:
 deployment:
   restartPolicy: Always
   priorityClassName: high
-  replicas: 1
+  replicas: 5
   minReadySeconds: 0
   runAsNonRoot: true
   runAsUser: 1000
-  minReplicas: 1
-  maxReplicas: 5
+  minReplicas: 5
+  maxReplicas: 10
   cpuThreshold: 60
   memoryThreshold: 60
 
 container:
   imagePullPolicy: IfNotPresent
-  requestMemory: 40Mi
-  requestCpu: 60m
-  limitMemory: 40Mi
-  limitCpu: 60m
+  requestMemory: 100Mi
+  requestCpu: 100m
+  limitMemory: 100Mi
+  limitCpu: 100m
   readOnlyRootFilesystem: true
   allowPrivilegeEscalation: false
   port: 3000
@@ -52,13 +52,15 @@ ingress:
 livenessProbe:
   path: /healthz
   port: 3000
-  initialDelaySeconds: 20
-  periodSeconds: 10
+  initialDelaySeconds: 30
+  periodSeconds: 30
+  timeoutSeconds: 5
   failureThreshold: 5
 
 readinessProbe:
   path: /healthy
   port: 3000
   initialDelaySeconds: 20
-  periodSeconds: 10
+  periodSeconds: 30
+  timeoutSeconds: 5
   failureThreshold: 5
