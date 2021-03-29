@@ -1,6 +1,6 @@
 {
   "name": "ffc-pr-calculator",
-  "version": "1.9.12",
+  "version": "1.9.13",
   "description": "FFC Progressive Reductions calculator",
   "homepage": "https://github.com/DEFRA/ffc-pr-calculator",
   "main": "app/index.js",
@@ -76,7 +76,8 @@
       "XMLHttpRequest"
     ],
     "ignore": [
-      "app/dist/**/*.js"
+      "app/dist/**/*.js",
+      "test/acceptance/**/*.js"
     ]
   },
   "nodemonConfig": {
