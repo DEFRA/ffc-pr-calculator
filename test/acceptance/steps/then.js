@@ -30,7 +30,7 @@ import waitFor from '../support/action/waitFor'
 import waitForVisible from '../support/action/waitForDisplayed'
 import checkIfElementExists from '../support/lib/checkIfElementExists'
 import checkURLContains from '../support/check/checkURLContains'
-
+import checkURLCanContains from '../support/check/checkURLCanContains'
 const { Then } = require('cucumber')
 
 Then(
@@ -83,6 +83,7 @@ Then(
   checkContainsText
 )
 
+
 Then(
   /^I expect that (button|element) "([^"]*)?"( not)* contains any text$/,
   checkContainsAnyText
@@ -102,6 +103,14 @@ Then(
   /^I expect that the url( not)* contains "([^"]*)?"$/,
   checkURLContains
 )
+
+
+Then(
+  /^I expect that the url( not)* contain "([^"]*)?"$/,  
+  checkURLCanContains
+)
+
+//Then I expect that the return url to contain "http://host.docker.internal:3000/" url
 
 Then(
   /^I expect that the path is( not)* "([^"]*)?"$/,
