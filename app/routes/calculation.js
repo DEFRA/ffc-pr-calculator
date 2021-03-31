@@ -7,15 +7,9 @@ module.exports = [{
   path: '/calculation',
   options: {
     validate: {
-      query: joi.alternatives()
-        .try(joi.object({
-          value: joi.number().precision(2).greater(0).required()
-        }), joi.object({
-          value2021: joi.number().empty('').allow(null).precision(2).greater(0).less(1000000000),
-          value2022: joi.number().empty('').allow(null).precision(2).greater(0).less(1000000000),
-          value2023: joi.number().empty('').allow(null).precision(2).greater(0).less(1000000000),
-          value2024: joi.number().empty('').allow(null).precision(2).greater(0).less(1000000000)
-        }).min(1)),
+      query: joi.object({
+        value: joi.number().precision(2).greater(0).required()
+      }),
       failAction: async (request, h, error) => {
         return h.redirect('/value').takeover()
       }
