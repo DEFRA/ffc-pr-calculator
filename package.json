@@ -1,6 +1,6 @@
 {
   "name": "ffc-pr-calculator",
-  "version": "1.9.17",
+  "version": "1.9.18",
   "description": "FFC Progressive Reductions calculator",
   "homepage": "https://github.com/DEFRA/ffc-pr-calculator",
   "main": "app/index.js",
