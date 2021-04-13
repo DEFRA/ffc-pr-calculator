@@ -6,6 +6,9 @@ function ViewModel (value, error) {
       classes: 'govuk-label--l',
       isPageHeading: true
     },
+    hint: {
+      text: 'Payment amount should not include any commas'
+    },
     prefix: {
       text: '£'
     },
