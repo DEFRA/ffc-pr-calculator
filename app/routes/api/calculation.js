@@ -1,15 +1,13 @@
 const calculate = require('../../calculation')
-const joi = require('joi')
 const boom = require('@hapi/boom')
+const schema = require('../schemas/value')
 
 module.exports = [{
   method: 'GET',
   path: '/api/v1/calculation/{value}',
   options: {
     validate: {
-      params: joi.object({
-        value: joi.number().precision(2).greater(0).less(1000000000).required()
-      }),
+      params: schema,
       failAction: async (request, h, error) => {
         return boom.badRequest()
       }
