@@ -1,15 +1,13 @@
 const ViewModel = require('./models/calculation')
 const calculate = require('../calculation')
-const joi = require('joi')
+const schema = require('./schemas/value')
 
 module.exports = [{
   method: 'GET',
   path: '/calculation',
   options: {
     validate: {
-      query: joi.object({
-        value: joi.number().precision(2).greater(0).required()
-      }),
+      query: schema,
       failAction: async (request, h, error) => {
         return h.redirect('/value').takeover()
       }
