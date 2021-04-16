@@ -54,6 +54,16 @@ And I click on Next button "#submit"
 Then I expect that the url contains "/value"
 Then I expect that element "#value-error" contains the text "The value needs to be less than £1,000,000,000."
 
+Scenario: 006-Validate input value with comma
+Given I open the url "/"
+When I click on start new calculator button ".govuk-button--start"
+Then I expect that the url contains "/value"
+Then I expect that element "#value-hint" contains the text "Payment amount should not include any commas"
+When I add "100,000,000" to the inputfield "#value"
+And I click on Next button "#submit" 
+Then I expect that the url contains "/value"
+Then I expect that element "#value-error" contains the text "The value must be a number without commas."
+
 
     
   
