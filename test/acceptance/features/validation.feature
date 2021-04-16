@@ -54,7 +54,7 @@ And I click on Next button "#submit"
 Then I expect that the url contains "/value"
 Then I expect that element "#value-error" contains the text "The value needs to be less than £1,000,000,000."
 
-Scenario: 006-Validate input value with commas
+Scenario: 006-Validate input value with comma
 Given I open the url "/"
 When I click on start new calculator button ".govuk-button--start"
 Then I expect that the url contains "/value"
