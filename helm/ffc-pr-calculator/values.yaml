@@ -24,12 +24,12 @@ service:
 deployment:
   restartPolicy: Always
   priorityClassName: high
-  replicas: 10
+  replicas: 50
   minReadySeconds: 0
   runAsNonRoot: true
   runAsUser: 1000
-  minReplicas: 10
-  maxReplicas: 10
+  minReplicas: 50
+  maxReplicas: 50
   cpuThreshold: 60
   memoryThreshold: 60
 
