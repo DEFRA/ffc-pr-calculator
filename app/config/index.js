@@ -26,6 +26,7 @@ const config = {
   googleTagManagerKey: process.env.GOOGLE_TAG_MANAGER_KEY,
   cookieOptions: {
     ttl: process.env.COOKIE_TTL_IN_MILLIS,
+    isSameSite: 'Lax',
     encoding: 'base64json',
     isSecure: process.env.NODE_ENV === 'production',
     isHttpOnly: true,
