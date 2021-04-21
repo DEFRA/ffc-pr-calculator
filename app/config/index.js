@@ -9,6 +9,7 @@ const schema = joi.object({
   googleTagManagerKey: joi.string().default('GTM-5XJKV8F'),
   cookieOptions: joi.object({
     ttl: joi.number().default(1000 * 60 * 60 * 24 * 365),
+    isSameSite: joi.string().valid('Lax').default('Lax'),
     encoding: joi.string().valid('base64json').default('base64json'),
     isSecure: joi.bool().default(true),
     isHttpOnly: joi.bool().default(true),
