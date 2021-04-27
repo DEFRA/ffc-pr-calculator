@@ -26,8 +26,6 @@ deployment:
   priorityClassName: high
   replicas: 10
   minReadySeconds: 0
-  runAsNonRoot: true
-  runAsUser: 1000
   minReplicas: 10
   maxReplicas: 10
   cpuThreshold: 60
@@ -39,8 +37,6 @@ container:
   requestCpu: 40m
   limitMemory: 100Mi
   limitCpu: 200m
-  readOnlyRootFilesystem: true
-  allowPrivilegeEscalation: false
   port: 3000
   googleTagManagerKey: GTM-5XJKV8F
 
