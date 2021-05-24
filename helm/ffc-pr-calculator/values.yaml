@@ -24,19 +24,19 @@ service:
 deployment:
   restartPolicy: Always
   priorityClassName: high
-  replicas: 10
+  replicas: 2
   minReadySeconds: 0
-  minReplicas: 10
-  maxReplicas: 10
-  cpuThreshold: 60
-  memoryThreshold: 60
+  minReplicas: 2
+  maxReplicas: 4
+  cpuThreshold: 80
+  memoryThreshold: 80
 
 container:
   imagePullPolicy: IfNotPresent
   requestMemory: 100Mi
   requestCpu: 40m
   limitMemory: 100Mi
-  limitCpu: 200m
+  limitCpu: 100m
   port: 3000
   googleTagManagerKey: GTM-5XJKV8F
 
