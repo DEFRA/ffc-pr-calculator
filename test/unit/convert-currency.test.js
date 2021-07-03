@@ -11,6 +11,11 @@ describe('convert currency', () => {
     expect(result).toEqual(10010)
   })
 
+  test('converts 100.1 to pence', () => {
+    const result = convertStringToPence('100.1')
+    expect(result).toEqual(10010)
+  })
+
   test('converts 10000 to pounds', () => {
     const result = convertToPounds(10000)
     expect(result).toEqual(100.00)

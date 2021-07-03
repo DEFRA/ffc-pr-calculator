@@ -400,6 +400,18 @@ describe('calculate', () => {
     expect(result.bandResult[0].result.find(x => x.schemeYear === 2024).payment).toBe(500.40)
   })
 
+  test('17285.10 handles correct decimal values for 2021', () => {
+    const result = calculate(17285.10)
+    expect(result.bandResult[0].result.find(x => x.schemeYear === 2021).reduction).toBe(864.25)
+    expect(result.bandResult[0].result.find(x => x.schemeYear === 2021).payment).toBe(16420.85)
+  })
+
+  test('17285.1 handles correct decimal values for 2021', () => {
+    const result = calculate(17285.1)
+    expect(result.bandResult[0].result.find(x => x.schemeYear === 2021).reduction).toBe(864.25)
+    expect(result.bandResult[0].result.find(x => x.schemeYear === 2021).payment).toBe(16420.85)
+  })
+
   test('1000.79 handles correct decimal values for overall 2021', () => {
     const result = calculate(1000.79)
     expect(result.overallResult.find(x => x.schemeYear === 2021).reduction).toBe(50.03)
