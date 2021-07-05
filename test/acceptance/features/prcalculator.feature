@@ -12,7 +12,7 @@ Then I expect that element "h1" contains the text "Calculation complete"
 Scenario: 002-User can click on Agricultural transition link
 Given I open the url "/"
 When I click on the link "Agricultural Transition Plan 2021 to 2024"
-Then I expect that element "h1" contains the text "Agricultural transition plan 2021 to 2024"
+Then I expect that element "h1" contains the text "Agricultural Transition Plan 2021 to 2024"
 
 Scenario: 003-User can click on Farming is changing link
 Given I open the url "/"
