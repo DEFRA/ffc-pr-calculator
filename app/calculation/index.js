@@ -3,8 +3,10 @@ const calculateBand = require('./calculate-band')
 const calculateOverall = require('./calculate-overall')
 const { convertStringToPence } = require('./convert-currency')
 const schemeYears = require('./scheme-years')
+const { trackCalculationEvent } = require('../insights')
 
 function calculate (value) {
+  trackCalculationEvent(value)
   const schemeYearValues = !isNaN(value)
     ? schemeYears.map(schemeYear => ({ schemeYear, value }))
     : [{ schemeYear: 2021, value: value.value2021 || 0 },

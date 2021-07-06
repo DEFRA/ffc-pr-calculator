@@ -12,4 +12,11 @@ function setup () {
   }
 }
 
-module.exports = { setup }
+function trackCalculationEvent (inputValue) {
+  if (process.env.APPINSIGHTS_INSTRUMENTATIONKEY) {
+    const client = appInsights.defaultClient
+    client.trackEvent({ name: 'calculation', properties: { inputValue, timestamp: new Date() } })
+  }
+}
+
+module.exports = { setup, trackCalculationEvent }
