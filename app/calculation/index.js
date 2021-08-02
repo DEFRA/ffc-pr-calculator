@@ -8,9 +8,9 @@ function calculate (value) {
   const schemeYearValues = !isNaN(value)
     ? schemeYears.map(schemeYear => ({ schemeYear, value }))
     : [{ schemeYear: 2021, value: value.value2021 || 0 },
-        { schemeYear: 2022, value: value.value2022 || 0 },
-        { schemeYear: 2023, value: value.value2023 || 0 },
-        { schemeYear: 2024, value: value.value2024 || 0 }]
+      { schemeYear: 2022, value: value.value2022 || 0 },
+      { schemeYear: 2023, value: value.value2023 || 0 },
+      { schemeYear: 2024, value: value.value2024 || 0 }]
 
   const bandResult = calculateBands(schemeYearValues)
 
