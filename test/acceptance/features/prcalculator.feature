@@ -17,7 +17,7 @@ Then I expect that element "h1" contains the text "Agricultural Transition Plan 
 Scenario: 003-User can click on Farming is changing link
 Given I open the url "/"
 When I click on the link "Farming is changing"
-Then I expect that the url contain "/986879/farming-changing.pdf"
+Then I expect that the url contain "/farming-changing.pdf"
 
 Scenario: 004-User can click on Agricultural transition link
 Given I open the url "/"
