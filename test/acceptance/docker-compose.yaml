@@ -13,10 +13,8 @@ services:
 
   selenium:
     image: selenium/standalone-chrome-debug
-    container_name: chrome-browser
 
   hub:
-    image: selenium/hub
-    container_name: selenium-hub
+    image: selenium/hub:3
 
 
