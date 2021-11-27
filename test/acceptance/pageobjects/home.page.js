@@ -14,7 +14,7 @@ class HomePage extends Page {
 
   open () {
     super.open('')
-    browser.pause(4000)
+    browser.pause(3000)
   }
 
   // your page specific methods
