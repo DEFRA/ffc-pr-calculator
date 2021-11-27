@@ -12,9 +12,9 @@ services:
       CHROME_ARGS: "--headless --ignore-certificate-errors"
 
   selenium:
-    image: selenium/standalone-chrome-debug:3.141.59-20210311
+    image: selenium/standalone-chrome-debug
 
   hub:
-    image: selenium/hub:3.141.59-20210311
+    image: selenium/hub
 
 
