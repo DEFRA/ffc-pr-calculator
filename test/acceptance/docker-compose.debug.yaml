@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.8'
 services:
-  wdio-cucumber:
+  ffc-pr-calculator-acceptance-tests:
     command: npm run test:debug

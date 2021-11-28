@@ -1,20 +1,12 @@
-version: "3.7"
+version: '3.8'
+
 services:
-  wdio-cucumber:
+  ffc-pr-calculator-acceptance-tests:
     build: .
-    image: wdio-cucumber
-    container_name: webdriver-cuke
-    depends_on:
-      - selenium
-      - hub
+    image: ffc-pr-calculator-acceptance-tests
+    container_name: ffc-pr-calculator-acceptance-tests
     environment:
-      TEST_ENVIRONMENT_ROOT_URL: ${TEST_ENVIRONMENT_ROOT_URL}
+      BROWSERSTACK_ACCESS_KEY: ${BROWSERSTACK_ACCESS_KEY}
+      BROWSERSTACK_USERNAME: ${BROWSERSTACK_USERNAME}
       CHROME_ARGS: "--headless --ignore-certificate-errors"
-
-  selenium:
-    image: selenium/standalone-chrome-debug
-
-  hub:
-    image: selenium/hub
-
-
+      TEST_ENVIRONMENT_ROOT_URL: ${TEST_ENVIRONMENT_ROOT_URL}
