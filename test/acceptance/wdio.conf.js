@@ -51,7 +51,7 @@ exports.config = {
       filename: 'feature-report.html',
       reportTitle: 'Feature Test Report',
       showInBrowser: false,
-      useOnAfterCommandForScreenshot: true,
+      useOnAfterCommandForScreenshot: false,
       LOG: logger
     }]
   ],
@@ -123,7 +123,7 @@ exports.config = {
     const moment = require('moment')
     const screenshotFileName = ctx.uri.split('.feature')[0].split('/').slice(-1)[0]
     const timestamp = moment().format('YYYYMMDD-HHmmss.SSS')
-    const filepath = path.join('./html-reports/screenshots/', screenshotFileName + '-' + timestamp + '.png')
+    const filepath = path.join('./html-reports/', screenshotFileName + '-' + timestamp + '.png')
     browser.saveScreenshot(filepath)
     process.emit('test:screenshot', filepath)
   }
