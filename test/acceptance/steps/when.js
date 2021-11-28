@@ -51,14 +51,9 @@ When(
 )
 
 
- When(/^I click on Next button$/, () => {  
-   //bspPage.calculateBpsValue();
+ When(/^I click on Next button$/, () => {
    InputTypePage.continue();
  });
-
-//  When( /^I (click) on the (link) "([^"]*)?"$/,
-//   clickElement
-// )
 
 
 When(/^I click on the backlink$/, function ()  {
