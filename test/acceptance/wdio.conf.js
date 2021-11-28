@@ -51,7 +51,7 @@ exports.config = {
       filename: 'feature-report.html',
       reportTitle: 'Feature Test Report',
       showInBrowser: false,
-      useOnAfterCommandForScreenshot: false,
+      useOnAfterCommandForScreenshot: true,
       LOG: logger
     }]
   ],
