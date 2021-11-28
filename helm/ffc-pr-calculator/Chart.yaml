@@ -1,7 +1,7 @@
 apiVersion: v2
 description: Progressive reductions calculator
 name: ffc-pr-calculator
-# this version is automatically updated in the build pipline
+# this version is automatically updated in the build pipeline
 version: 1.0.0
 dependencies:
 - name: ffc-helm-library
