@@ -9,7 +9,7 @@ The framework is (Cucumber)[https://cucumber.io/] and (webdriver.io)[https://web
 ## Requirements
 
 - Docker Desktop 2.2.0.3 (42716) or higher
-- Node version 12 (not compatible with v13)
+- Node version 12 (not compatible with v13+)
   - if you have multiple versions of node, run `nvm use 12` to use version 12 for this alone
 
 # Quick start

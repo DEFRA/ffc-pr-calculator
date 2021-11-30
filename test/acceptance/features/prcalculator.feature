@@ -7,7 +7,7 @@ Then I expect that the url contains "/value"
 When I add "500" to the inputfield "#value"
 And I click on Next button "#submit" 
 Then I expect that the url contains "/calculation?value"
-Then I expect that element "h1" contains the text "Calculation complete"  
+Then I expect that element "h1" contains the text "Calculation complete"
 
 Scenario: 002-User can click on Agricultural transition link
 Given I open the url "/"
@@ -16,13 +16,13 @@ Then I expect that element "h1" contains the text "Agricultural Transition Plan 
 
 Scenario: 003-User can click on Farming is changing link
 Given I open the url "/"
-When I click on the link "Farming is changing"
+When I click on the element "#farming-is-changing-link"
 Then I expect that the url contain "/farming-changing.pdf"
 
 Scenario: 004-User can click on Agricultural transition link
 Given I open the url "/"
 When I click on the link "Open Government Licence v3.0"
-Then I expect that element "#license > h3:nth-child(3)" contains the text "Using Information under this licence"   
+Then I expect that element "#license > h3:nth-child(3)" contains the text "Using Information under this licence"
 Then I expect that element "//div[@id='license']/div[2]/h3" is displayed
 
 Scenario: 005-User can click on Agricultural transition link
