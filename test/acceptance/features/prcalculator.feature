@@ -22,7 +22,8 @@ Then I expect that the url contain "/farming-changing.pdf"
 Scenario: 004-User can click on Agricultural transition link
 Given I open the url "/"
 When I click on the link "Open Government Licence v3.0"
-Then I expect that the url contains "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+Then I expect that element "#license/main/h1" contains the text "Open Government Licence for public sector information"
+Then I expect that element "//div[@id='license']/div[2]/h3" is displayed
 
 Scenario: 005-User can click on Agricultural transition link
 Given I open the url "/"
@@ -61,7 +62,7 @@ Then I expect that element "h1" contains the text "Accessibility statement"
 Scenario: 009-User can click licence link on value page
 Given I open the url "/value"
 When I click on the link "Open Government Licence v3.0"
-Then I expect that the url contains "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+Then I expect that element "#license/main/h1" contains the text "Open Government Licence for public sector information"   
 
 Scenario: 010-User can click copyright link on value page
 Given I open the url "/value"
@@ -103,7 +104,7 @@ Then I expect that element "h1" contains the text "Calculate my progressive redu
 Scenario: 016-User can click licence link on calculation page
 Given I open the url "/calculation?value=32"
 When I click on the link "Open Government Licence v3.0"
-Then I expect that the url contains "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+Then I expect that element "#license/main/h1" contains the text "Open Government Licence for public sector information"
 
 Scenario: 017-User can click copyright link on calculation page
 Given I open the url "/calculation?value=32"
