@@ -11,7 +11,8 @@ describe('cookies', () => {
       }
     }
     h = {
-      state: jest.fn()
+      state: jest.fn(),
+      unstate: jest.fn()
     }
   })
 
@@ -61,5 +62,12 @@ describe('cookies', () => {
     request.state.cookies_policy = { confirmed: false, essential: true, analytics: false }
     cookies.updatePolicy(request, h, false)
     expect(h.state).toHaveBeenCalledWith('cookies_policy', { confirmed: true, essential: true, analytics: false }, expect.anything())
+  })
+
+  test('updatePolicy denying analytics removes Google cookies', () => {
+    request.state.cookies_policy = { confirmed: false, essential: true, analytics: false }
+    cookies.updatePolicy(request, h, false)
+    expect(h.unstate).toHaveBeenCalledWith('_ga')
+    expect(h.unstate).toHaveBeenCalledWith('_gid')
   })
 })
