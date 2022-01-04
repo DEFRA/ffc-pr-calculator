@@ -24,11 +24,6 @@ function updatePolicy (request, h, analytics) {
   cookiesPolicy.confirmed = true
 
   h.state('cookies_policy', cookiesPolicy, config)
-
-  if (!analytics) {
-    h.unstate('_ga')
-    h.unstate('_gid')
-  }
 }
 
 module.exports = {
