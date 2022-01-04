@@ -72,9 +72,8 @@ describe('cookies', () => {
   })
 
   test('updatePolicy approving analytics does not remove Google cookies', () => {
-    request.state.cookies_policy = { confirmed: false, essential: true, analytics: false }
-    cookies.updatePolicy(request, h, false)
-    expect(h.unstate).not.toHaveBeenCalledWith('_ga')
-    expect(h.unstate).not.toHaveBeenCalledWith('_gid')
+    request.state.cookies_policy = { confirmed: false, essential: true, analytics: true }
+    cookies.updatePolicy(request, h, true)
+    expect(h.unstate).not.toHaveBeenCalled()
   })
 })
