@@ -23,7 +23,6 @@ Scenario: 004-User can click on Agricultural transition link
 Given I open the url "/"
 When I click on the link "Open Government Licence v3.0"
 Then I expect that element "#license > main > h1" contains the text "Open Government Licence for public sector information"
-Then I expect that element "//div[@id='license']/div[2]/h3" is displayed
 
 Scenario: 005-User can click on Agricultural transition link
 Given I open the url "/"
@@ -87,7 +86,7 @@ Then I expect that element "h1" contains the text "Accessibility statement"
 Scenario: 014-User can click cookies link on value page
 Given I open the url "/value"
 When I click on the link "Cookies"
-Then I expect that element "h2" contains the text "Details about cookies on Calculate my progressive reductions"
+Then I expect that element "main > h2" contains the text "Details about cookies on Calculate my progressive reductions"
 
 Scenario: 015-Can navigate back to previous page
 Given I open the url "/"
@@ -129,7 +128,7 @@ Then I expect that element "h1" contains the text "Accessibility statement"
 Scenario: 021-User can click cookies link on calculation page
 Given I open the url "/calculation?value=32"
 When I click on the link "Cookies"
-Then I expect that element "h2" contains the text "Cookies"
+Then I expect that element "main > h2" contains the text "Details about cookies on Calculate my progressive reductions"
 
 Scenario: 0022-User can click on Rural payments and grants link
 Given I open the url "/"
