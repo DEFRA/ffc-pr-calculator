@@ -22,8 +22,7 @@ Then I expect that the url contain "/farming-changing.pdf"
 Scenario: 004-User can click on Agricultural transition link
 Given I open the url "/"
 When I click on the link "Open Government Licence v3.0"
-Then I expect that element "#license > h3:nth-child(3)" contains the text "Using Information under this licence"
-Then I expect that element "//div[@id='license']/div[2]/h3" is displayed
+Then I expect that element "#license > main > h1" contains the text "Open Government Licence for public sector information"
 
 Scenario: 005-User can click on Agricultural transition link
 Given I open the url "/"
@@ -62,8 +61,7 @@ Then I expect that element "h1" contains the text "Accessibility statement"
 Scenario: 009-User can click licence link on value page
 Given I open the url "/value"
 When I click on the link "Open Government Licence v3.0"
-Then I expect that element "#license > h3:nth-child(3)" contains the text "Using Information under this licence"   
-Then I expect that element "//div[@id='license']/div[2]/h3" contains the text "You are free to:"
+Then I expect that element "#license > main > h1" contains the text "Open Government Licence for public sector information"   
 
 Scenario: 010-User can click copyright link on value page
 Given I open the url "/value"
@@ -88,7 +86,7 @@ Then I expect that element "h1" contains the text "Accessibility statement"
 Scenario: 014-User can click cookies link on value page
 Given I open the url "/value"
 When I click on the link "Cookies"
-Then I expect that element "h2" contains the text "Cookies"
+Then I expect that element "main > h2" contains the text "Details about cookies on Calculate my progressive reductions"
 
 Scenario: 015-Can navigate back to previous page
 Given I open the url "/"
@@ -105,8 +103,7 @@ Then I expect that element "h1" contains the text "Calculate my progressive redu
 Scenario: 016-User can click licence link on calculation page
 Given I open the url "/calculation?value=32"
 When I click on the link "Open Government Licence v3.0"
-Then I expect that element "#license > h3:nth-child(3)" contains the text "Using Information under this licence"   
-Then I expect that element "//div[@id='license']/div[2]/h3" contains the text "You are free to:"
+Then I expect that element "#license > main > h1" contains the text "Open Government Licence for public sector information"
 
 Scenario: 017-User can click copyright link on calculation page
 Given I open the url "/calculation?value=32"
@@ -131,7 +128,7 @@ Then I expect that element "h1" contains the text "Accessibility statement"
 Scenario: 021-User can click cookies link on calculation page
 Given I open the url "/calculation?value=32"
 When I click on the link "Cookies"
-Then I expect that element "h2" contains the text "Cookies"
+Then I expect that element "main > h2" contains the text "Details about cookies on Calculate my progressive reductions"
 
 Scenario: 0022-User can click on Rural payments and grants link
 Given I open the url "/"

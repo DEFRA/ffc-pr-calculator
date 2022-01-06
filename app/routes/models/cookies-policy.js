@@ -4,7 +4,7 @@ function ViewModel (cookiesPolicy = {}, updated = false) {
     name: 'analytics',
     fieldset: {
       legend: {
-        text: 'Do you want to accept analytics cookies?',
+        text: 'Do you want to accept cookies that measure website use?',
         classes: 'govuk-fieldset__legend--s'
       }
     },
