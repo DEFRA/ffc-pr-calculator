@@ -1,4 +1,4 @@
-describe('accessibility route', () => {
+describe('privacy notice route', () => {
   let createServer
   let server
 
@@ -12,24 +12,24 @@ describe('accessibility route', () => {
     await server.stop()
   })
 
-  test('GET /accessibility returns 200', async () => {
+  test('GET /privacy returns 200', async () => {
     const options = {
       method: 'GET',
-      url: '/accessibility'
+      url: '/privacy'
     }
 
     const result = await server.inject(options)
     expect(result.statusCode).toBe(200)
   })
 
-  test('GET /accessibility returns accessibility view', async () => {
+  test('GET /privacy returns privacy view', async () => {
     const options = {
       method: 'GET',
-      url: '/accessibility'
+      url: '/privacy'
     }
 
     const result = await server.inject(options)
     expect(result.request.response.variety).toBe('view')
-    expect(result.request.response.source.template).toBe('accessibility')
+    expect(result.request.response.source.template).toBe('privacy')
   })
 })
