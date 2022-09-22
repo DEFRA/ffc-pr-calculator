@@ -7,50 +7,38 @@
     <main class="govuk-main-wrapper">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
-          <h1 class="govuk-heading-xl">{{ serviceName }}</h1>
+          <h1 class="govuk-heading-xl">Check how your BPS payments will reduce until 2024</h1>
+        </div>
+      </div>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
 
-          <p class="govuk-body">Use this service to:</p>
-
-          <ul class="govuk-list govuk-list--bullet">
-            <li>see how progressive reductions could affect your Direct Payment in England (currently paid through the Basic Payment Scheme) for scheme years 2021 to 2024.</li>
-          </ul>
-
-          <p class="govuk-body">
-           Calculation should take less than 2 minutes. No personal information is input, collected or retained in this exercise. 
-           The results are an estimated calculation based on the progressive reduction figures set out in our ‘Farming is Changing’ 
-           leaflet and the data inputted by the user. 
+          <p class="govuk-body-m">
+            Payments from the Basic Payment Scheme (BPS) will reduce each year from 2021 until the end of 2023 in England.
           </p>
 
-          <p class="govuk-body">
-            There is no limit to the number of times you can use this calculator.
+          <p class="govuk-body-m">
+            Delinked payments should replace BPS payments from 2024, and will reduce each year until payments finish in 2027. 
+            The Department for Environment, Food & Rural Affairs (Defra) and Rural Payments Agency (RPA) will provide more details 
+            about what's happening after 2024 when they're available.
           </p>
 
-          <h2 class="govuk-heading-m">What are progressive reductions?</h2>
-
-          <p class="govuk-body">
-          We plan to phase out Direct Payments in England from 2021 to 2027. 
-          Our approach is designed to help everyone manage the transition away from Direct Payments as smoothly as possible. 
-          The same amount will be available to the farming sector in every year of this Parliament, though the way it is distributed will change. 
-          Funds will be redirected straight back into Countryside Stewardship and our new schemes.
+          <p class="govuk-body-m">
+            Use the calculator to get an estimate of how much money you'll receive each year as payments reduce.
           </p>
 
-          <p class="govuk-body">
-            We made the first progressive reductions to Basic Payment Scheme (BPS) payments for the 2021 scheme year.
-            We will continue to make reductions to BPS payments each year, and then to delinked payments when these replace BPS.
-            We plan to delink payments in 2024. All BPS payments were reduced from 2021, with bigger reductions in higher payment bands. 
-            These bands will work like income tax bands.  
+          <p class="govuk-body-m">
+            The calculator should give you a result in less than 2 minutes.
           </p>
 
-          <p class="govuk-body">
-            We have announced the reductions we intend to apply for each of the years 2021 to 2024. 
-            We intend to continue to make gradual reductions to the payments in the later years of the agricultural transition, with the last payments made for the 2027 scheme year.
+          <p class="govuk-body-m">
+            You do not need to add personal information to the calculator. 
+            No personal information is collected or stored in the calculator.
           </p>
 
-          <p class="govuk-body">
-            For more information about the 2021 to 2024 reductions to Direct Payments, 
-            the other support available during the transition period and delinked payments please see 
-            'The Path to Sustainable Farming: An Agricultural Transition Plan 2021 to 2024' and our 'Farming is Changing' leaflet, linked above.
-          <p>
+          <p class="govuk-body-m">
+            There is no limit to the number of times you can use the calculator.
+          </p>
 
           {{ govukButton({
             classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8",
@@ -62,59 +50,82 @@
             }
           }) }}
 
+          <h3 class="govuk-heading-s">How my payment reductions are calculated</h3>
+          <p class="govuk-body">The following payment reductions apply to:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>BPS payments between 2021</li>
+            <li>delinked payments in 2024</li>
+          </ul>
+
+          <table class="govuk-table govuk-!-margin-top-6 govuk-!-margin-bottom-8">
+            <caption class="govuk-table__caption govuk-table__caption--m">
+              <span style="display:none;">Progressive reductions calculation</span>
+            </caption>
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header govuk-!-width-one-half">Scheme year</th>
+                <th scope="col" class="govuk-table__header govuk-table__header--numeric">2021</th>
+                <th scope="col" class="govuk-table__header govuk-table__header--numeric">2022</th>
+                <th scope="col" class="govuk-table__header govuk-table__header--numeric">2023</th>
+                <th scope="col" class="govuk-table__header govuk-table__header--numeric">2024</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <th scope="row" class="govuk-table__header govuk-!-width-one-half">£30,000.00 or less</th>
+                <td class="govuk-table__cell govuk-table__cell--numeric">5%</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">20%</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">35%</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">50%</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th scope="row" class="govuk-table__header govuk-!-width-one-half">Amounts above £30,000.00 and no more than £50,000.00</th>
+                <td class="govuk-table__cell govuk-table__cell--numeric">10%</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">25%</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">40%</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">55%</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th scope="row" class="govuk-table__header govuk-!-width-one-half">Amounts above £50,000.00 and no more than £150,000.00</th>
+                <td class="govuk-table__cell govuk-table__cell--numeric">20%</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">35%</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">50%</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">65%</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th scope="row" class="govuk-table__header govuk-!-width-one-half">Amounts above £150,000.00</th>
+                <td class="govuk-table__cell govuk-table__cell--numeric">25%</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">40%</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">55%</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">70%</td>
+              </tr>
+            </tbody>
+          </table>
+
           <h2 class="govuk-heading-m">Before you start</h2>
-
-          <p class="govuk-body">
-            This calculator will apply progressive reductions to a ‘starting payment amount’ for the scheme years 2021 to 2024.
+          <p class="govuk-body-m">Add your 'starting payment amount' to the calculator.</p>
+          <p class="govuk-body-m">
+            Your starting payment amount is the total BPS payment you're owed in each scheme year 
+            (including any young farmer payment), after the RPA applies all other reductions and penalties.
           </p>
-
-          <h3 class="govuk-heading-s">BPS years 2021 to 2023</h3>
-          <p class="govuk-body">
-            This starting payment amount will be the total payment you would have been due in each scheme year, 
-            before progressive reductions are applied. While we operate BPS, 
-            the progressive reductions will be applied to the total BPS payment (including any young farmer payment), 
-            after all other reductions and penalties have been applied. As now, your BPS payment value will be calculated each year, 
-            once financial ceilings for the scheme are set, 
-            and will depend on the BPS entitlements and eligible area you claim in that year.
+          <p class="govuk-body-m">
+            The reductions apply to BPS and delinked payments in England. You should exclude payments for land in Scotland, 
+            Wales or Northern Ireland from your starting payment amount.
           </p>
-
-          <p class="govuk-body">
-            If, while BPS continues to operate, you expect to claim for a similar area of land as you did in 2020, 
-            your 2020 claim value can usually be used as a starting payment amount. 
-            If you expect your claim area to change, you should adjust your starting payment amount accordingly, 
-            taking the average unit values from your 2020 Claim Statement and multiplying them by the revised claim area you are planning to use. 
-            There is no limit to the number of times you can use this calculator.
+          <p class="govuk-body-m">
+            Read more information about 
+            <a href="https://www.gov.uk/government/collections/basic-payment-scheme-bps-2022">how BPS payments are calculated in 2022</a>
+            .
           </p>
-
-          <h3 class="govuk-heading-s">Delinked Payments 2024</h3>
-          <p class="govuk-body">
-            We plan to introduce <a class="govuk-link" href="https://www.gov.uk/guidance/delinked-payments-replacing-the-basic-payment-scheme">delinked payments</a> in 2024. 
-            For delinked payments, we plan to apply progressive reductions to a 'reference amount', 
-            based on the average BPS payment you received during the 2020 to 2022 reference period. 
-            This may be similar to the value of your BPS 2020 payment.
+          <p class="govuk-body-m">
+            In 2024, your starting payment amount for delinked payments will be a reference amount that's based on the average BPS 
+            payments you received between 2020 and 2022. 
+            <a href="https://www.gov.uk/guidance/delinked-payments-replacing-the-basic-payment-scheme#how-delinked-payments-are-calculated">Find out how delinked payments will be calculated</a>.
           </p>
-
-          <h3 class="govuk-heading-s">If you have land other than in England or a claim above €150,000</h3>
-          <p class="govuk-body">
-            This calculator applies for Direct Payments in England. 
-            If you also claimed for land in Scotland, Wales or Northern Ireland in 2020, then you should exclude those parts of your claim from your starting payment amount. 
-            If your 2020 claim was above €150,000, you should use your claim value before the 5% reduction was applied to amounts above €150,000. 
-            This is because, to avoid overlapping reductions, that 5% reduction no longer applies from the 2021 claim year. 
-          </p>
-
-          <p class="govuk-body">
-            If you require help in using this calculator, please call the Rural Payments helpline on 
-             <a href="tel:03000 200 301">03000 200 301</a>
-          </p>
-
-          <p class="govuk-body">
-            If you would like more information about schemes and grants funded through the reductions to BPS, please visit the 
-            <a class="govuk-link" href="https://www.gov.uk/government/collections/rural-payments-and-grants">Rural payments and grants</a> page
-          </p>
-
 
         </div>
-        <div class="govuk-grid-column-one-third">
+
+        <!-- <div class="govuk-grid-column-one-third">
           <aside class="app-related-items" role="complementary">
             <h2 class="govuk-heading-m" id="subsection-title">
               Useful links
@@ -134,6 +145,17 @@
               </ul>
             </nav>
           </aside>
+        </div> -->
+      </div>
+      <div class="govuk-grid-row govuk-!-margin-top-4">
+        <div class="govuk-grid-column-two-thirds" style="padding-top: 20px; border-top: 1px solid #b1b4b6;">
+          <h2 class="govuk-heading-m govuk-!-padding-top-2">Get help</h2>
+          <p class="govuk-body-m">
+            If you need help with the calculator, call the Defra Rural Service helpline on  
+            <span id="phoneNumber">
+              <a href="tel:03000 200 301">03000 200 301</a>
+            </span>.
+          </p>
         </div>
       </div>
     </main>

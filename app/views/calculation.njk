@@ -18,22 +18,56 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
         {{ govukPanel({
-          titleText: "Calculation complete"
+          titleText: "Calculation complete",
+          html: model.confirmation
         }) }}
-
-        <p class="govuk-body">{{ model.confirmation }}</p>
 
         {% if not model.isSingleValue %}
           {{ govukTable(model.startingAmount) }}
         {% endif %}
 
+        {{ govukTable(model.reductionsAndPayments) }}
+
+        <details class="govuk-details" data-module="govuk-details" open>
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">Show me a breakdown of my reductions</span>
+          </summary>
+          <div>
+            {{ govukTable(model.reduction) }}
+          </div>
+        </details>
+        <!--
         {{ govukTable(model.paymentBand) }}
         {{ govukTable(model.reduction) }}
         <h2 class="govuk-heading-m">
           Your estimated payment after progressive reductions
         </h2>
         {{ govukSummaryList(model.paymentSummary)}}
-      </div>
+        -->
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+            <h2 class="govuk-heading-m">Other funding schemes</h2>
+            <p class="govuk-body">
+              You can also apply for money to improve the environment and your farm's productivity. 
+              The schemes are funded through the reductions to BPS and delinked payments.
+            </p>
+            <a href="https://www.gov.uk/guidance/funding-for-farmers" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+              Check what funding is available to you
+            </a>
+            <p class="govuk-body">
+              If you have any queries about your payments, call the Defra Rural Service helpline on  
+              <span id="phoneNumber"><a href="tel:03000 200 301">03000 200 301</a></span>.
+            </p>
+            <div class="govuk-!-margin-top-8" style="padding:20px; background-color:#f3f2f1; border-left-color:#666;">
+              <h2 class="govuk-heading-m">Give feedback on this service</h2>
+              <p class="govuk-body">
+                Take a 3 minute survey about your application so that we can improve the service. The survey will open in a new window.<br><br>
+                <a href="" target="_blank" class="govuk-link">Give feedback</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>      
     </div>
   </div>
 {% endblock %}

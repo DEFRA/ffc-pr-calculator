@@ -10,10 +10,11 @@ function ViewModel (values, calculations) {
     confirmation: createSummary(isSingleValue, values),
     startingAmount: isSingleValue ? undefined : createStartingAmountTable(values),
     paymentBand: createTableDefinition(calculations, { property: 'rate', text: '', caption: 'Progressive reductions', formatType: 'percentage', showOverall: false }),
-    reduction: createTableDefinition(calculations, { property: 'reduction', text: 'Total progressive reduction:', caption: 'Your progressive reductions', formatType: 'currency', showOverall: true }),
+    reduction: createTableDefinition(calculations, { property: 'reduction', text: 'Total progressive reduction:', formatType: 'currency', showOverall: true }),
     payment: createPaymentTable(calculations),
     paymentSummary: createPaymentSummary(calculations),
-    backLink: createBackLink(isSingleValue)
+    backLink: createBackLink(isSingleValue),
+    reductionsAndPayments: createReductionsAndPayments(calculations)
   }
 }
 
@@ -23,8 +24,8 @@ function isSingleValueOnly (values) {
 
 function createSummary (isSingleValue, values) {
   return isSingleValue
-    ? `Your estimated progressive reductions are based on a starting payment amount of ${toCurrencyString(values.value)}.`
-    : 'Your estimated progressive reductions are based on starting payment amounts of:'
+    ? `Your estimated BPS payments are based on a starting payment amount of<br><strong>${toCurrencyString(values.value)}</strong>.`
+    : 'Your estimated BPS payments are based on starting payment amounts of:'
 }
 
 function createStartingAmountTable (values) {
@@ -85,6 +86,42 @@ function createPaymentSummary (calculations) {
   return {
     classes: 'govuk-summary-list',
     rows: populateOverallSummary(calculations, 'payment', 'Payment value after progressive reductions:').flat()
+  }
+}
+
+function createReductionsAndPayments (calculations){
+  return {
+    caption: 'Your reductions and estimated payments',
+    captionClasses: 'govuk-tament__caption--m',
+    firstCellIsHeader: true,
+    head: [
+      {
+        text: 'Scheme year'
+      },
+      {
+        text: 'Total reductions',
+        format: 'numeric'
+      },
+      {
+        text: 'Estimated payment',
+        format: 'numeric'
+      }
+    ],
+    rows: [
+      [
+        {
+          text: '20XX'
+        },
+        {
+          text: '£0.00',
+          format: 'numeric'
+        },
+        {
+          text: '£0.00',
+          format: 'numeric'
+        }
+      ]    
+    ]
   }
 }
 

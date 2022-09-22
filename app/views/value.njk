@@ -22,11 +22,19 @@
         <form method="POST" action="/value" novalidate>
           {{ govukInput(model) }}
           {{ govukButton({
-            text: "Calculate my progressive reductions",
+            text: "Calculate my BPS payments",
             attributes: {
               id: "submit"
             }
           }) }}
+          <h3 class="govuk-heading-s govuk-!-margin-top-4">
+            I'm claiming for land that has changed or may change
+          </h3>
+          <p class="govuk-body">
+            If the land you're claiming for has changed or may change, you should take the average unit values 
+            from your 2020 BPS Claim Statement. Multiply these values by the revised claim area you're planning 
+            to use in 2022 or 2023 to get your starting amount.
+          </p>
         </form>
       </div>
     </div>
