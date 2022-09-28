@@ -14,20 +14,20 @@
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-width-container" style="overflow-y: auto;">
+  <div class="govuk-width-container">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
         {{ govukPanel({
           titleText: "Calculation complete",
           html: model.confirmation
         }) }}
+        <div class="govuk-grid-column-two-thirds">
+          {% if not model.isSingleValue %}
+            {{ govukTable(model.startingAmount) }}
+          {% endif %}
 
-        {% if not model.isSingleValue %}
-          {{ govukTable(model.startingAmount) }}
-        {% endif %}
-
-        {{ govukTable(model.reductionsAndPayments) }}
-
+          {{ govukTable(model.reductionsAndPayments) }}
+      </div>
         <details class="govuk-details" data-module="govuk-details" open>
           <summary class="govuk-details__summary">
             <span class="govuk-details__summary-text">Show me a breakdown of my reductions</span>
@@ -36,14 +36,14 @@
             {{ govukTable(model.reduction) }}
           </div>
         </details>
-        <!--
-        {{ govukTable(model.paymentBand) }}
+      
+{#         {{ govukTable(model.paymentBand) }}
         {{ govukTable(model.reduction) }}
         <h2 class="govuk-heading-m">
           Your estimated payment after progressive reductions
         </h2>
         {{ govukSummaryList(model.paymentSummary)}}
-        -->
+ #}        
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-two-thirds">
             <h2 class="govuk-heading-m">Other funding schemes</h2>
@@ -58,12 +58,12 @@
               If you have any queries about your payments, call the Defra Rural Service helpline on  
               <span id="phoneNumber"><a href="tel:03000 200 301">03000 200 301</a></span>.
             </p>
-            <div class="govuk-!-margin-top-8" style="padding:20px; background-color:#f3f2f1; border-left-color:#666;">
+             <div class="govuk-!-margin-top-8" style="padding:20px; background-color:#f3f2f1; border-left-color:#666;">
               <h2 class="govuk-heading-m">Give feedback on this service</h2>
               <p class="govuk-body">
                 Take a 3 minute survey about your application so that we can improve the service. The survey will open in a new window.<br><br>
                 <a href="" target="_blank" class="govuk-link">Give feedback</a>
-              </p>
+            </p>
             </div>
           </div>
         </div>

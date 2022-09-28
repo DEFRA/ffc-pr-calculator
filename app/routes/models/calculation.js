@@ -108,21 +108,32 @@ function createReductionsAndPayments (calculations){
       }
     ],
     rows: [
-      [
-        {
-          text: '20XX'
-        },
-        {
-          text: '£0.00',
-          format: 'numeric'
-        },
-        {
-          text: '£0.00',
-          format: 'numeric'
-        }
-      ]    
+      getReductionsAndPaymentsRow(calculations, 2021),
+      getReductionsAndPaymentsRow(calculations, 2022),
+      getReductionsAndPaymentsRow(calculations, 2023),
+      getReductionsAndPaymentsRow(calculations, 2024)
     ]
   }
+}
+
+function getReductionsAndPaymentsRow(calculations, schemeYear) {
+  const yearData = calculations.overallResult.filter(x => x.schemeYear == schemeYear)[0]
+  const data =[
+    {
+      text: schemeYear,
+      classes: 'govuk-body govuk-!-font-weight-bold'
+    },
+    {
+      text: toCurrencyString(yearData.reduction),
+      format: 'numeric'
+    },
+    {
+      text: toCurrencyString(yearData.payment),
+      format: 'numeric',
+      classes: 'govuk-body govuk-!-font-weight-bold'
+    }
+  ]
+  return data
 }
 
 function getHeaderRow () {
