@@ -89,7 +89,7 @@ function createPaymentSummary (calculations) {
   }
 }
 
-function createReductionsAndPayments (calculations){
+function createReductionsAndPayments (calculations) {
   return {
     caption: 'Your reductions and estimated payments',
     captionClasses: 'govuk-tament__caption--m',
@@ -116,9 +116,9 @@ function createReductionsAndPayments (calculations){
   }
 }
 
-function getReductionsAndPaymentsRow(calculations, schemeYear) {
-  const yearData = calculations.overallResult.filter(x => x.schemeYear == schemeYear)[0]
-  const data =[
+function getReductionsAndPaymentsRow (calculations, schemeYear) {
+  const yearData = calculations.overallResult.filter(x => x.schemeYear === schemeYear)[0]
+  const data = [
     {
       text: schemeYear,
       classes: 'govuk-body govuk-!-font-weight-bold'
