@@ -7,7 +7,7 @@ function ViewModel (value, error) {
       isPageHeading: true
     },
     hint: {
-      text: 'Your starting payment amount is the total BPS payment you received in 2020 (after all reductions and penalties) if you\'re claiming for a similar area of land in 2022 and 2023.'
+      text: "Your starting payment amount is the total BPS payment you received in 2020 (after all reductions and penalties) if you're claiming for a similar area of land in 2022 and 2023."
     },
     prefix: {
       text: '£'
