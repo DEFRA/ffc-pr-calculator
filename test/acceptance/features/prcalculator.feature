@@ -48,7 +48,7 @@ When I click on start new calculator button ".govuk-button--start"
 Then I expect that the url contains "/value"
 When I click on the link "Calculate my progressive reductions"
 Then I expect that the url contains "/"
-Then I expect that element "h1" contains the text "Calculate my progressive reductions"
+Then I expect that element "h1" contains the text "Check how your BPS payments will reduce until 2024"
 
 Scenario: 008-User can click on Accessibility statement link
 Given I open the url "/"
@@ -76,7 +76,7 @@ Then I expect that element "h1" contains the text "Welcome to GOV.UK"
 Scenario: 012-User can click progressive reduction  link on value page
 Given I open the url "/value"
 When I click on the link "Calculate my progressive reductions"
-Then I expect that element "h1" contains the text "Calculate my progressive reductions"
+Then I expect that element "h1" contains the text "Check how your BPS payments will reduce until 2024"
 
 Scenario: 013-User can click accessibility statement link on value page
 Given I open the url "/value"
@@ -98,7 +98,7 @@ When I click on the link "Back"
 Then I expect that the url contains "/value"
 When I click on the link "Back"
 Then I expect that the url contains "/"
-Then I expect that element "h1" contains the text "Calculate my progressive reductions"
+Then I expect that element "h1" contains the text "Check how your BPS payments will reduce until 2024"
 
 Scenario: 016-User can click licence link on calculation page
 Given I open the url "/calculation?value=32"
@@ -118,7 +118,7 @@ Then I expect that element "h1" contains the text "Welcome to GOV.UK"
 Scenario: 019-User can click progressive reduction  link on calculation page
 Given I open the url "/calculation?value=32"
 When I click on the link "Calculate my progressive reductions"
-Then I expect that element "h1" contains the text "Calculate my progressive reductions"
+Then I expect that element "h1" contains the text "Check how your BPS payments will reduce until 2024"
 
 Scenario: 020-User can click accessibility statement link on calculation page
 Given I open the url "/calculation?value=32"
