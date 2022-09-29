@@ -58,7 +58,7 @@ Scenario: 006-Validate input value with comma
 Given I open the url "/"
 When I click on start new calculator button ".govuk-button--start"
 Then I expect that the url contains "/value"
-Then I expect that element "#value-hint" contains the text "Payment amount should not include any commas"
+Then I expect that element "#value-hint" contains the text "Your starting payment amount is the total BPS payment you received in 2020 (after all reductions and penalties) if you\'re claiming for a similar area of land in 2022 and 2023."
 When I add "100,000,000" to the inputfield "#value"
 And I click on Next button "#submit" 
 Then I expect that the url contains "/value"
