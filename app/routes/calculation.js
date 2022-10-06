@@ -15,7 +15,7 @@ module.exports = [{
     handler: (request, h) => {
       const value = request.query.value || JSON.parse(JSON.stringify(request.query))
       const result = calculate(value)
-      return h.view('calculation', new ViewModel(request.query, result))
+      return h.view('calculation', new ViewModel(value, result))
     }
   }
 }]

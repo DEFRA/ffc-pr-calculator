@@ -3,60 +3,19 @@ const bands = require('../../calculation/bands')
 const schemeYears = require('../../calculation/scheme-years')
 const toCurrencyString = require('../../utils/to-currency-string')
 
-function ViewModel (values, calculations) {
-  const isSingleValue = isSingleValueOnly(values)
+function ViewModel (value, calculations) {
   this.model = {
-    isSingleValue,
-    confirmation: createSummary(isSingleValue, values),
-    startingAmount: isSingleValue ? undefined : createStartingAmountTable(values),
+    confirmation: createSummary(value),
     paymentBand: createTableDefinition(calculations, { property: 'rate', text: '', caption: 'Progressive reductions', formatType: 'percentage', showOverall: false }),
     reduction: createTableDefinition(calculations, { property: 'reduction', text: 'Total progressive reduction:', caption: 'Your progressive reductions', formatType: 'currency', showOverall: true }),
     payment: createPaymentTable(calculations),
     paymentSummary: createPaymentSummary(calculations),
-    backLink: createBackLink(isSingleValue)
+    backLink: createBackLink()
   }
 }
 
-function isSingleValueOnly (values) {
-  return values.value !== undefined
-}
-
-function createSummary (isSingleValue, values) {
-  return isSingleValue
-    ? `Your estimated progressive reductions are based on a starting payment amount of ${toCurrencyString(values.value)}.`
-    : 'Your estimated progressive reductions are based on starting payment amounts of:'
-}
-
-function createStartingAmountTable (values) {
-  return {
-    caption: 'Starting amounts',
-    captionClasses: 'govuk-table__caption--m',
-    firstCellIsHeader: true,
-    head: getHeaderRow(),
-    rows: [
-      [
-        {
-          text: 'Starting amount'
-        },
-        {
-          text: values.value2021 ? toCurrencyString(values.value2021) : '£0.00',
-          format: 'numeric'
-        },
-        {
-          text: values.value2022 ? toCurrencyString(values.value2022) : '£0.00',
-          format: 'numeric'
-        },
-        {
-          text: values.value2023 ? toCurrencyString(values.value2023) : '£0.00',
-          format: 'numeric'
-        },
-        {
-          text: values.value2024 ? toCurrencyString(values.value2024) : '£0.00',
-          format: 'numeric'
-        }
-      ]
-    ]
-  }
+function createSummary (value) {
+  return `Your estimated progressive reductions are based on a starting payment amount of ${toCurrencyString(value)}.`
 }
 
 function createTableDefinition (calculations, options) {
@@ -193,10 +152,10 @@ function overallToRow (overallResult, property, index) {
   return data
 }
 
-function createBackLink (hasSingleValue) {
+function createBackLink () {
   return {
     text: 'Back',
-    href: hasSingleValue ? '/value' : '/values'
+    href: '/value'
   }
 }
 
