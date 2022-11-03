@@ -1,4 +1,4 @@
-environment: development
+environment: production
 name: ffc-pr-calculator
 namespace: ffc-pr
 workstream: ffc-pr
@@ -17,12 +17,7 @@ containerSecret:
   name: ffc-pr-calculator-container-secret
   type: Opaque
 
-service:
-  port: 80
-  type: ClusterIP
-
 deployment:
-  restartPolicy: Always
   priorityClassName: high
   replicas: 2
   minReadySeconds: 0
@@ -32,7 +27,6 @@ deployment:
   memoryThreshold: 80
 
 container:
-  imagePullPolicy: IfNotPresent
   requestMemory: 100Mi
   requestCpu: 40m
   limitMemory: 100Mi
@@ -40,10 +34,7 @@ container:
   port: 3000
   googleTagManagerKey: GTM-5XJKV8F
 
-ingress:
-  class: nginx
-  endpoint: ffc-pr-calculator
-  server: example.com
+ingress: {}
 
 livenessProbe:
   path: /healthz
