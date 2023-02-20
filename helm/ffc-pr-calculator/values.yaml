@@ -8,7 +8,7 @@ labels:
   component: web
 
 appInsights:
-  key:
+  connectionString:
 
 containerConfigMap:
   name: ffc-pr-calculator-config-map

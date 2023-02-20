@@ -1,40 +1,75 @@
-describe('Application Insights', () => {
-  const DEFAULT_ENV = process.env
-  let applicationInsights
+const applicationName = 'test-app'
 
+let mockApplicationInsights
+let insights
+
+describe('App Insight setup', () => {
   beforeEach(() => {
-    // important to clear the cache when mocking environment variables
+    process.env.APPINSIGHTS_CLOUDROLE = applicationName
+
+    mockApplicationInsights = require('../mocks/application-insights')
+    insights = require('../../app/insights')
+  })
+
+  afterEach(() => {
+    jest.clearAllMocks()
     jest.resetModules()
-    jest.mock('applicationinsights', () => {
-      return {
-        setup: jest.fn().mockReturnThis(),
-        start: jest.fn(),
-        defaultClient: {
-          context: {
-            keys: [],
-            tags: []
-          }
-        }
-      }
+  })
+
+  describe('When process.env.APPINSIGHTS_CONNECTIONSTRING exists', () => {
+    beforeEach(() => {
+      process.env.APPINSIGHTS_CONNECTIONSTRING = 'something'
     })
-    applicationInsights = require('applicationinsights')
-    process.env = { ...DEFAULT_ENV }
+
+    test('should call mockApplicationInsights.setup', () => {
+      insights.setup()
+      expect(mockApplicationInsights.setup).toHaveBeenCalled()
+    })
+
+    test('should call mockApplicationInsights.setup once', () => {
+      insights.setup()
+      expect(mockApplicationInsights.setup).toHaveBeenCalledTimes(1)
+    })
+
+    test('should call mockApplicationInsights.setup with process.env.APPINSIGHTS_CONNECTIONSTRING', () => {
+      insights.setup()
+      expect(mockApplicationInsights.setup).toHaveBeenCalledWith(process.env.APPINSIGHTS_CONNECTIONSTRING)
+    })
+
+    test('should call mockApplicationInsights.setup.start', () => {
+      insights.setup()
+      expect(mockApplicationInsights.setup().start).toHaveBeenCalled()
+    })
+
+    test('should call mockApplicationInsights.setup.start once', () => {
+      insights.setup()
+      expect(mockApplicationInsights.setup().start).toHaveBeenCalledTimes(1)
+    })
+
+    test('should have applicationName as value for mockApplicationInsights.defaultClient.context.tags[mockApplicationInsights.defaultClient.context.keys.cloudRole] key', () => {
+      insights.setup()
+      expect(mockApplicationInsights.defaultClient.context.tags[mockApplicationInsights.defaultClient.context.keys.cloudRole]).toEqual(applicationName)
+    })
   })
 
-  afterAll(() => {
-    process.env = DEFAULT_ENV
-  })
+  describe('When process.env.APPINSIGHTS_CONNECTIONSTRING does not exists', () => {
+    beforeEach(() => {
+      delete process.env.APPINSIGHTS_CONNECTIONSTRING
+    })
 
-  test('does not setup application insights if no instrumentation key', () => {
-    const appInsights = require('../../app/insights')
-    appInsights.setup()
-    expect(applicationInsights.setup.mock.calls.length).toBe(0)
-  })
+    test('should not call mockApplicationInsights.setup', () => {
+      insights.setup()
+      expect(mockApplicationInsights.setup).not.toHaveBeenCalled()
+    })
 
-  test('does setup application insights if instrumentation key present', () => {
-    const appInsights = require('../../app/insights')
-    process.env.APPINSIGHTS_INSTRUMENTATIONKEY = 'test-key'
-    appInsights.setup()
-    expect(applicationInsights.setup.mock.calls.length).toBe(1)
+    test('should not call mockApplicationInsights.setup.start', () => {
+      insights.setup()
+      expect(mockApplicationInsights.setup().start).not.toHaveBeenCalled()
+    })
+
+    test('should have undefined as value for mockApplicationInsights.defaultClient.context.tags[mockApplicationInsights.defaultClient.context.keys.cloudRole] key', () => {
+      insights.setup()
+      expect(mockApplicationInsights.defaultClient.context.tags[mockApplicationInsights.defaultClient.context.keys.cloudRole]).toBeUndefined()
+    })
   })
 })
