@@ -1,4 +1,3 @@
-const { describe } = require('../../app/routes/schemas/value')
 const homeContent = require('../mocks/mockHomeContent')
 const useCalculator = homeContent.useCalculator
 const buttonText = homeContent.buttonText
