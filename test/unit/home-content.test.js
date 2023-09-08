@@ -1,3 +1,4 @@
+const { describe } = require('../../app/routes/schemas/value')
 const homeContent = require('../mocks/mockHomeContent')
 const useCalculator = homeContent.useCalculator
 const buttonText = homeContent.buttonText
@@ -17,7 +18,9 @@ describe('PRC content changes', () => {
   test('Calculation should be quick paragraph', () => {
     expect(useCalculator.calculation).toMatch('Calculation should be quick, and will not ask for any personal information. The results are an estimated calculation based on our progressive reduction figures. The reduction rates for 2025 to 2027 will be published when they are available.')
   })
+})
 
+describe('two buttons, one for BPS and one for delinked payments', () => {
   test('There are two buttons and the BPS button still exists', () => {
     expect(buttonText.bpsButton).toMatch('Start new BPS calculation')
   })
@@ -25,7 +28,9 @@ describe('PRC content changes', () => {
   test('the second button includes the new Start new delinked button', () => {
     expect(buttonText.delinkedButton).toMatch('Start new Delinked Payment calculation')
   })
+})
 
+describe('before you start info', () => {
   test('before you start section, calculator estimated', () => {
     expect(beforeYouStart.calculatorEstimated).toMatch('This calculator will estimate your payment based on the starting amount you enter.')
   })
@@ -41,7 +46,9 @@ describe('PRC content changes', () => {
   test('claim area changed', () => {
     expect(beforeYouStart.claimAreaChanged).toMatch('If your claim area changed during 2021 to 2023, you can use the calculator as many times as you need, using different starting payment amounts each time')
   })
+})
 
+describe('delinked payments section', () => {
   test('delinked payments starting amount', () => {
     expect(delinkedPayments.yourStartingAmount).toMatch('Your starting amount will be your delinked payments \'reference amount\'. This will be shown on your delinked payments Information Statement. If your reference amount changes, for example if you transfer some of your reference amount to another business, you should use your updated reference amount.')
   })
@@ -57,7 +64,9 @@ describe('PRC content changes', () => {
   test('if you require help using this calculator', () => {
     expect(delinkedPayments.requireHelp).toMatch('If you require help in using this calculator, please call the Rural Payments helpline on 03000 200 301')
   })
+})
 
+describe('opportunities text', () => {
   test('opportunities section, if you are a farmer', () => {
     expect(opportunities.ifFarmer).toMatch('If you\'re a farmer, land manager or forester, read Funding for farmers and land managers for information about opportunities to apply for money to improve the environment and your farms productivity. You can keep up to date with scheme news on the Rural Payments Agency website and the Defra Farming blog.')
   })
