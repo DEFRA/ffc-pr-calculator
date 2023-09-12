@@ -131,11 +131,11 @@ When I click on the link "Cookies"
 Then I expect that element "main > h2" contains the text "Details about cookies on Calculate my progressive reductions"
 
 Scenario: 0022-User can start new delinked payment calculator
-Given I open the url "/delinked"
-When I click on the link "Start new Delinked Payment calculation "
+Given I open the url "/"
+When I click on the link "Start new Delinked Payment calculation"
 Then I expect that the url contains the text "Start new Delinked Payment calculation"
 
 Scenario: 0023-User can click Read for more information about delinked payments.
-Given I open the url "/delinked-payments-replacing-the-basic-payment-scheme"
-When I click on the link "for more information about delinked payments."
+Given I open the url "/"
+When I click on the element "delinked guidance"
 Then I expect that the url contains the text "delinked-payments-replacing-the-basic-payment-scheme"
