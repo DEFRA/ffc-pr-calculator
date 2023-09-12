@@ -137,5 +137,5 @@ Then I expect that the url contains the text "Start new Delinked Payment calcula
 
 Scenario: 0023-User can click Read for more information about delinked payments.
 Given I open the url "/"
-When I click on the element "delinked guidance"
+When I click on the link "for more information about delinked payments"
 Then I expect that the url contains the text "delinked-payments-replacing-the-basic-payment-scheme"
