@@ -17,7 +17,7 @@ Then I expect that element "h1" contains the text "Agricultural Transition Plan 
 Scenario: 003-User can click on Farming is changing link
 Given I open the url "/"
 When I click on the element "#farming-is-changing-link"
-Then I expect that the url contain "/payments-for-farmers.pdf"
+Then I expect that the url contain "farming-changing"
 
 Scenario: 004-User can click on Agricultural transition link
 Given I open the url "/"
@@ -130,9 +130,9 @@ Given I open the url "/calculation?value=32"
 When I click on the link "Cookies"
 Then I expect that element "main > h2" contains the text "Details about cookies on Calculate my progressive reductions"
 
-Scenario: 0022-User can click on Rural payments and grants link
+Scenario: 0022-User can click on Read for more information about delinked payments
 Given I open the url "/"
-When I click on the link "Rural payments and grants"
-Then I expect that element "h1" contains the text "Rural payments and grants"
+When I click on the link "for more information about delinked payments"
+Then I expect that element "h1" contains the text "for more information about delinked payments"
 
 
