@@ -138,4 +138,4 @@ Then I expect that the url contains "delinked"
 Scenario: 0023-User can click Read for more information about delinked payments.
 Given I open the url "/"
 When I click on the element "#delinked-guidance"
-Then I expect that the url contains "delinked"
+Then I expect that the url contains "/delinked-payments-replacing-the-basic-payment-scheme"
