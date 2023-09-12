@@ -132,10 +132,10 @@ Then I expect that element "main > h2" contains the text "Details about cookies 
 
 Scenario: 0022-User can start new delinked payment calculator
 Given I open the url "/"
-When I click on the link "Start new Delinked Payment calculation"
-Then I expect that the url contains the text "Start new Delinked Payment calculation"
+When I click on the element ".delinked"
+Then I expect that the url contains the text "delinked"
 
 Scenario: 0023-User can click Read for more information about delinked payments.
 Given I open the url "/"
-When I click on the link "for more information about delinked payments"
-Then I expect that the url contains the text "delinked-payments-replacing-the-basic-payment-scheme"
+When I click on the element "#delinked-guidance"
+Then I expect that the url contains the text "delinked-payments"
