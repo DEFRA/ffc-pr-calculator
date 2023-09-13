@@ -1,6 +1,7 @@
 {% extends '_layout.njk' %}
 {% set mainClasses = "govuk-main-wrapper--auto-spacing" %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
+const delinkedValuePage = new File('./delinkedvalue.js')
 
 {% block content %}
   <div class="govuk-width-container">
@@ -30,6 +31,8 @@
             }
           }) }}
 
+        {% if delinkedValuePage.exists %}
+
         {{ govukButton({
             classes: "govuk-!-margin-bottom-8 delinked",
             href: "/delinkedvalue",
@@ -39,6 +42,8 @@
               id: "submit"
             }
           }) }}
+          
+        {% endif %}
 
         <h2 class="govuk-heading-m">Before you start</h2>
 
