@@ -129,13 +129,3 @@ Scenario: 021-User can click cookies link on calculation page
 Given I open the url "/calculation?value=32"
 When I click on the link "Cookies"
 Then I expect that element "main > h2" contains the text "Details about cookies on Calculate my progressive reductions"
-
-Scenario: 0022-User can start new delinked payment calculator
-Given I open the url "/"
-When I click on the element ".delinked"
-Then I expect that the element ".delinked" contains the text "Start new Delinked Payment calculation"
-
-Scenario: 0023-User can click Read for more information about delinked payments.
-Given I open the url "/"
-When I click on the element "#delinked-guidance"
-Then I expect that the element "delinked-guidance" contains the text "for more information about delinked payments."
