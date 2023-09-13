@@ -4,7 +4,6 @@ const routes = [].concat(
   require('../routes/static'),
   require('../routes/home'),
   require('../routes/value'),
-  require('../routes/delinkedvalue'),
   require('../routes/calculation'),
   require('../routes/cookies'),
   require('../routes/accessibility'),
