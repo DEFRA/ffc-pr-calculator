@@ -43,6 +43,36 @@ describe('value route', () => {
     expect(result.request.response._payload._data).toContain('Calculate my progressive reductions')
   })
 
+  test('What is your starting BPS payment amount?', async () => {
+    const options = {
+      method: 'GET',
+      url: '/value'
+    }
+
+    const result = await server.inject(options)
+    expect(result.request.response._payload._data).toContain('What is your starting BPS payment amount?')
+  })
+
+  test('Payment amount should not include any commas', async () => {
+    const options = {
+      method: 'GET',
+      url: '/value'
+    }
+
+    const result = await server.inject(options)
+    expect(result.request.response._payload._data).toContain('Payment amount should not include any commas')
+  })
+
+  test('Calculate my payment', async () => {
+    const options = {
+      method: 'GET',
+      url: '/value'
+    }
+
+    const result = await server.inject(options)
+    expect(result.request.response._payload._data).toContain('Calculate my payment')
+  })
+
   test('POST /value returns 302', async () => {
     const options = {
       method: 'POST',
