@@ -1,6 +1,6 @@
 Feature: FFC-PR-CALCULATOR
 
-Scenario: 001-Calculate BPS single payment for a farmer
+Scenario: 001-Calculate BPS single payment for the farmer
 Given I open the url "/"
 When I click on start new calculator button ".govuk-button--start"
 Then I expect that the url contains "/value"
