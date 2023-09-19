@@ -1,1 +1,1 @@
-module.exports = [2021, 2022, 2023, 2024]
+module.exports = [2021, 2022, 2023]

@@ -6,10 +6,9 @@ const toCurrencyString = require('../../utils/to-currency-string')
 function ViewModel (value, calculations) {
   this.model = {
     confirmation: createSummary(value),
-    paymentBand: createTableDefinition(calculations, { property: 'rate', text: '', caption: 'Progressive reductions', formatType: 'percentage', showOverall: false }),
+    paymentBand: createTableDefinition(calculations, { property: 'rate', text: '', caption: 'Progressive reductions standard figures', formatType: 'percentage', showOverall: false }),
     reduction: createTableDefinition(calculations, { property: 'reduction', text: 'Total progressive reduction:', caption: 'Your progressive reductions', formatType: 'currency', showOverall: true }),
-    payment: createPaymentTable(calculations),
-    paymentSummary: createPaymentSummary(calculations),
+    paymentSummary: createPaymentSummary(calculations, { caption: 'Overview' }),
     backLink: createBackLink()
   }
 }
@@ -28,22 +27,29 @@ function createTableDefinition (calculations, options) {
   }
 }
 
-function createPaymentTable (calculations) {
+function createPaymentSummary (calculations, options) {
   return {
-    caption: 'Your payments after progressive reductions',
+    caption: options.caption,
     captionClasses: 'govuk-table__caption--m',
     firstCellIsHeader: true,
-    head: getHeaderRow(),
+    head: getSummaryHeaderRow(),
     rows: [
-      populateOverall(calculations, 'payment', 'Payment value after progressive reductions:').flat()
+      [
+        { text: '2021' },
+        { text: '£36,000.00', format: 'numeric' },
+        { text: '£164,000.00', format: 'numeric' }
+      ],
+      [
+        { text: '2022' },
+        { text: '£66,000.00', format: 'numeric' },
+        { text: '£134,000.00', format: 'numeric' }
+      ],
+      [
+        { text: '2023' },
+        { text: '£96,000.00', format: 'numeric' },
+        { text: '£104,000.00', format: 'numeric' }
+      ]
     ]
-  }
-}
-
-function createPaymentSummary (calculations) {
-  return {
-    classes: 'govuk-summary-list',
-    rows: populateOverallSummary(calculations, 'payment', 'Payment value after progressive reductions:').flat()
   }
 }
 
@@ -64,9 +70,22 @@ function getHeaderRow () {
     {
       text: '2023',
       format: 'numeric'
+    }
+  ]
+}
+
+function getSummaryHeaderRow () {
+  return [
+    {
+      text: 'Scheme year',
+      classes: 'govuk-!-width-one-half'
     },
     {
-      text: '2024',
+      text: 'Total estimated reductions',
+      format: 'numeric'
+    },
+    {
+      text: 'Estimated payments',
       format: 'numeric'
     }
   ]
@@ -126,13 +145,6 @@ function fillGaps (results, data, formatType) {
   }
 
   return data
-}
-
-function populateOverallSummary (calculations, property, text) {
-  return calculations.overallResult.map((x, index) => {
-    const overallResults = overallToRow(x, property, index)
-    return { key: { text: overallResults[0].schemeYear }, value: { text: overallResults[0].text } }
-  })
 }
 
 function populateOverall (calculations, property, text) {
