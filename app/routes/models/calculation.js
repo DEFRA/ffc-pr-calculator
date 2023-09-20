@@ -120,8 +120,8 @@ function calculatePercentage (x, property) {
 
 function fillGaps (results, data, formatType) {
   const checkSchemeYears = results.result.map(x => x.schemeYear)
-  const maxSchemeYear = Math.max.apply(Math, schemeYears)
-  const minSchemeYear = Math.min.apply(Math, schemeYears)
+  const maxSchemeYear = Math.max(Math, schemeYears)
+  const minSchemeYear = Math.min(Math, schemeYears)
 
   const missingData = {
     text: (formatType === 'currency'
