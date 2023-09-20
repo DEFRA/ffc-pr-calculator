@@ -28,28 +28,24 @@ function createTableDefinition (calculations, options) {
 }
 
 function createPaymentSummary (calculations, options) {
+  const data = []
+  calculations.overallResult.map((x) => {
+    data.push(
+      [
+        { text: x.schemeYear.toString(), format: 'numeric' },
+        { text: toCurrencyString(x.reduction), format: 'numeric' },
+        { text: toCurrencyString(x.payment), format: 'numeric', classes: 'govuk-body govuk-!-font-weight-bold' }
+      ]
+    )
+    return x
+  })
+
   return {
     caption: options.caption,
     captionClasses: 'govuk-table__caption--m',
     firstCellIsHeader: true,
     head: getSummaryHeaderRow(),
-    rows: [
-      [
-        { text: '2021' },
-        { text: '£36,000.00', format: 'numeric' },
-        { text: '£164,000.00', format: 'numeric' }
-      ],
-      [
-        { text: '2022' },
-        { text: '£66,000.00', format: 'numeric' },
-        { text: '£134,000.00', format: 'numeric' }
-      ],
-      [
-        { text: '2023' },
-        { text: '£96,000.00', format: 'numeric' },
-        { text: '£104,000.00', format: 'numeric' }
-      ]
-    ]
+    rows: data
   }
 }
 
@@ -77,8 +73,7 @@ function getHeaderRow () {
 function getSummaryHeaderRow () {
   return [
     {
-      text: 'Scheme year',
-      classes: 'govuk-!-width-one-half'
+      text: 'Scheme year'
     },
     {
       text: 'Total estimated reductions',
