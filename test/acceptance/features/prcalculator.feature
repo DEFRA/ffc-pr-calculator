@@ -7,7 +7,7 @@ Then I expect that the url contains "/value"
 When I add "500" to the inputfield "#value"
 And I click on Next button "#submit" 
 Then I expect that the url contains "/calculation?value"
-Then I expect that element "h1" contains the text "Calculation complete"
+Then I expect that element "h1" contains the text "BPS calculation complete"
 
 Scenario: 002-User can click on Agricultural transition link
 Given I open the url "/"
