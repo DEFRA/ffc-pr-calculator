@@ -20,9 +20,13 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <form method="POST" action="/value" novalidate>
+        <h2 class="govuk-heading-m">Enter your BPS starting payment amount</h2>
+          <p class="govuk-body">This calculator will estimate your payment for the 2023 scheme year based on the starting payment amount you enter.</p>
+          <p class="govuk-body">You will also see estimated payments for the 2021 and 2022 scheme years when you input your starting amount.</p>
+          <p class="govuk-body">You should use the 'Sub total' in the 'Claim summary box' of your most recent BPS Claim Statement as the starting payment amount</p>
           {{ govukInput(model) }}
           {{ govukButton({
-            text: "Calculate my progressive reductions",
+            text: "Calculate my BPS payment",
             attributes: {
               id: "submit"
             }
