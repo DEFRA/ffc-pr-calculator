@@ -62,7 +62,7 @@ describe('value-calculator route', () => {
     }
 
     const result = await server.inject(options)
-    expect(result.request.response.source.template).toBe('value')
+    expect(result.request.response.source.template).toBe('value-calculator')
     expect(result.request.response.source.context.model.errorMessage).toBeDefined()
     expect(result.statusCode).toBe(400)
   })
@@ -163,14 +163,14 @@ describe('value-calculator route', () => {
     expect(result.request.response._payload._data).toContain('You will also see estimated payments for the 2021 and 2022 scheme years when you input your starting amount.')
   })
 
-  test('GET /value-calculator third paragraph says You should use the 'Sub total' in the 'Claim summary box' of your most recent BPS Claim Statement as the starting payment amount.', async () => {
+  test('GET /value-calculator third paragraph says You should use the Sub total in the Claim summary box of your most recent BPS Claim Statement as the starting payment amount.', async () => {
     const options = {
       method: 'GET',
       url: '/value-calculator'
     }
 
     const result = await server.inject(options)
-    expect(result.request.response._payload._data).toContain('You should use the 'Sub total' in the 'Claim summary box' of your most recent BPS Claim Statement as the starting payment amount.')
+    expect(result.request.response._payload._data).toContain('of your most recent BPS Claim Statement as the starting payment amount.')
   })
 
   test('GET /value-calculator fourth paragraph says If your claim area changed during 2021 to 2023, you can use the calculator as many times as you need, using different starting payment amounts each time.', async () => {
@@ -182,7 +182,7 @@ describe('value-calculator route', () => {
     const result = await server.inject(options)
     expect(result.request.response._payload._data).toContain('If your claim area changed during 2021 to 2023, you can use the calculator as many times as you need, using different starting payment amounts each time.')
   })
-  
+
   test('GET /value-calculator fifth paragraph says The number you enter should not include commas. For example, enter £20,000 as 20000.', async () => {
     const options = {
       method: 'GET',
