@@ -7,7 +7,7 @@ function ViewModel (value, error) {
       isPageHeading: true
     },
     hint: {
-      html: ''
+      text: 'The number you enter should not include commas. For example, enter £20,000 as 20000.'
     },
     prefix: {
       text: '£'
