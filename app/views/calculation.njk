@@ -17,22 +17,13 @@
   <div class="govuk-width-container" style="overflow-y: auto;">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
-        {{ govukPanel({
-          titleText: "BPS calculation complete"
-        }) }}
+        <h1 class="govuk-heading-l">BPS calculation complete</h1>
         <p class="govuk-body">{{ model.confirmation }}</p>
         {{ govukTable(model.paymentSummary)}}
-        <p class="govuk-body">
-          We are making BPS 2022 and 2023 payments in two instalments, with the first instalment of around 50% of your estimated payment for the year.
-        </p>
-        <p class="govuk-body">
-          If you would like to see a breakdown of your estimated reductions see the table below
-        </p>
-        <br/>
-        {{ govukTable(model.reduction) }}
         <br/>
         {{ govukTable(model.paymentBand) }}
-       
+        <br/>
+        {{ govukTable(model.reduction) }}       
 
       </div>
     </div>
