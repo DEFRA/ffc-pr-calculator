@@ -78,7 +78,7 @@ describe('value-calculator route', () => {
 
     const result = await server.inject(options)
     expect(result.statusCode).toBe(302)
-    expect(result.headers.location).toBe(`/calculation?value=${value}`)
+    expect(result.headers.location).toBe(`/calculation-bps?value=${value}`)
   })
 
   test('POST /value-calculator 0', async () => {
