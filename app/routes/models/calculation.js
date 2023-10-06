@@ -1,3 +1,4 @@
+
 const bands = require('../../calculation/bands')
 const schemeYears = require('../../calculation/scheme-years')
 const toCurrencyString = require('../../utils/to-currency-string')
@@ -5,9 +6,10 @@ const toCurrencyString = require('../../utils/to-currency-string')
 function ViewModel (value, calculations) {
   this.model = {
     confirmation: createSummary(value),
-    paymentBand: createTableDefinition(calculations, { property: 'rate', text: '', caption: 'Progressive reductions standard figures', formatType: 'percentage', showOverall: false }),
+    paymentBand: createTableDefinition(calculations, { property: 'rate', text: '', caption: 'Progressive reductions', formatType: 'percentage', showOverall: false }),
     reduction: createTableDefinition(calculations, { property: 'reduction', text: 'Total progressive reduction:', caption: 'Your progressive reductions', formatType: 'currency', showOverall: true }),
-    paymentSummary: createPaymentSummary(calculations, { caption: 'Overview' }),
+    payment: createPaymentTable(calculations),
+    paymentSummary: createPaymentSummary(calculations),
     backLink: createBackLink()
   }
 }
@@ -26,25 +28,22 @@ function createTableDefinition (calculations, options) {
   }
 }
 
-function createPaymentSummary (calculations, options) {
-  const data = []
-  calculations.overallResult.map((x) => {
-    data.push(
-      [
-        { text: x.schemeYear.toString(), format: 'numeric' },
-        { text: toCurrencyString(x.reduction), format: 'numeric' },
-        { text: toCurrencyString(x.payment), format: 'numeric', classes: 'govuk-body govuk-!-font-weight-bold' }
-      ]
-    )
-    return x
-  })
-
+function createPaymentTable (calculations) {
   return {
-    caption: options.caption,
+    caption: 'Your payments after progressive reductions',
     captionClasses: 'govuk-table__caption--m',
     firstCellIsHeader: true,
-    head: getSummaryHeaderRow(),
-    rows: data
+    head: getHeaderRow(),
+    rows: [
+      populateOverall(calculations, 'payment', 'Payment value after progressive reductions:').flat()
+    ]
+  }
+}
+
+function createPaymentSummary (calculations) {
+  return {
+    classes: 'govuk-summary-list',
+    rows: populateOverallSummary(calculations, 'payment', 'Payment value after progressive reductions:').flat()
   }
 }
 
@@ -65,21 +64,9 @@ function getHeaderRow () {
     {
       text: '2023',
       format: 'numeric'
-    }
-  ]
-}
-
-function getSummaryHeaderRow () {
-  return [
-    {
-      text: 'Scheme year'
     },
     {
-      text: 'Total estimated reductions',
-      format: 'numeric'
-    },
-    {
-      text: 'Estimated payments',
+      text: '2024',
       format: 'numeric'
     }
   ]
@@ -119,8 +106,8 @@ function calculatePercentage (x, property) {
 
 function fillGaps (results, data, formatType) {
   const checkSchemeYears = results.result.map(x => x.schemeYear)
-  const maxSchemeYear = Math.max(Math, ...schemeYears)
-  const minSchemeYear = Math.min(Math, ...schemeYears)
+  const maxSchemeYear = Math.max.apply(Math, schemeYears)
+  const minSchemeYear = Math.min.apply(Math, schemeYears)
 
   const missingData = {
     text: (formatType === 'currency'
@@ -141,9 +128,16 @@ function fillGaps (results, data, formatType) {
   return data
 }
 
+function populateOverallSummary (calculations, property, text) {
+  return calculations.overallResult.map((x, index) => {
+    const overallResults = overallToRow(x, property, index)
+    return { key: { text: overallResults[0].schemeYear }, value: { text: overallResults[0].text } }
+  })
+}
+
 function populateOverall (calculations, property, text) {
   const overall = calculations.overallResult.map((x, index) => overallToRow(x, property, index))
-  overall.unshift({ text })
+  overall.unshift({ text: text })
   return overall
 }
 
