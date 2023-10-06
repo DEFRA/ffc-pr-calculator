@@ -5,9 +5,9 @@ const toCurrencyString = require('../../utils/to-currency-string')
 function ViewModel (value, calculations) {
   this.model = {
     confirmation: createSummary(value),
-    paymentBand: createTableDefinition(calculations, { property: 'rate', text: '', caption: 'Progressive reductions by scheme year', formatType: 'percentage', showOverall: false }),
-    reduction: createTableDefinition(calculations, { property: 'reduction', text: 'Total progressive reduction:', caption: 'Progressive reductions applied to your claim by scheme year', formatType: 'currency', showOverall: true }),
-    paymentSummary: createPaymentSummary(calculations, { caption: 'Estimated BPS payments 2021 to 2023' }),
+    paymentBand: createTableDefinition(calculations, { property: 'rate', text: '', caption: 'Progressive reductions standard figures', formatType: 'percentage', showOverall: false }),
+    reduction: createTableDefinition(calculations, { property: 'reduction', text: 'Total progressive reduction:', caption: 'Your progressive reductions', formatType: 'currency', showOverall: true }),
+    paymentSummary: createPaymentSummary(calculations, { caption: 'Overview' }),
     backLink: createBackLink()
   }
 }
@@ -51,7 +51,7 @@ function createPaymentSummary (calculations, options) {
 function getHeaderRow () {
   return [
     {
-      text: 'Payment band',
+      text: 'Scheme year',
       classes: 'govuk-!-width-one-half'
     },
     {
