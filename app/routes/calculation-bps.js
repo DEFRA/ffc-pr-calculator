@@ -9,7 +9,7 @@ module.exports = [{
     validate: {
       query: schema,
       failAction: async (request, h, error) => {
-        return h.redirect('/value').takeover()
+        return h.redirect('/value-calculation').takeover()
       }
     },
     handler: (request, h) => {
