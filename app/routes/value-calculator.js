@@ -21,7 +21,7 @@ module.exports = [{
       }
     },
     handler: async (request, h) => {
-      return h.redirect(`/calculation?value=${request.payload.value}`)
+      return h.redirect(`/calculation-bps?value=${request.payload.value}`)
     }
   }
 }]
