@@ -65,6 +65,10 @@ function getHeaderRow () {
     {
       text: '2023',
       format: 'numeric'
+    },
+    {
+      text: '2024',
+      format: 'numeric'
     }
   ]
 }
