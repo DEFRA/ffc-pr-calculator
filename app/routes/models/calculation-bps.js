@@ -44,7 +44,7 @@ function createPaymentSummary (calculations, options) {
     captionClasses: 'govuk-table__caption--m',
     firstCellIsHeader: true,
     head: getSummaryHeaderRow(),
-    rows: data
+    rows: data.slice(0, 3)
   }
 }
 
@@ -86,9 +86,9 @@ function getSummaryHeaderRow () {
 }
 
 function populateData (calculations, options) {
-  const reductionData = calculations.bandResult.map(x => toRow(x, options.property, options.formatType))
+  const reductionData = calculations.bandResult.map(x => toRow(x, options.property, options.formatType).slice(0, 4))
   if (options.showOverall) {
-    reductionData.push(populateOverall(calculations, options.property, options.text).flat())
+    reductionData.push(populateOverall(calculations, options.property, options.text).flat().slice(0, 4))
   }
   return reductionData
 }

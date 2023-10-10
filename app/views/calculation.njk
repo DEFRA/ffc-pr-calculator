@@ -17,7 +17,9 @@
   <div class="govuk-width-container" style="overflow-y: auto;">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
-        <h1 class="govuk-heading-l">BPS calculation complete</h1>
+        {{ govukPanel({
+          titleText: "Calculation complete"
+        }) }}
         <p class="govuk-body">{{ model.confirmation }}</p>
         {{ govukTable(model.paymentSummary)}}
         <br/>
