@@ -161,7 +161,7 @@ function overallToRow (overallResult, property, index) {
 function createBackLink () {
   return {
     text: 'Back',
-    href: '/value'
+    href: '/value-calculator'
   }
 }
 
