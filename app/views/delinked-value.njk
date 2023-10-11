@@ -1,0 +1,34 @@
+{% extends '_layout.njk' %}
+{% set mainClasses = "govuk-main-wrapper--auto-spacing" %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/error-message/macro.njk" import govukErrorMessage %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/",
+    attributes: {
+      id: "back"
+    } }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-width-container">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <form method="POST" action="/delinked-value" novalidate>
+          {{ govukInput(model) }}
+          {{ govukButton({
+            text: "Calculate my Delinked progressive reductions",
+            attributes: {
+              id: "submit"
+            }
+          }) }}
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -5,6 +5,8 @@ const routes = [].concat(
   require('../routes/home'),
   require('../routes/value'),
   require('../routes/calculation'),
+  require('../routes/delinked-value'),
+  require('../routes/delinked-calculation'),
   require('../routes/cookies'),
   require('../routes/accessibility'),
   require('../routes/privacy'),

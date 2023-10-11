@@ -1,0 +1,38 @@
+{% extends '_layout.njk' %}
+{% set mainClasses = "govuk-main-wrapper--auto-spacing" %}
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+        text: "Back",
+        href: "/delinked-value",
+        classes: "govuk-!-margin-bottom-7"
+      }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-width-container" style="overflow-y: auto;">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        {{ govukPanel({
+          titleText: "Delinked payments calculation complete"
+        }) }}
+         <p class="govuk-body">{{ model.confirmation }}</p>
+        {{ govukTable(model.paymentSummary)}}
+        <p class="govuk-body">
+          We intend to pay delinked payments in 2instalments each year.
+        </p>
+        <p class="govuk-body">
+          The first instalment will be approximately 50% of your estimated payment for the year. We plan to pay this in August and the second instalment from December.
+        </p>
+        <br/>
+        {{ govukTable(model.reduction) }}
+        <br/>
+        {{ govukTable(model.paymentBand) }}
+      </div>
+    </div>
+  </div>
+{% endblock %}
