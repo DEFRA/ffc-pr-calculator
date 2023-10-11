@@ -1,0 +1,39 @@
+{% extends '_layout.njk' %}
+{% set mainClasses = "govuk-main-wrapper--auto-spacing" %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/error-message/macro.njk" import govukErrorMessage %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/home-new",
+    attributes: {
+      id: "back"
+    } }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-width-container">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <form method="POST" action="/bps-calculator" novalidate>
+        <h2 class="govuk-heading-m">Enter your BPS starting payment amount</h2>
+          <p class="govuk-body">This calculator will estimate your payment for the 2023 scheme year based on the starting payment amount you enter.</p>
+          <p class="govuk-body">You will also see estimated payments for the 2021 and 2022 scheme years when you input your starting amount.</p>
+          <p class="govuk-body">You should use the 'Sub total' in the 'Claim summary box' of your most recent BPS Claim Statement as the starting payment amount.</p>
+          <p class="govuk-body">If your claim area changed during 2021 to 2023, you can use the calculator as many times as you need, using different starting payment amounts each time.</p>
+          {{ govukInput(model) }}
+          {{ govukButton({
+            text: "Calculate my BPS payment",
+            attributes: {
+              id: "submit"
+            }
+          }) }}
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
