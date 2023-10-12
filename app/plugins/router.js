@@ -9,6 +9,7 @@ const routes = [].concat(
   require('../routes/calculation'),
   require('../routes/delinked-calculator'),
   require('../routes/delinked-calculation'),
+  require('../routes/calculation-bps'),
   require('../routes/cookies'),
   require('../routes/accessibility'),
   require('../routes/privacy'),
