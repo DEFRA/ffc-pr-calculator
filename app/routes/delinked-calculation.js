@@ -9,7 +9,7 @@ module.exports = [{
     validate: {
       query: schema,
       failAction: async (request, h, error) => {
-        return h.redirect('/delinked-value').takeover()
+        return h.redirect('/delinked-calculator').takeover()
       }
     },
     handler: (request, h) => {

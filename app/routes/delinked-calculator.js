@@ -1,23 +1,23 @@
-const ViewModel = require('./models/delinked-value')
+const ViewModel = require('./models/delinked-calculator')
 const schema = require('./schemas/value')
 
 module.exports = [{
   method: 'GET',
-  path: '/delinked-value',
+  path: '/delinked-calculator',
   options: {
     handler: (request, h) => {
-      return h.view('delinked-value', new ViewModel())
+      return h.view('delinked-calculator', new ViewModel())
     }
   }
 },
 {
   method: 'POST',
-  path: '/delinked-value',
+  path: '/delinked-calculator',
   options: {
     validate: {
       payload: schema,
       failAction: async (request, h, error) => {
-        return h.view('delinked-value', new ViewModel(request.payload.value, error)).code(400).takeover()
+        return h.view('delinked-calculator', new ViewModel(request.payload.value, error)).code(400).takeover()
       }
     },
     handler: async (request, h) => {

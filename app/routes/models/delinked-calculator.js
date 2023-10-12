@@ -2,12 +2,12 @@ function ViewModel (value, error) {
   // Constructor function to create logic dependent nunjucks page
   this.model = {
     label: {
-      text: 'What is your starting payment amount?',
+      text: 'What is your reference amount?',
       classes: 'govuk-label--l',
       isPageHeading: true
     },
     hint: {
-      text: 'Payment amount should not include any commas'
+      text: 'Reference amount should not include any commas'
     },
     prefix: {
       text: '£'
