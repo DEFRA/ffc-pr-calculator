@@ -6,6 +6,7 @@ const routes = [].concat(
   require('../routes/home-new'),
   require('../routes/value'),
   require('../routes/bps-calculator'),
+  require('../routes/delinked-calculator'),
   require('../routes/calculation'),
   require('../routes/calculation-bps'),
   require('../routes/cookies'),
