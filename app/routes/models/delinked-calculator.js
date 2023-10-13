@@ -2,12 +2,12 @@ function ViewModel (value, error) {
   // Constructor function to create logic dependent nunjucks page
   this.model = {
     label: {
-      text: 'What is your reference amount?',
-      classes: 'govuk-label--l',
+      text: 'Enter your delinked reference amount',
+      classes: 'govuk-!-display-none',
       isPageHeading: true
     },
     hint: {
-      text: 'Reference amount should not include any commas'
+      text: 'The number you enter should not include commas. For example, enter £20,000 as 20000.'
     },
     prefix: {
       text: '£'
@@ -29,3 +29,4 @@ function ViewModel (value, error) {
 }
 
 module.exports = ViewModel
+
