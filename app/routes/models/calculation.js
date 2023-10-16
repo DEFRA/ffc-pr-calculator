@@ -9,16 +9,15 @@ function ViewModel (value, calculations) {
     paymentBand: createTableDefinition(calculations, { property: 'rate', text: '', caption: 'Progressive reductions', formatType: 'percentage', showOverall: false }),
     reduction: createTableDefinition(calculations, { property: 'reduction', text: 'Total progressive reduction:', caption: 'Your progressive reductions', formatType: 'currency', showOverall: true }),
     payment: createPaymentTable(calculations),
-    paymentSummary: createPaymentSummary(calculations),
-    backLink: createBackLink()
+    paymentSummary: createPaymentSummary(calculations)
   }
 }
 
-function createSummary (value) {
+const createSummary = (value) => {
   return `Your estimated progressive reductions are based on a starting payment amount of ${toCurrencyString(value)}.`
 }
 
-function createTableDefinition (calculations, options) {
+const createTableDefinition = (calculations, options) => {
   return {
     caption: options.caption,
     captionClasses: 'govuk-table__caption--m',
@@ -28,7 +27,7 @@ function createTableDefinition (calculations, options) {
   }
 }
 
-function createPaymentTable (calculations) {
+const createPaymentTable = (calculations) => {
   return {
     caption: 'Your payments after progressive reductions',
     captionClasses: 'govuk-table__caption--m',
@@ -40,14 +39,14 @@ function createPaymentTable (calculations) {
   }
 }
 
-function createPaymentSummary (calculations) {
+const createPaymentSummary = (calculations) => {
   return {
     classes: 'govuk-summary-list',
     rows: populateOverallSummary(calculations, 'payment', 'Payment value after progressive reductions:').flat()
   }
 }
 
-function getHeaderRow () {
+const getHeaderRow = () => {
   return [
     {
       text: 'Scheme year',
@@ -72,7 +71,7 @@ function getHeaderRow () {
   ]
 }
 
-function populateData (calculations, options) {
+const populateData = (calculations, options) => {
   const reductionData = calculations.bandResult.map(x => toRow(x, options.property, options.formatType))
   if (options.showOverall) {
     reductionData.push(populateOverall(calculations, options.property, options.text).flat())
@@ -80,7 +79,7 @@ function populateData (calculations, options) {
   return reductionData
 }
 
-function toRow (results, property, formatType) {
+const toRow = (results, property, formatType) => {
   const data = []
   data.push({ text: getBandText(results.band) })
   results.result.map((x) => {
@@ -96,18 +95,18 @@ function toRow (results, property, formatType) {
   return fillGaps(results, data, formatType)
 }
 
-function getBandText (band) {
+const getBandText = (band) => {
   return bands.find(x => x.band === band).text
 }
 
-function calculatePercentage (x, property) {
+const calculatePercentage = (x, property) => {
   return `${x.payment > 0 ? Math.round(x[property] * 100) : 0}%`
 }
 
-function fillGaps (results, data, formatType) {
+const fillGaps = (results, data, formatType) => {
   const checkSchemeYears = results.result.map(x => x.schemeYear)
-  const maxSchemeYear = Math.max.apply(Math, schemeYears)
-  const minSchemeYear = Math.min.apply(Math, schemeYears)
+  const maxSchemeYear = Math.max(Math, ...schemeYears)
+  const minSchemeYear = Math.min(Math, ...schemeYears)
 
   const missingData = {
     text: (formatType === 'currency'
@@ -128,20 +127,20 @@ function fillGaps (results, data, formatType) {
   return data
 }
 
-function populateOverallSummary (calculations, property, text) {
+const populateOverallSummary = (calculations, property, text) => {
   return calculations.overallResult.map((x, index) => {
     const overallResults = overallToRow(x, property, index)
     return { key: { text: overallResults[0].schemeYear }, value: { text: overallResults[0].text } }
   })
 }
 
-function populateOverall (calculations, property, text) {
+const populateOverall = (calculations, property, text) => {
   const overall = calculations.overallResult.map((x, index) => overallToRow(x, property, index))
   overall.unshift({ text: text })
   return overall
 }
 
-function overallToRow (overallResult, property, index) {
+const overallToRow = (overallResult, property, index) => {
   const data = []
   data.push({
     schemeYear: schemeYears[index],
@@ -150,13 +149,6 @@ function overallToRow (overallResult, property, index) {
     classes: 'govuk-body govuk-!-font-weight-bold'
   })
   return data
-}
-
-function createBackLink () {
-  return {
-    text: 'Back',
-    href: '/value'
-  }
 }
 
 module.exports = ViewModel

@@ -1,6 +1,6 @@
 const { convertToPounds } = require('./convert-currency')
 
-module.exports = function calculateReduction (valueInPence, reductionRate) {
+const calculateReduction = (valueInPence, reductionRate) => {
   const reduction = Math.floor(valueInPence * reductionRate.rate)
   let payment = Math.ceil(valueInPence - reduction)
   const variation = valueInPence - reduction - payment
@@ -16,3 +16,5 @@ module.exports = function calculateReduction (valueInPence, reductionRate) {
     payment: convertToPounds(payment)
   }
 }
+
+module.exports = calculateReduction

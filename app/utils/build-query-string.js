@@ -1,9 +1,11 @@
-module.exports = function buildQueryStringFromObject (obj) {
+const buildQueryStringFromObject = (obj) => {
   const queryString = []
   for (const property in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, property) && obj[property]) {
+    if (Object.hasOwn(obj, property) && obj[property]) {
       queryString.push(`${encodeURIComponent(property)}=${encodeURIComponent(obj[property])}`)
     }
   }
   return queryString.join('&')
 }
+
+module.exports = buildQueryStringFromObject

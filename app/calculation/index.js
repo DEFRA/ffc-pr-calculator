@@ -4,7 +4,7 @@ const calculateOverall = require('./calculate-overall')
 const { convertStringToPence } = require('./convert-currency')
 const schemeYears = require('./scheme-years')
 
-function calculate (value) {
+const calculate = (value) => {
   const schemeYearValues = !isNaN(value)
     ? schemeYears.map(schemeYear => ({ schemeYear, value }))
     : [{ schemeYear: 2021, value: value.value2021 || 0 }, // eslint-disable-line
@@ -20,7 +20,7 @@ function calculate (value) {
   }
 }
 
-function calculateBands (schemeYearValues) {
+const calculateBands = (schemeYearValues) => {
   const bandResults = []
 
   schemeYearValues.forEach(schemeYearValue => {
@@ -33,7 +33,7 @@ function calculateBands (schemeYearValues) {
   return transformResults(bandResults)
 }
 
-function transformResults (bandResults) {
+const transformResults = (bandResults) => {
   // transform nested array into json object grouped by band.
   return Object.values(bandResults.flat().reduce((groupedBands, { band, result }) => {
     // create new band object if doesn't already exist
