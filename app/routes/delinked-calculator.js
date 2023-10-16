@@ -21,7 +21,7 @@ module.exports = [{
       }
     },
     handler: async (request, h) => {
-      return h.redirect(`/delinked-calculation?value=${request.payload.value}`)
+      return h.redirect(`/calculation-delinked?value=${request.payload.value}`)
     }
   }
 }]

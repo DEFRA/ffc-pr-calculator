@@ -1,10 +1,10 @@
-const ViewModel = require('./models/delinked-calculation')
+const ViewModel = require('./models/calculation-delinked')
 const calculate = require('../calculation')
 const schema = require('./schemas/value')
 
 module.exports = [{
   method: 'GET',
-  path: '/delinked-calculation',
+  path: '/calculation-delinked',
   options: {
     validate: {
       query: schema,
@@ -15,7 +15,7 @@ module.exports = [{
     handler: (request, h) => {
       const value = request.query.value || JSON.parse(JSON.stringify(request.query))
       const result = calculate(value)
-      return h.view('delinked-calculation', new ViewModel(value, result))
+      return h.view('calculation-delinked', new ViewModel(value, result))
     }
   }
 }]
