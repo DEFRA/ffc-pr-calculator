@@ -2,7 +2,7 @@ function ViewModel (value, error) {
   // Constructor function to create logic dependent nunjucks page
   this.model = {
     label: {
-      text: 'What is your reference amount',
+      text: 'Enter your delinked reference amount',
       classes: 'govuk-!-display-none',
       isPageHeading: true
     },
