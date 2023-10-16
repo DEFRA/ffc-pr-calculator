@@ -29,4 +29,3 @@ function ViewModel (value, error) {
 }
 
 module.exports = ViewModel
-
