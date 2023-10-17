@@ -153,14 +153,14 @@ describe('delinked-calculator route', () => {
     expect(result.request.response._payload._data).toContain('This calculator will estimate your payment for 2024 based on the reference amount you enter.')
   })
 
-  test('GET /delinked-calculator second paragraph says This is shown on the Delinked Payments Information Statement we\'ve sent you. We expect to send this to you by the end of November 2023.', async () => {
+  test('GET /delinked-calculator second paragraph says This is shown on the Delinked Payments Information Statement we\'ve sent you. We expect to send this to you by early December 2023.', async () => {
     const options = {
       method: 'GET',
       url: '/delinked-calculator'
     }
 
     const result = await server.inject(options)
-    expect(result.request.response._payload._data).toContain('This is shown on the Delinked Payments Information Statement we\'ve sent you. We expect to send this to you by the end of November 2023.')
+    expect(result.request.response._payload._data).toContain('This is shown on the Delinked Payments Information Statement we\'ve sent you. We expect to send this to you by early December 2023.')
   })
 
   test('GET /delinked-calculator third paragraph says If your reference amount changes, you should use the updated amount. For example, if you transfer some of your reference amount to another business.', async () => {

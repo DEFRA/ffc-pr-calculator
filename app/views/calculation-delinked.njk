@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-width-container" style="overflow-y: auto;">
+  <div class="govuk-width-container">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
         {{ govukPanel({
@@ -23,10 +23,7 @@
          <p class="govuk-body">{{ model.confirmation }}</p>
         {{ govukTable(model.paymentSummary)}}
         <p class="govuk-body">
-          We intend to pay delinked payments in two instalments each year.
-        </p>
-        <p class="govuk-body">
-          The first instalment will be approximately 50% of your estimated payment for the year. We plan to pay this in August and the second instalment from December.
+          We plan to make the payments in 2 instalments each year - an advance payment of around 50% from 1 August with the balance payment from 1 December.
         </p>
         <br/>
         {{ govukTable(model.reduction) }}
