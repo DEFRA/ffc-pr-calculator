@@ -136,7 +136,7 @@ const populateOverallSummary = (calculations, property, text) => {
 
 const populateOverall = (calculations, property, text) => {
   const overall = calculations.overallResult.map((x, index) => overallToRow(x, property, index))
-  overall.unshift({ text: text })
+  overall.unshift({ text })
   return overall
 }
 

@@ -8,7 +8,7 @@
 {% block beforeContent %}
   {{ govukBackLink({
         text: "Back",
-        href: "/bps-calculator",
+        href: "/delinked-calculator",
         classes: "govuk-!-margin-bottom-7"
       }) }}
 {% endblock %}
@@ -18,15 +18,17 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
         {{ govukPanel({
-          titleText: "BPS Calculation complete"
+          titleText: "Delinked payments calculation complete"
         }) }}
         <p class="govuk-body">{{ model.confirmation }}</p>
         {{ govukTable(model.paymentSummary)}}
+        <p class="govuk-body">
+          We plan to make the payments in 2 instalments each year - an advance payment of around 50% from 1 August with the balance payment from 1 December.
+        </p>
+        <br/>
+        {{ govukTable(model.reduction) }}
         <br/>
         {{ govukTable(model.paymentBand) }}
-        <br/>
-        {{ govukTable(model.reduction) }}       
-
       </div>
     </div>
   </div>

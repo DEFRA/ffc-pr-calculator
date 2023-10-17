@@ -5,7 +5,7 @@ const toCurrencyString = require('../../utils/to-currency-string')
 function ViewModel (value, calculations) {
   this.model = {
     confirmation: createSummary(value),
-    paymentBand: createTableDefinition(calculations, { property: 'rate', text: '', caption: 'Progressive reductions by scheme year', formatType: 'percentage', showOverall: false }),
+    paymentBand: createTableDefinition(calculations, { property: 'rate', text: '', caption: 'Percentage reductions by scheme year', formatType: 'percentage', showOverall: false }),
     reduction: createTableDefinition(calculations, { property: 'reduction', text: 'Total progressive reduction:', caption: 'Progressive reductions applied to your claim by scheme year', formatType: 'currency', showOverall: true }),
     paymentSummary: createPaymentSummary(calculations, { caption: 'Estimated BPS payments 2021 to 2023' })
   }

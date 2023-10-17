@@ -39,7 +39,7 @@ const transformResults = (bandResults) => {
     // create new band object if doesn't already exist
     if (!groupedBands[band]) {
       groupedBands[band] = {
-        band: band,
+        band,
         result: []
       }
     }

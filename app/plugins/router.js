@@ -8,6 +8,7 @@ const routes = [].concat(
   require('../routes/bps-calculator'),
   require('../routes/delinked-calculator'),
   require('../routes/calculation'),
+  require('../routes/calculation-delinked'),
   require('../routes/calculation-bps'),
   require('../routes/cookies'),
   require('../routes/accessibility'),
