@@ -8,7 +8,7 @@ const cookieContainer = document.querySelector('.js-cookies-container')
 
 cookieContainer.style.display = 'block'
 
-function showBanner (banner) {
+const showBanner = (banner) => {
   questionBanner.setAttribute('hidden', 'hidden')
   banner.removeAttribute('hidden')
   // Shift focus to the banner
@@ -40,7 +40,7 @@ rejectedBanner.querySelector('.js-hide').addEventListener('click', function () {
   cookieBanner.setAttribute('hidden', 'hidden')
 })
 
-function submitPreference (accepted) {
+const submitPreference = (accepted) => {
   const xhr = new XMLHttpRequest()
   xhr.open('POST', '/cookies', true)
   xhr.setRequestHeader('Content-Type', 'application/json')

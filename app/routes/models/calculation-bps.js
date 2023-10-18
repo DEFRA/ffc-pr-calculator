@@ -11,11 +11,11 @@ function ViewModel (value, calculations) {
   }
 }
 
-function createSummary (value) {
+const createSummary = (value) => {
   return `Your estimated progressive reductions are based on a starting payment amount of ${toCurrencyString(value)}.`
 }
 
-function createTableDefinition (calculations, options) {
+const createTableDefinition = (calculations, options) => {
   return {
     caption: options.caption,
     captionClasses: 'govuk-table__caption--m',
@@ -25,7 +25,7 @@ function createTableDefinition (calculations, options) {
   }
 }
 
-function createPaymentSummary (calculations, options) {
+const createPaymentSummary = (calculations, options) => {
   const data = []
   calculations.overallResult.map((x) => {
     data.push(
@@ -47,7 +47,7 @@ function createPaymentSummary (calculations, options) {
   }
 }
 
-function getHeaderRow () {
+const getHeaderRow = () => {
   return [
     {
       text: 'Payment band',
@@ -68,7 +68,7 @@ function getHeaderRow () {
   ]
 }
 
-function getSummaryHeaderRow () {
+const getSummaryHeaderRow = () => {
   return [
     {
       text: 'Scheme year'
@@ -84,7 +84,7 @@ function getSummaryHeaderRow () {
   ]
 }
 
-function populateData (calculations, options) {
+const populateData = (calculations, options) => {
   const reductionData = calculations.bandResult.map(x => toRow(x, options.property, options.formatType).slice(0, 4))
   if (options.showOverall) {
     reductionData.push(populateOverall(calculations, options.property, options.text).flat().slice(0, 4))
@@ -92,7 +92,7 @@ function populateData (calculations, options) {
   return reductionData
 }
 
-function toRow (results, property, formatType) {
+const toRow = (results, property, formatType) => {
   const data = []
   data.push({ text: getBandText(results.band) })
   results.result.map((x) => {
@@ -108,15 +108,15 @@ function toRow (results, property, formatType) {
   return fillGaps(results, data, formatType)
 }
 
-function getBandText (band) {
+const getBandText = (band) => {
   return bands.find(x => x.band === band).text
 }
 
-function calculatePercentage (x, property) {
+const calculatePercentage = (x, property) => {
   return `${x.payment > 0 ? Math.round(x[property] * 100) : 0}%`
 }
 
-function fillGaps (results, data, formatType) {
+const fillGaps = (results, data, formatType) => {
   const checkSchemeYears = results.result.map(x => x.schemeYear)
   const maxSchemeYear = Math.max(Math, ...schemeYears)
   const minSchemeYear = Math.min(Math, ...schemeYears)
@@ -140,13 +140,13 @@ function fillGaps (results, data, formatType) {
   return data
 }
 
-function populateOverall (calculations, property, text) {
+const populateOverall = (calculations, property, text) => {
   const overall = calculations.overallResult.map((x, index) => overallToRow(x, property, index))
   overall.unshift({ text })
   return overall
 }
 
-function overallToRow (overallResult, property, index) {
+const overallToRow = (overallResult, property, index) => {
   const data = []
   data.push({
     schemeYear: schemeYears[index],
