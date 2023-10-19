@@ -78,7 +78,7 @@ const getSummaryHeaderRow = () => {
       format: 'numeric'
     },
     {
-      text: 'Estimated payments',
+      text: 'Total estimated payments',
       format: 'numeric'
     }
   ]
