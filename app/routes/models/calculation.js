@@ -1,4 +1,3 @@
-
 const bands = require('../../calculation/bands')
 const schemeYears = require('../../calculation/scheme-years')
 const toCurrencyString = require('../../utils/to-currency-string')
