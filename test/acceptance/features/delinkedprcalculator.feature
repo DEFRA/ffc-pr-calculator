@@ -42,7 +42,7 @@ Feature: FFC-PR-CALCULATOR
     Then I expect that the url contains "/bps-calculator"
     When I click on the link "Calculate my progressive reductions"
     Then I expect that the url contains "/"
-    Then I expect that element "h1" contains the text "Calculate my progressive reductions"
+    Then I expect that element "govuk-header__link govuk-header__service-name" contains the text "Calculate my progressive reductions"
 
   Scenario: 008-User can click on Accessibility statement link
     Given I open the url "/"
@@ -70,7 +70,7 @@ Feature: FFC-PR-CALCULATOR
   Scenario: 012-User can click progressive reduction  link on value page
     Given I open the url "/bps-calculator"
     When I click on the link "Calculate my progressive reductions"
-    Then I expect that element "h1" contains the text "Calculate my progressive reductions"
+    Then I expect that element "govuk-header__link govuk-header__service-name" contains the text "Calculate my progressive reductions"
 
   Scenario: 013-User can click accessibility statement link on value page
     Given I open the url "/bps-calculator"
@@ -92,7 +92,7 @@ Feature: FFC-PR-CALCULATOR
     Then I expect that the url contains "/bps-calculator"
     When I click on the link "Back"
     Then I expect that the url contains "/"
-    Then I expect that element "h1" contains the text "Calculate my progressive reductions"
+    Then I expect that element "govuk-header__link govuk-header__service-name" contains the text "Calculate my progressive reductions"
 
   Scenario: 016-User can click licence link on calculation page
     Given I open the url "/calculation-bps?value=32"
@@ -112,7 +112,7 @@ Feature: FFC-PR-CALCULATOR
   Scenario: 019-User can click progressive reduction  link on calculation page
     Given I open the url "/calculation-bps?value=32"
     When I click on the link "Calculate my progressive reductions"
-    Then I expect that element "h1" contains the text "Calculate my progressive reductions"
+    Then I expect that element "govuk-header__link govuk-header__service-name" contains the text "Calculate my progressive reductions"
 
   Scenario: 020-User can click accessibility statement link on calculation page
     Given I open the url "/calculation-bps?value=32"
