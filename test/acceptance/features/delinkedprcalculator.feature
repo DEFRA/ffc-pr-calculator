@@ -124,9 +124,9 @@ Feature: FFC-PR-CALCULATOR
     When I click on the link "Cookies"
     Then I expect that element "main > h2" contains the text "Details about cookies on Calculate my progressive reductions"
 
-  Scenario: 0022-User can click on Rural payments and grants link
+  Scenario: 0022-User can click on Funding for farmers, growers and land managers link
     Given I open the url "/"
-    When I click on the link "Rural payments and grants"
-    Then I expect that element "h1" contains the text "Rural payments and grants"
+    When I click on the link "Funding for farmers, growers and land managers"
+    Then I expect that element "h1" contains the text "Funding for farmers, growers and land managers"
 
 
