@@ -3,7 +3,6 @@ const routes = [].concat(
   require('../routes/healthz'),
   require('../routes/static'),
   require('../routes/home'),
-  require('../routes/home-new'),
   require('../routes/value'),
   require('../routes/bps-calculator'),
   require('../routes/delinked-calculator'),
