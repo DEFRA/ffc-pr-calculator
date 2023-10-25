@@ -1,4 +1,4 @@
-describe('home-new page to test the new version of the homepage before it moves to /', () => {
+describe('home page to test the new version of the PRC', () => {
   let createServer
   let server
 
@@ -12,31 +12,31 @@ describe('home-new page to test the new version of the homepage before it moves 
     await server.stop()
   })
 
-  test('GET /home-new returns 200', async () => {
+  test('GET / returns 200', async () => {
     const options = {
       method: 'GET',
-      url: '/home-new'
+      url: '/'
     }
 
     const result = await server.inject(options)
     expect(result.statusCode).toBe(200)
   })
 
-  test('GET /home-new returns new home-new view', async () => {
+  test('GET / returns new home view', async () => {
     const options = {
       method: 'GET',
-      url: '/home-new'
+      url: '/'
     }
 
     const result = await server.inject(options)
     expect(result.request.response.variety).toBe('view')
-    expect(result.request.response.source.template).toBe('home-new')
+    expect(result.request.response.source.template).toBe('home')
   })
 
-  test('GET /home-new context includes Header', async () => {
+  test('GET / context includes Header', async () => {
     const options = {
       method: 'GET',
-      url: '/home-new'
+      url: '/'
     }
 
     const result = await server.inject(options)
@@ -45,10 +45,10 @@ describe('home-new page to test the new version of the homepage before it moves 
     )
   })
 
-  test('GET /home-new layout includes Progressive reductions: calculate how BPS and delinked payments will reduce header', async () => {
+  test('GET / layout includes Progressive reductions: calculate how BPS and delinked payments will reduce header', async () => {
     const options = {
       method: 'GET',
-      url: '/home-new'
+      url: '/'
     }
 
     const result = await server.inject(options)
@@ -57,10 +57,10 @@ describe('home-new page to test the new version of the homepage before it moves 
     )
   })
 
-  test('GET /home-new first paragraph says Payments from the Basic Payment Scheme (BPS) in England are reducing each year from 2021 until the end of the 2023 scheme year.', async () => {
+  test('GET / first paragraph says Payments from the Basic Payment Scheme (BPS) in England are reducing each year from 2021 until the end of the 2023 scheme year.', async () => {
     const options = {
       method: 'GET',
-      url: '/home-new'
+      url: '/'
     }
 
     const result = await server.inject(options)
@@ -69,10 +69,10 @@ describe('home-new page to test the new version of the homepage before it moves 
     )
   })
 
-  test('GET /home-new second paragraph says Delinked payments will replace BPS payments in England in 2024 and will reduce each year until these payments finish', async () => {
+  test('GET / second paragraph says Delinked payments will replace BPS payments in England in 2024 and will reduce each year until these payments finish', async () => {
     const options = {
       method: 'GET',
-      url: '/home-new'
+      url: '/'
     }
 
     const result = await server.inject(options)
@@ -81,10 +81,10 @@ describe('home-new page to test the new version of the homepage before it moves 
     )
   })
 
-  test('GET /home-new third paragraph says These reductions to BPS and delinked payments are known as progressive reductions.', async () => {
+  test('GET / third paragraph says These reductions to BPS and delinked payments are known as progressive reductions.', async () => {
     const options = {
       method: 'GET',
-      url: '/home-new'
+      url: '/'
     }
 
     const result = await server.inject(options)
@@ -93,10 +93,10 @@ describe('home-new page to test the new version of the homepage before it moves 
     )
   })
 
-  test('GET /home-new fourth paragraph says Use the BPS calculator to get an estimate of how progressive reductions could affect your BPS payments from 2021 to 2023.', async () => {
+  test('GET / fourth paragraph says Use the BPS calculator to get an estimate of how progressive reductions could affect your BPS payments from 2021 to 2023.', async () => {
     const options = {
       method: 'GET',
-      url: '/home-new'
+      url: '/'
     }
 
     const result = await server.inject(options)
@@ -105,10 +105,10 @@ describe('home-new page to test the new version of the homepage before it moves 
     )
   })
 
-  test('GET /home-new fifth paragraph says Use the delinked payments calculator to get an estimate of how progressive reductions could affect your delinked payment in 2024.', async () => {
+  test('GET / fifth paragraph says Use the delinked payments calculator to get an estimate of how progressive reductions could affect your delinked payment in 2024.', async () => {
     const options = {
       method: 'GET',
-      url: '/home-new'
+      url: '/'
     }
 
     const result = await server.inject(options)
@@ -117,10 +117,10 @@ describe('home-new page to test the new version of the homepage before it moves 
     )
   })
 
-  test('GET /home-new sixth paragraph says To receive delinked payments, you must have claimed, and been eligible for, BPS 2023 in England (except in some inheritance cases).', async () => {
+  test('GET / sixth paragraph says To receive delinked payments, you must have claimed, and been eligible for, BPS 2023 in England (except in some inheritance cases).', async () => {
     const options = {
       method: 'GET',
-      url: '/home-new'
+      url: '/'
     }
 
     const result = await server.inject(options)
@@ -129,10 +129,10 @@ describe('home-new page to test the new version of the homepage before it moves 
     )
   })
 
-  test('GET /home-new seventh paragraph says Calculations should be quick and will not ask for personal information.', async () => {
+  test('GET / seventh paragraph says Calculations should be quick and will not ask for personal information.', async () => {
     const options = {
       method: 'GET',
-      url: '/home-new'
+      url: '/'
     }
 
     const result = await server.inject(options)
@@ -141,10 +141,10 @@ describe('home-new page to test the new version of the homepage before it moves 
     )
   })
 
-  test('GET /home-new eighth paragraph says Call the Rural Payments helpline on 03000 200 301 if you need help using this calculator.', async () => {
+  test('GET / eighth paragraph says Call the Rural Payments helpline on 03000 200 301 if you need help using this calculator.', async () => {
     const options = {
       method: 'GET',
-      url: '/home-new'
+      url: '/'
     }
 
     const result = await server.inject(options)
@@ -153,10 +153,10 @@ describe('home-new page to test the new version of the homepage before it moves 
     )
   })
 
-  test("GET /home-new ninth paragraph says Defra and the Rural Payments Agency (RPA) will publish more information about reductions to delinked payments from 2025 to 2027 when it's available.", async () => {
+  test("GET / ninth paragraph says Defra and the Rural Payments Agency (RPA) will publish more information about reductions to delinked payments from 2025 to 2027 when it's available.", async () => {
     const options = {
       method: 'GET',
-      url: '/home-new'
+      url: '/'
     }
 
     const result = await server.inject(options)
@@ -165,10 +165,10 @@ describe('home-new page to test the new version of the homepage before it moves 
     )
   })
 
-  test('GET /home-new tenth paragraph says New schemes and grants are funded through the reductions to BPS and delinked payments.', async () => {
+  test('GET / tenth paragraph says New schemes and grants are funded through the reductions to BPS and delinked payments.', async () => {
     const options = {
       method: 'GET',
-      url: '/home-new'
+      url: '/'
     }
 
     const result = await server.inject(options)
