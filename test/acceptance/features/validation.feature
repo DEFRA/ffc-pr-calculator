@@ -58,7 +58,7 @@ Feature: FFC-PR-CALCULATOR2
     Given I open the url "/"
     When I click on start new calculator button ".govuk-button--start"
     Then I expect that the url contains "/bps-calculator"
-    Then I expect that element "#value-hint" contains the text "Payment amount should not include any commas"
+    Then I expect that element "#value-hint" contains the text "The number you enter should not include commas. For example, enter £20,000 as 20000."
     When I add "100,000,000" to the inputfield "#value"
     And I click on Next button "#submit"
     Then I expect that the url contains "/bps-calculator"
