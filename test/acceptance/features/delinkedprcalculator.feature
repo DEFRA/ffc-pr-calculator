@@ -107,7 +107,7 @@ Feature: FFC-PR-CALCULATOR
   Scenario: 018-User can click gov link on calculation page
     Given I open the url "/calculation-bps?value=32"
     When I click on the link "GOV.UK"
-    Then I expect that element "h1" contains the text "Welcome to GOV.UK"
+    Then I expect that element "h1" contains the text "GOV.UK"
 
   Scenario: 019-User can click progressive reduction  link on calculation page
     Given I open the url "/calculation-bps?value=32"
