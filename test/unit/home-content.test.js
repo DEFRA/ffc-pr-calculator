@@ -113,7 +113,7 @@ describe('home page to test the new version of the PRC', () => {
 
     const result = await server.inject(options)
     expect(result.request.response._payload._data).toContain(
-      'Use the delinked payments calculator to get an estimate of how progressive reductions could affect your delinked payment in 2024.'
+      'Use the delinked payments calculator to get an estimate of how progressive reductions could affect your delinked payment in 2024. This estimate is based on the progressive reduction figures proposed in our Agricultural Transition Plan, published in 2020.'
     )
   })
 
