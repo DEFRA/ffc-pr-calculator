@@ -143,6 +143,16 @@ describe('delinked-calculator route', () => {
     expect(result.request.response._payload._data).toContain('Enter your delinked payment reference amount')
   })
 
+  test('GET /delinked-calculator header subline says This calculator will estimate your payment for 2024 based on the reference amount you enter.', async () => {
+    const options = {
+      method: 'GET',
+      url: '/delinked-calculator'
+    }
+
+    const result = await server.inject(options)
+    expect(result.request.response._payload._data).toContain('This calculator will estimate your payment for 2024 based on the reference amount you enter.')
+  })
+
   test('GET /delinked-calculator first paragraph says You were sent your reference amount in the delinked payments information statement.', async () => {
     const options = {
       method: 'GET',
