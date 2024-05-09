@@ -129,7 +129,7 @@ describe('home page to test the new version of the PRC', () => {
     )
   })
 
-  test('GET / seventh paragraph says Defra and the Rural Payments Agency (RPA) will publish more information about reductions to delinked payments from 2025 to 2027 when it\'s available.', async () => {
+  test('GET / seventh paragraph says Defra and the Rural Payments Agency (RPA) will publish more information about reductions to delinked payments from 2025 to 2027 when they\'re available.', async () => {
     const options = {
       method: 'GET',
       url: '/'
@@ -137,7 +137,7 @@ describe('home page to test the new version of the PRC', () => {
 
     const result = await server.inject(options)
     expect(result.request.response._payload._data).toContain(
-      'Defra and the Rural Payments Agency (RPA) will publish more information about reductions to delinked payments from 2025 to 2027 when it\'s available.'
+      'Defra and the Rural Payments Agency (RPA) will publish more information about reductions to delinked payments from 2025 to 2027 when they\'re available.'
     )
   })
 
