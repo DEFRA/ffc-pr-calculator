@@ -2,7 +2,7 @@ const joi = require('joi')
 
 // Define config schema
 const schema = joi.object({
-  serviceName: joi.string().default('Calculate my progressive reductions'),
+  serviceName: joi.string().default('Calculate your delinked payment'),
   port: joi.number().default(3000),
   env: joi.string().valid('development', 'test', 'production').default('development'),
   staticCacheTimeoutMillis: joi.number().default(7 * 24 * 60 * 60 * 1000),

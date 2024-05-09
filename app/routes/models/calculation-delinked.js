@@ -10,13 +10,13 @@ function ViewModel (value, calculations) {
   this.model = {
     confirmation: createSummary(value),
     paymentBand: createPaymentBandTable(delinkedCalculation, { property: 'rate', text: '', caption: 'Percentage reduction for 2024', formatType: 'percentage', showOverall: false }),
-    reduction: createTableDefinition(delinkedCalculation, { property: 'reduction', text: 'Total progressive reduction', caption: 'Progressive reductions applied to your claim by scheme year', formatType: 'currency', showOverall: true }),
-    paymentSummary: createPaymentSummary(delinkedCalculation, { caption: 'Estimated delinked payments in 2024' })
+    reduction: createTableDefinition(delinkedCalculation, { property: 'reduction', text: 'Total progressive reduction', caption: 'Progressive reduction applied to your payment for 2024', formatType: 'currency', showOverall: true }),
+    paymentSummary: createPaymentSummary(delinkedCalculation, { caption: 'Estimated delinked payment in 2024' })
   }
 }
 
 function createSummary (value) {
-  return `Your estimated progressive reductions are based on a reference amount of ${toCurrencyString(value)}.`
+  return `Your estimated delinked payment is based on a reference amount of ${toCurrencyString(value)}, with a progressive reduction applied.`
 }
 
 function createPaymentBandTable (calculations, options) {
@@ -93,11 +93,11 @@ function getSummaryHeaderRow () {
       text: 'Scheme year'
     },
     {
-      text: 'Total estimated reductions',
+      text: 'Total estimated reduction',
       format: 'numeric'
     },
     {
-      text: 'Total estimated payments',
+      text: 'Total estimated payment',
       format: 'numeric'
     }
   ]

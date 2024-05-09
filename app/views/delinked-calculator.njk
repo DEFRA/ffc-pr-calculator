@@ -20,10 +20,15 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <form method="POST" action="/delinked-calculator" novalidate>
-          <h2 class="govuk-heading-m">Enter your delinked payments reference amount</h2>
-          <p class="govuk-body">This calculator will estimate your payment for 2024 based on the reference amount you enter.</p>
-          <p class="govuk-body">The reference amount is shown on your Delinked Payment Information Statement. We expect to send this to you by early December 2023.</p>
-          <p class="govuk-body">If your reference amount changes, you should use the updated amount. For example, if you transfer some of your reference amount to another business.</p>
+          <h2 class="govuk-heading-m">Enter your delinked payment reference amount </h2>
+          <p class="govuk-body">You were sent your reference amount in the delinked payments information statement.</p>
+          <p class="govuk-body">This amount will have changed if BPS 2020, 2021 and 2022 reference data has either:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>been transferred in or out of your business</li>
+            <li>changed following a payment query</li>
+          </ul>
+          <p class="govuk-body">You can view your current reference amount and any data transfers in the <a class="govuk-link" href="https://www.ruralpayments.service.gov.uk/customer-account/login">Rural Payments service </a>
+          </p>
           {{ govukInput(model) }}
           {{ govukButton({
             text: "Calculate my delinked payment",
