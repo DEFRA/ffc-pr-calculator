@@ -184,7 +184,7 @@ describe('delinked-calculator route', () => {
     expect(result.request.response._payload._data).toContain('changed following a payment query')
   })
 
-  test('GET /delinked-calculator fourth paragraph says You can view your current reference amount and any data transfers in the Rural Payments service', async () => {
+  test('GET /delinked-calculator fourth paragraph says You can view your current reference amount and any data transfers in the Rural Payments service.', async () => {
     const options = {
       method: 'GET',
       url: '/delinked-calculator'
