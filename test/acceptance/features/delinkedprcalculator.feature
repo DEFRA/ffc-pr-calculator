@@ -70,7 +70,7 @@ Feature: FFC-PR-CALCULATOR
   Scenario: 012-User can click delinked payment link on value page
     Given I open the url "/delinked-calculator"
     When I click on the link "Calculate your delinked payment"
-    Then I expect that element "h1" contains the text "Delinked payments calculation complete"
+    Then I expect that element "h1" contains the text "Calculate your delinked payment"
 
   Scenario: 013-User can click accessibility statement link on value page
     Given I open the url "/delinked-calculator"
@@ -92,7 +92,7 @@ Feature: FFC-PR-CALCULATOR
     Then I expect that the url contains "/delinked-calculator"
     When I click on the link "Back"
     Then I expect that the url contains "/"
-    Then I expect that element "h1" contains the text "Enter your delinked payment reference amount"
+    Then I expect that element "h1" contains the text "Calculate your delinked payment"
 
   Scenario: 016-User can click licence link on calculation page
     Given I open the url "/calculation-delinked?value=32"
@@ -112,7 +112,7 @@ Feature: FFC-PR-CALCULATOR
   Scenario: 019-User can click progressive reduction  link on calculation page
     Given I open the url "/calculation-delinked?value=32"
     When I click on the link "Calculate my delinked payment"
-    Then I expect that element "h1" contains the text "Delinked payments calculation complete"
+    Then I expect that element "h1" contains the text "Calculate your delinked payment"
 
   Scenario: 0022-User can click on Funding for farmers, growers and land managers link
     Given I open the url "/"
