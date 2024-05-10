@@ -57,7 +57,7 @@ describe('home page to test the new version of the PRC', () => {
     )
   })
 
-  test('GET / first paragraph says Delinked payments have replaced Basic Payment Scheme (BPS) payments in England and will reduce each year until they finish at the end of 2027.', async () => {
+  test('GET / first paragraph says Delinked payments have replaced Basic Payment Scheme (BPS) payments in England. These will reduce each year until they finish at the end of 2027.', async () => {
     const options = {
       method: 'GET',
       url: '/'
@@ -65,11 +65,11 @@ describe('home page to test the new version of the PRC', () => {
 
     const result = await server.inject(options)
     expect(result.request.response._payload._data).toContain(
-      'Delinked payments have replaced Basic Payment Scheme (BPS) payments in England and will reduce each year until they finish at the end of 2027.'
+      'Delinked payments have replaced Basic Payment Scheme (BPS) payments in England. These will reduce each year until they finish at the end of 2027.'
     )
   })
 
-  test('GET / second paragraph says These reductions to delinked payments are known as progressive reductions.', async () => {
+  test('GET / second paragraph says Reductions to delinked payments are known as progressive reductions.', async () => {
     const options = {
       method: 'GET',
       url: '/'
@@ -77,7 +77,7 @@ describe('home page to test the new version of the PRC', () => {
 
     const result = await server.inject(options)
     expect(result.request.response._payload._data).toContain(
-      'These reductions to delinked payments are known as progressive reductions.'
+      'Reductions to delinked payments are known as progressive reductions.'
     )
   })
 
