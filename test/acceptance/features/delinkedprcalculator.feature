@@ -6,7 +6,7 @@ Feature: FFC-PR-CALCULATOR
     Then I expect that the url contains "/delinked-calculator"
     When I add "500" to the inputfield "#value"
     And I click on Next button "#submit"
-    Then I expect that the url contains "/delinked-calculator?value=500"
+    Then I expect that the url contains "/calculation-delinked?value=500"
     Then I expect that element "h1" contains the text "Delinked payments calculation complete"
 
   Scenario: 002-User can click on Agricultural transition link
