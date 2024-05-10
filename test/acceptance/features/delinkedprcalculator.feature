@@ -111,7 +111,7 @@ Feature: FFC-PR-CALCULATOR
 
   Scenario: 019-User can click progressive reduction  link on calculation page
     Given I open the url "/calculation-delinked?value=32"
-    When I click on the link "Calculate my delinked payment"
+    When I click on the link "Calculate your delinked payment"
     Then I expect that element "h1" contains the text "Calculate your delinked payment"
 
   Scenario: 0022-User can click on Funding for farmers, growers and land managers link
