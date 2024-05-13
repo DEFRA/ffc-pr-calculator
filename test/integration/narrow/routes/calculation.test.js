@@ -1,4 +1,5 @@
 describe('calculation route', () => {
+  jest.mock('../../../../app/plugins/crumb.js')
   let createServer
   let server
 

@@ -1,4 +1,5 @@
 describe('delinked-calculator route', () => {
+  jest.mock('../../../../app/plugins/crumb')
   let createServer
   let server
 

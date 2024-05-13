@@ -1,4 +1,5 @@
 describe('cookies route', () => {
+  jest.mock('../../../../app/plugins/crumb')
   let createServer
   let server
 

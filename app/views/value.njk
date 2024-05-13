@@ -20,6 +20,7 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <form method="POST" action="/value" novalidate>
+          <input type="hidden" name="crumb" value="{{crumb}}"/>
           {{ govukInput(model) }}
           {{ govukButton({
             text: "Calculate my progressive reductions",

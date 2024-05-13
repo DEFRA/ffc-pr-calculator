@@ -1,4 +1,5 @@
 describe('value route', () => {
+  jest.mock('../../../../app/plugins/crumb')
   let createServer
   let server
 

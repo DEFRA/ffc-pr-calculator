@@ -17,7 +17,7 @@
 
   {% if updated %}
     {% set html %}
-      <p class="govuk-notification-banner__heading">
+    <p class="govuk-notification-banner__heading">
         You’ve set your cookie preferences. <a class="govuk-notification-banner__link" href="/">Go back to the page you were looking at</a>.
       </p>
     {% endset %}
@@ -162,6 +162,7 @@
     <div class="govuk-grid-column-two-thirds">
       <h3 class="govuk-heading-m">Change your cookie settings</h3>
       <form action="/cookies" method="post" novalidate>
+        <input type="hidden" name="crumb" value="{{crumb}}"/>
         {{ govukRadios(analytics) }}
         {{ govukButton({
           text: "Save cookie settings",
@@ -172,5 +173,4 @@
       </form>
     </div>
   </div>
-
 {% endblock %}
