@@ -141,10 +141,10 @@ describe('delinked-calculator route', () => {
     }
 
     const result = await server.inject(options)
-    expect(result.request.response._payload._data).toContain('Enter your delinked payments reference amount')
+    expect(result.request.response._payload._data).toContain('Enter your delinked payment reference amount')
   })
 
-  test('GET /delinked-calculator first paragraph says This calculator will estimate your payment for 2024 based on the reference amount you enter.', async () => {
+  test('GET /delinked-calculator header subline says This calculator will estimate your payment for 2024 based on the reference amount you enter.', async () => {
     const options = {
       method: 'GET',
       url: '/delinked-calculator'
@@ -154,33 +154,55 @@ describe('delinked-calculator route', () => {
     expect(result.request.response._payload._data).toContain('This calculator will estimate your payment for 2024 based on the reference amount you enter.')
   })
 
-  test('GET /delinked-calculator second paragraph says The reference amount is shown on your Delinked Payment Information Statement. We expect to send this to you by early December 2023.', async () => {
+  test('GET /delinked-calculator first paragraph says You were sent your reference amount in the delinked payments information statement.', async () => {
     const options = {
       method: 'GET',
       url: '/delinked-calculator'
     }
 
     const result = await server.inject(options)
-    expect(result.request.response._payload._data).toContain('The reference amount is shown on your Delinked Payment Information Statement. We expect to send this to you by early December 2023.')
+    expect(result.request.response._payload._data).toContain('You were sent your reference amount in the delinked payments information statement.')
   })
 
-  test('GET /delinked-calculator third paragraph says If your reference amount changes, you should use the updated amount. For example, if you transfer some of your reference amount to another business.', async () => {
+  test('GET /delinked-calculator second paragraph says This amount will have changed if BPS 2020, 2021 and 2022 reference data has either:', async () => {
     const options = {
       method: 'GET',
       url: '/delinked-calculator'
     }
 
     const result = await server.inject(options)
-    expect(result.request.response._payload._data).toContain('If your reference amount changes, you should use the updated amount. For example, if you transfer some of your reference amount to another business.')
+    expect(result.request.response._payload._data).toContain('This amount will have changed if BPS 2020, 2021 and 2022 reference data has either:')
   })
 
-  test('GET /delinked-calculator fourth paragraph says The number you enter should not include commas. For example, enter £20,000 as 20000.', async () => {
+  test('GET /delinked-calculator third paragraph says been transferred in or out of your business changed following a payment query ', async () => {
     const options = {
       method: 'GET',
       url: '/delinked-calculator'
     }
 
     const result = await server.inject(options)
-    expect(result.request.response._payload._data).toContain('The number you enter should not include commas. For example, enter £20,000 as 20000.')
+    expect(result.request.response._payload._data).toContain('been transferred in or out of your business')
+    expect(result.request.response._payload._data).toContain('changed following a payment query')
+  })
+
+  test('GET /delinked-calculator fourth paragraph says You can view your current reference amount and any data transfers in the Rural Payments service.', async () => {
+    const options = {
+      method: 'GET',
+      url: '/delinked-calculator'
+    }
+
+    const result = await server.inject(options)
+    expect(result.request.response._payload._data).toContain('You can view your current reference amount and any data transfers in the')
+    expect(result.request.response._payload._data).toContain('https://www.ruralpayments.service.gov.uk/customer-account/login')
+  })
+
+  test('GET /delinked-calculator fifth paragraph says Do not include commas in the amount you enter. For example, enter £20,000 as 20000.', async () => {
+    const options = {
+      method: 'GET',
+      url: '/delinked-calculator'
+    }
+
+    const result = await server.inject(options)
+    expect(result.request.response._payload._data).toContain('Do not include commas in the amount you enter. For example, enter £20,000 as 20000.')
   })
 })

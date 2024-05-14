@@ -41,11 +41,11 @@ describe('home page to test the new version of the PRC', () => {
 
     const result = await server.inject(options)
     expect(result.request.response._payload._data).toContain(
-      'Calculate my progressive reductions'
+      'Calculate your delinked payment'
     )
   })
 
-  test('GET / layout includes Progressive reductions: calculate how BPS and delinked payments will reduce header', async () => {
+  test('GET / layout includes Calculate your delinked payment', async () => {
     const options = {
       method: 'GET',
       url: '/'
@@ -53,11 +53,11 @@ describe('home page to test the new version of the PRC', () => {
 
     const result = await server.inject(options)
     expect(result.request.response._payload._data).toContain(
-      'Progressive reductions: calculate how BPS and delinked payments will reduce'
+      'Calculate your delinked payment'
     )
   })
 
-  test('GET / first paragraph says Payments from the Basic Payment Scheme (BPS) in England are reducing each year from 2021 until the end of the 2023 scheme year.', async () => {
+  test('GET / first paragraph says Delinked payments have replaced Basic Payment Scheme (BPS) payments in England. These will reduce each year until they finish at the end of 2027.', async () => {
     const options = {
       method: 'GET',
       url: '/'
@@ -65,11 +65,11 @@ describe('home page to test the new version of the PRC', () => {
 
     const result = await server.inject(options)
     expect(result.request.response._payload._data).toContain(
-      'Payments from the Basic Payment Scheme (BPS) in England are reducing each year from 2021 until the end of the 2023 scheme year.'
+      'Delinked payments have replaced Basic Payment Scheme (BPS) payments in England. These will reduce each year until they finish at the end of 2027.'
     )
   })
 
-  test('GET / second paragraph says Delinked payments will replace BPS payments in England in 2024 and will reduce each year until these payments finish', async () => {
+  test('GET / second paragraph says Reductions to delinked payments are known as progressive reductions.', async () => {
     const options = {
       method: 'GET',
       url: '/'
@@ -77,47 +77,11 @@ describe('home page to test the new version of the PRC', () => {
 
     const result = await server.inject(options)
     expect(result.request.response._payload._data).toContain(
-      'Delinked payments will replace BPS payments in England in 2024 and will reduce each year until these payments finish'
+      'Reductions to delinked payments are known as progressive reductions.'
     )
   })
 
-  test('GET / third paragraph says These reductions to BPS and delinked payments are known as progressive reductions.', async () => {
-    const options = {
-      method: 'GET',
-      url: '/'
-    }
-
-    const result = await server.inject(options)
-    expect(result.request.response._payload._data).toContain(
-      'These reductions to BPS and delinked payments are known as progressive reductions.'
-    )
-  })
-
-  test('GET / fourth paragraph says Use the BPS calculator to get an estimate of how progressive reductions could affect your BPS payments from 2021 to 2023.', async () => {
-    const options = {
-      method: 'GET',
-      url: '/'
-    }
-
-    const result = await server.inject(options)
-    expect(result.request.response._payload._data).toContain(
-      'Use the BPS calculator to get an estimate of how progressive reductions could affect your BPS payments from 2021 to 2023.'
-    )
-  })
-
-  test('GET / fifth paragraph says Use the delinked payments calculator to get an estimate of how progressive reductions could affect your delinked payment in 2024.', async () => {
-    const options = {
-      method: 'GET',
-      url: '/'
-    }
-
-    const result = await server.inject(options)
-    expect(result.request.response._payload._data).toContain(
-      'Use the delinked payments calculator to get an estimate of how progressive reductions could affect your delinked payment in 2024. This estimate is based on the progressive reduction figures proposed in our Agricultural Transition Plan, published in 2020.'
-    )
-  })
-
-  test('GET / sixth paragraph says To receive delinked payments, you must have claimed, and been eligible for, BPS 2023 in England (except in some inheritance cases).', async () => {
+  test('GET / third paragraph says To receive delinked payments, you must have claimed, and been eligible for, BPS 2023 in England (except in some inheritance cases).', async () => {
     const options = {
       method: 'GET',
       url: '/'
@@ -129,7 +93,19 @@ describe('home page to test the new version of the PRC', () => {
     )
   })
 
-  test('GET / seventh paragraph says Calculations should be quick and will not ask for personal information.', async () => {
+  test('GET / fourth paragraph says Use this calculator to estimate how the progressive reduction could reduce your delinked payment for 2024.', async () => {
+    const options = {
+      method: 'GET',
+      url: '/'
+    }
+
+    const result = await server.inject(options)
+    expect(result.request.response._payload._data).toContain(
+      'Use this calculator to estimate how the progressive reduction could reduce your delinked payment for 2024.'
+    )
+  })
+
+  test('GET / fifth paragraph says Calculations should be quick and will not ask for personal information.', async () => {
     const options = {
       method: 'GET',
       url: '/'
@@ -141,7 +117,7 @@ describe('home page to test the new version of the PRC', () => {
     )
   })
 
-  test('GET / eighth paragraph says Call the Rural Payments helpline on 03000 200 301 if you need help using this calculator.', async () => {
+  test('GET / sixth paragraph says Call the Rural Payments helpline on 03000 200 301 if you need help using this calculator.).', async () => {
     const options = {
       method: 'GET',
       url: '/'
@@ -153,7 +129,7 @@ describe('home page to test the new version of the PRC', () => {
     )
   })
 
-  test("GET / ninth paragraph says Defra and the Rural Payments Agency (RPA) will publish more information about reductions to delinked payments from 2025 to 2027 when it's available.", async () => {
+  test('GET / seventh paragraph says The Rural Payments Agency (RPA) will publish the reductions to delinked payments from 2025 to 2027 when they\'re available.', async () => {
     const options = {
       method: 'GET',
       url: '/'
@@ -161,11 +137,11 @@ describe('home page to test the new version of the PRC', () => {
 
     const result = await server.inject(options)
     expect(result.request.response._payload._data).toContain(
-      "Defra and the Rural Payments Agency (RPA) will publish more information about reductions to delinked payments from 2025 to 2027 when it's available."
+      'The Rural Payments Agency (RPA) will publish the reductions to delinked payments from 2025 to 2027 when they\'re available.'
     )
   })
 
-  test('GET / tenth paragraph says New schemes and grants are funded through the reductions to BPS and delinked payments.', async () => {
+  test('GET / eighth paragraph says The reductions to delinked payments help fund new schemes and grants', async () => {
     const options = {
       method: 'GET',
       url: '/'
@@ -173,7 +149,31 @@ describe('home page to test the new version of the PRC', () => {
 
     const result = await server.inject(options)
     expect(result.request.response._payload._data).toContain(
-      'through the reductions to BPS and delinked payments.'
+      'The reductions to delinked payments help fund'
+    )
+    expect(result.request.response._payload._data).toContain(
+      'https://www.gov.uk/guidance/funding-for-farmers'
+    )
+    expect(result.request.response._payload._data).toContain(
+      'new schemes and grants.'
+    )
+  })
+
+  test('GET / ninth paragraph says You can read more about delinked payments: replacing the Basic Payment Scheme.', async () => {
+    const options = {
+      method: 'GET',
+      url: '/'
+    }
+
+    const result = await server.inject(options)
+    expect(result.request.response._payload._data).toContain(
+      'You can read more about '
+    )
+    expect(result.request.response._payload._data).toContain(
+      'https://www.gov.uk/guidance/delinked-payments-replacing-the-basic-payment-scheme'
+    )
+    expect(result.request.response._payload._data).toContain(
+      'delinked payments: replacing the Basic Payment Scheme.'
     )
   })
 })

@@ -40,6 +40,6 @@ describe('home route', () => {
     }
 
     const result = await server.inject(options)
-    expect(result.request.response.source.manager._context.serviceName).toBe('Calculate my progressive reductions')
+    expect(result.request.response.source.manager._context.serviceName).toBe('Calculate your delinked payment')
   })
 })
