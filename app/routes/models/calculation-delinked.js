@@ -1,22 +1,42 @@
 const bands = require('../../calculation/bands')
-const schemeYears = require('../../calculation/scheme-years')
+const { schemeYears } = require('../../calculation/scheme-years')
 const toCurrencyString = require('../../utils/to-currency-string')
 
 function ViewModel (value, calculations) {
   const delinkedCalculation = {
-    ...calculations,
-    overallResult: calculations.overallResult.slice(-1)
+    ...calculations
   }
-  this.model = {
-    confirmation: createSummary(value),
-    paymentBand: createPaymentBandTable(delinkedCalculation, { property: 'rate', text: '', caption: 'Percentage reduction for 2024', formatType: 'percentage', showOverall: false }),
-    reduction: createTableDefinition(delinkedCalculation, { property: 'reduction', text: 'Total progressive reduction', caption: 'Progressive reduction applied to your payment for 2024', formatType: 'currency', showOverall: true }),
-    paymentSummary: createPaymentSummary(delinkedCalculation, { caption: 'Estimated delinked payment in 2024' })
-  }
-}
 
-function createSummary (value) {
-  return `Your estimated delinked payment is based on a reference amount of ${toCurrencyString(value)}, with a progressive reduction applied.`
+  this.model = {
+    years: schemeYears,
+    year: {}
+  }
+
+  schemeYears.forEach(year => {
+    this.model.year[year] = {
+      confirmation: createSummary(value),
+      paymentBand: createPaymentBandTable(delinkedCalculation, {
+        property: 'rate',
+        text: '',
+        caption: `Percentage reduction for ${year}`,
+        formatType: 'percentage',
+        showOverall: false,
+        year
+      }),
+      reduction: createTableDefinition(delinkedCalculation, {
+        property: 'reduction',
+        text: 'Total progressive reduction',
+        caption: `Progressive reduction applied to your payment for ${year}`,
+        formatType: 'currency',
+        showOverall: true,
+        year
+      }),
+      paymentSummary: createPaymentSummary(delinkedCalculation, {
+        caption: `Estimated delinked payment in ${year}`,
+        year
+      })
+    }
+  })
 }
 
 function createPaymentBandTable (calculations, options) {
@@ -24,7 +44,7 @@ function createPaymentBandTable (calculations, options) {
     caption: options.caption,
     captionClasses: 'govuk-table__caption--m',
     firstCellIsHeader: true,
-    head: getPaymentBandHeaderRow(),
+    head: getPaymentBandHeaderRow(options.year),
     rows: populateData(calculations, options)
   }
 }
@@ -34,23 +54,27 @@ function createTableDefinition (calculations, options) {
     caption: options.caption,
     captionClasses: 'govuk-table__caption--m',
     firstCellIsHeader: true,
-    head: getHeaderRow(),
+    head: getHeaderRow(options.year),
     rows: populateData(calculations, options)
   }
 }
 
 function createPaymentSummary (calculations, options) {
   const data = []
-  calculations.overallResult.map((x) => {
-    data.push(
-      [
+  console.log('Payment Summary Debug:', {
+    year: options.year,
+    availableYears: calculations.overallResult.map(x => x.schemeYear)
+  })
+
+  calculations.overallResult
+    .filter(x => x.schemeYear === options.year)
+    .forEach(x => {
+      data.push([
         { text: x.schemeYear.toString(), format: 'numeric' },
         { text: toCurrencyString(x.reduction), format: 'numeric' },
         { text: toCurrencyString(x.payment), format: 'numeric', classes: 'govuk-body govuk-!-font-weight-bold' }
-      ]
-    )
-    return x
-  })
+      ])
+    })
 
   return {
     caption: options.caption,
@@ -61,30 +85,8 @@ function createPaymentSummary (calculations, options) {
   }
 }
 
-function getPaymentBandHeaderRow () {
-  return [
-    {
-      text: 'Scheme year',
-      classes: 'govuk-!-width-one-half'
-    },
-    {
-      text: '2024',
-      format: 'numeric'
-    }
-  ]
-}
-
-function getHeaderRow () {
-  return [
-    {
-      text: 'Payment band',
-      classes: 'govuk-!-width-one-half'
-    },
-    {
-      text: '2024',
-      format: 'numeric'
-    }
-  ]
+function createSummary (value) {
+  return `Your estimated delinked payment is based on a reference amount of ${toCurrencyString(value)}, with a progressive reduction applied.`
 }
 
 function getSummaryHeaderRow () {
@@ -103,31 +105,57 @@ function getSummaryHeaderRow () {
   ]
 }
 
+function getPaymentBandHeaderRow (year) {
+  return [
+    {
+      text: 'Scheme year',
+      classes: 'govuk-!-width-one-half'
+    },
+    {
+      text: year.toString(),
+      format: 'numeric'
+    }
+  ]
+}
+
+function getHeaderRow (year) {
+  return [
+    {
+      text: 'Payment band',
+      classes: 'govuk-!-width-one-half'
+    },
+    {
+      text: year.toString(),
+      format: 'numeric'
+    }
+  ]
+}
+
 function populateData (calculations, options) {
-  const reductionData = calculations.bandResult.map(x => toRow(x, options.property, options.formatType))
+  const reductionData = calculations.bandResult.map(x =>
+    toRow(x, options.property, options.formatType, options.year)
+  )
   if (options.showOverall) {
-    reductionData.push(populateOverall(calculations, options.property, options.text).flat())
+    reductionData.push(populateOverall(calculations, options.property, options.text, options.year).flat())
   }
   return reductionData
 }
 
-function toRow (delinkedResults, property, formatType) {
+function toRow (delinkedResults, property, formatType, year) {
   const results = {
     ...delinkedResults,
-    result: delinkedResults.result.slice(-1)
-
+    result: delinkedResults.result.filter(r => r.schemeYear === year)
   }
+
   const data = []
   data.push({ text: getBandText(results.band) })
-  results.result.map((x) => {
-    data.push(
-      {
-        text: (formatType === 'currency'
-          ? toCurrencyString(x[property])
-          : calculatePercentage(x, property)),
-        format: 'numeric'
-      })
-    return x
+  results.result.forEach((x) => {
+    data.push({
+      text: (formatType === 'currency'
+        ? toCurrencyString(x[property])
+        : calculatePercentage(x, property)),
+      format: 'numeric'
+    })
   })
   return fillGaps(results, data, formatType)
 }
@@ -146,9 +174,7 @@ function fillGaps (results, data, formatType) {
   const minSchemeYear = Math.min(Math, ...schemeYears)
 
   const missingData = {
-    text: (formatType === 'currency'
-      ? '£0.00'
-      : '0%'),
+    text: (formatType === 'currency' ? '£0.00' : '0%'),
     format: 'numeric'
   }
 
@@ -164,21 +190,21 @@ function fillGaps (results, data, formatType) {
   return data
 }
 
-function populateOverall (calculations, property, text) {
-  const overall = calculations.overallResult.map((x, index) => overallToRow(x, property, index))
+function populateOverall (calculations, property, text, year) {
+  const overall = calculations.overallResult
+    .filter(x => x.schemeYear === year)
+    .map((x, index) => overallToRow(x, property, index))
   overall.unshift({ text })
   return overall
 }
 
 function overallToRow (overallResult, property, index) {
-  const data = []
-  data.push({
-    schemeYear: schemeYears[index],
+  return [{
+    schemeYear: overallResult.schemeYear,
     text: toCurrencyString(overallResult[property]),
     format: 'numeric',
     classes: 'govuk-body govuk-!-font-weight-bold'
-  })
-  return data
+  }]
 }
 
 module.exports = ViewModel

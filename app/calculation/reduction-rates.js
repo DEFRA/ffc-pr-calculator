@@ -1,65 +1,33 @@
 module.exports = [{
   band: 1,
-  rate: 0.05,
-  schemeYear: 2021
-}, {
-  band: 1,
-  rate: 0.20,
-  schemeYear: 2022
-}, {
-  band: 1,
-  rate: 0.35,
-  schemeYear: 2023
-}, {
-  band: 1,
   rate: 0.50,
   schemeYear: 2024
 }, {
-  band: 2,
-  rate: 0.10,
-  schemeYear: 2021
-}, {
-  band: 2,
-  rate: 0.25,
-  schemeYear: 2022
-}, {
-  band: 2,
-  rate: 0.40,
-  schemeYear: 2023
+  band: 1,
+  rate: 0.76,
+  schemeYear: 2025
 }, {
   band: 2,
   rate: 0.55,
   schemeYear: 2024
 }, {
-  band: 3,
-  rate: 0.20,
-  schemeYear: 2021
-}, {
-  band: 3,
-  rate: 0.35,
-  schemeYear: 2022
-}, {
-  band: 3,
-  rate: 0.50,
-  schemeYear: 2023
+  band: 2,
+  rate: 0.999999,
+  schemeYear: 2025
 }, {
   band: 3,
   rate: 0.65,
   schemeYear: 2024
 }, {
-  band: 4,
-  rate: 0.25,
-  schemeYear: 2021
-}, {
-  band: 4,
-  rate: 0.40,
-  schemeYear: 2022
-}, {
-  band: 4,
-  rate: 0.55,
-  schemeYear: 2023
+  band: 3,
+  rate: 0.999999,
+  schemeYear: 2025
 }, {
   band: 4,
   rate: 0.70,
   schemeYear: 2024
+}, {
+  band: 4,
+  rate: 0.999999,
+  schemeYear: 2025
 }]

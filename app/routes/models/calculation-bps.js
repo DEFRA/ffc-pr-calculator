@@ -1,5 +1,5 @@
 const bands = require('../../calculation/bands')
-const schemeYears = require('../../calculation/scheme-years')
+const { schemeYears } = require('../../calculation/scheme-years')
 const toCurrencyString = require('../../utils/to-currency-string')
 
 function ViewModel (value, calculations) {
