@@ -165,6 +165,9 @@ function getBandText (band) {
 }
 
 function calculatePercentage (x, property) {
+  if (Math.abs(x[property] - 1) < 0.0000001) {
+    return '100%'
+  }
   return `${x.payment > 0 ? Math.round(x[property] * 100) : 0}%`
 }
 

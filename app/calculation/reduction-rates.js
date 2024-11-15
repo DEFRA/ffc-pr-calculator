@@ -12,7 +12,7 @@ module.exports = [{
   schemeYear: 2024
 }, {
   band: 2,
-  rate: 0.99999999999,
+  rate: 1,
   schemeYear: 2025
 }, {
   band: 3,
@@ -20,7 +20,7 @@ module.exports = [{
   schemeYear: 2024
 }, {
   band: 3,
-  rate: 0.99999999999,
+  rate: 1,
   schemeYear: 2025
 }, {
   band: 4,
@@ -28,6 +28,6 @@ module.exports = [{
   schemeYear: 2024
 }, {
   band: 4,
-  rate: 0.99999999999,
+  rate: 1,
   schemeYear: 2025
 }]

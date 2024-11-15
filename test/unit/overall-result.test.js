@@ -37,8 +37,8 @@ describe('calculate overall results', () => {
 
     expect(result.overallResult[0].schemeYear).toBe(2025)
     expect(result.overallResult[0].value).toBe(35000)
-    expect(result.overallResult[0].reduction).toBe(27799.99)
-    expect(result.overallResult[0].payment).toBe(7200.01)
+    expect(result.overallResult[0].reduction).toBe(27800)
+    expect(result.overallResult[0].payment).toBe(7200)
   })
 
   test('returns correct values for object input', () => {
@@ -49,15 +49,15 @@ describe('calculate overall results', () => {
     const result = calculate(values)
     expect(result.overallResult.length).toBe(2)
 
-    expect(result.overallResult[0].schemeYear).toBe(2024)
-    expect(result.overallResult[0].value).toBe(1000)
-    expect(result.overallResult[0].reduction).toBe(500)
-    expect(result.overallResult[0].payment).toBe(500)
+    expect(result.overallResult[1].schemeYear).toBe(2024)
+    expect(result.overallResult[1].value).toBe(1000)
+    expect(result.overallResult[1].reduction).toBe(500)
+    expect(result.overallResult[1].payment).toBe(500)
 
-    expect(result.overallResult[1].schemeYear).toBe(2025)
-    expect(result.overallResult[1].value).toBe(2000)
-    expect(result.overallResult[1].reduction).toBe(1520) // 76% of 2000
-    expect(result.overallResult[1].payment).toBe(480)
+    expect(result.overallResult[0].schemeYear).toBe(2025)
+    expect(result.overallResult[0].value).toBe(2000)
+    expect(result.overallResult[0].reduction).toBe(1520) // 76% of 2000
+    expect(result.overallResult[0].payment).toBe(480)
   })
 
   test('handles missing year values', () => {
@@ -67,14 +67,14 @@ describe('calculate overall results', () => {
     const result = calculate(values)
     expect(result.overallResult.length).toBe(2)
 
-    expect(result.overallResult[0].schemeYear).toBe(2024)
-    expect(result.overallResult[0].value).toBe(1000)
-    expect(result.overallResult[0].reduction).toBe(500)
-    expect(result.overallResult[0].payment).toBe(500)
+    expect(result.overallResult[1].schemeYear).toBe(2024)
+    expect(result.overallResult[1].value).toBe(1000)
+    expect(result.overallResult[1].reduction).toBe(500)
+    expect(result.overallResult[1].payment).toBe(500)
 
-    expect(result.overallResult[1].schemeYear).toBe(2025)
-    expect(result.overallResult[1].value).toBe(0)
-    expect(result.overallResult[1].reduction).toBe(0)
-    expect(result.overallResult[1].payment).toBe(0)
+    expect(result.overallResult[0].schemeYear).toBe(2025)
+    expect(result.overallResult[0].value).toBe(0)
+    expect(result.overallResult[0].reduction).toBe(0)
+    expect(result.overallResult[0].payment).toBe(0)
   })
 })

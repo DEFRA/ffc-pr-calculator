@@ -8,12 +8,36 @@ const calculateOverall = (schemeYearValues, bandResults) => {
 const calculateSchemeYear = (schemeYear, value, bandResults) => {
   const schemeYearResults = []
 
-  bandResults.map(x => x.result.filter(y => y.schemeYear === schemeYear).map(z => schemeYearResults.push(z)))
+  console.log(`\n=== Processing ${schemeYear} ===`)
+  console.log(`Initial value: ${value}`)
 
-  const reduction = Math.floor(schemeYearResults.reduce((x, y) => x + y.reductionInPence, 0))
-  let payment = Math.ceil(schemeYearResults.reduce((x, y) => x + y.paymentInPence, 0))
-  const variation = value - reduction - payment
-  payment += variation
+  // Log band structure before processing
+  console.log('Available bands:', bandResults.map(b => ({
+    band: b.band,
+    resultCount: b.result.length
+  })))
+
+  bandResults.forEach(band => {
+    const yearResults = band.result.filter(y => y.schemeYear === schemeYear)
+    console.log(`\nBand ${band.band} for ${schemeYear}:`)
+    console.log('Value:', yearResults.map(r => ({
+      reductionInPence: r.reductionInPence,
+      payment: r.payment
+    })))
+    schemeYearResults.push(...yearResults)
+  })
+
+  const reduction = Math.floor(schemeYearResults.reduce((x, y) => {
+    console.log(`Adding band reduction: ${y.reductionInPence} (${y.payment})`)
+    return x + y.reductionInPence
+  }, 0))
+
+  let payment = value - reduction
+  payment = Math.ceil(payment)
+
+  console.log(`\nSummary for ${schemeYear}:`)
+  console.log(`Total reduction: ${reduction}`)
+  console.log(`Final payment: ${payment}`)
 
   return {
     schemeYear,

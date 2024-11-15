@@ -1,10 +1,23 @@
 const { convertToPounds } = require('./convert-currency')
 
 const calculateReduction = (valueInPence, reductionRate) => {
-  const reduction = Math.floor(valueInPence * reductionRate.rate)
-  let payment = Math.ceil(valueInPence - reduction)
-  const variation = valueInPence - reduction - payment
-  payment += variation
+  // Calculate band-specific reduction using proper thresholds
+  const bandValue = reductionRate.threshold
+    ? Math.min(valueInPence, reductionRate.threshold)
+    : valueInPence
+
+  // Ensure rate cannot exceed 1.0 (100%)
+  const effectiveRate = Math.min(reductionRate.rate, 1.0)
+
+  const reduction = Math.floor(bandValue * effectiveRate)
+  const payment = bandValue - reduction
+
+  console.log('Calculated values:', {
+    bandValue,
+    effectiveRate,
+    reduction,
+    payment
+  })
 
   return {
     schemeYear: reductionRate.schemeYear,

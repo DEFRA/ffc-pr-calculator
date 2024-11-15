@@ -7,8 +7,8 @@ const { schemeYears } = require('./scheme-years')
 const calculate = (value) => {
   const schemeYearValues = !isNaN(value)
     ? schemeYears.map(schemeYear => ({ schemeYear, value }))
-    : [{ schemeYear: 2024, value: value.value2024 || 0 },
-        { schemeYear: 2025, value: value.value2025 || 0 }]
+    : [{ schemeYear: 2025, value: value.value2025 || 0 },
+        { schemeYear: 2024, value: value.value2024 || 0 }]
 
   const bandResult = calculateBands(schemeYearValues)
 
