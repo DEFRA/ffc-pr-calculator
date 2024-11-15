@@ -8,27 +8,12 @@ const calculateOverall = (schemeYearValues, bandResults) => {
 const calculateSchemeYear = (schemeYear, value, bandResults) => {
   const schemeYearResults = []
 
-  console.log(`\n=== Processing ${schemeYear} ===`)
-  console.log(`Initial value: ${value}`)
-
-  // Log band structure before processing
-  console.log('Available bands:', bandResults.map(b => ({
-    band: b.band,
-    resultCount: b.result.length
-  })))
-
   bandResults.forEach(band => {
     const yearResults = band.result.filter(y => y.schemeYear === schemeYear)
-    console.log(`\nBand ${band.band} for ${schemeYear}:`)
-    console.log('Value:', yearResults.map(r => ({
-      reductionInPence: r.reductionInPence,
-      payment: r.payment
-    })))
     schemeYearResults.push(...yearResults)
   })
 
   const reduction = Math.floor(schemeYearResults.reduce((x, y) => {
-    console.log(`Adding band reduction: ${y.reductionInPence} (${y.payment})`)
     return x + y.reductionInPence
   }, 0))
 

@@ -61,11 +61,6 @@ function createTableDefinition (calculations, options) {
 
 function createPaymentSummary (calculations, options) {
   const data = []
-  console.log('Payment Summary Debug:', {
-    year: options.year,
-    availableYears: calculations.overallResult.map(x => x.schemeYear)
-  })
-
   calculations.overallResult
     .filter(x => x.schemeYear === options.year)
     .forEach(x => {
