@@ -1,10 +1,14 @@
 const { convertToPounds } = require('./convert-currency')
 
 const calculateReduction = (valueInPence, reductionRate) => {
-  const reduction = Math.floor(valueInPence * reductionRate.rate)
-  let payment = Math.ceil(valueInPence - reduction)
-  const variation = valueInPence - reduction - payment
-  payment += variation
+  const bandValue = reductionRate.threshold
+    ? Math.min(valueInPence, reductionRate.threshold)
+    : valueInPence
+
+  const effectiveRate = Math.min(reductionRate.rate, 1.0)
+
+  const reduction = Math.floor(bandValue * effectiveRate)
+  const payment = bandValue - reduction
 
   return {
     schemeYear: reductionRate.schemeYear,

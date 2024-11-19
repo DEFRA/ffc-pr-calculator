@@ -1,1 +1,4 @@
-module.exports = [2021, 2022, 2023, 2024]
+const schemeYears = [2025, 2024]
+module.exports = {
+  schemeYears
+}

@@ -101,7 +101,7 @@ describe('home page to test the new version of the PRC', () => {
 
     const result = await server.inject(options)
     expect(result.request.response._payload._data).toContain(
-      'Use this calculator to estimate how the progressive reduction could reduce your delinked payment for 2024.'
+      'Use this calculator to estimate how progressive reductions could reduce your delinked payment for 2025. The estimate for 2025 is based on the proposed progressive reduction figures for 2025 shown in the <a class="govuk-link" rel="external" href="https://www.gov.uk/guidance/delinked-payments-replacing-the-basic-payment-scheme"> delinked payments guidance</a>. The calculator also shows how progressive reductions affected your 2024 delinked payment.'
     )
   })
 
@@ -137,7 +137,7 @@ describe('home page to test the new version of the PRC', () => {
 
     const result = await server.inject(options)
     expect(result.request.response._payload._data).toContain(
-      'The Rural Payments Agency (RPA) will publish the reductions to delinked payments from 2025 to 2027 when they\'re available.'
+      'The Rural Payments Agency (RPA) will publish the reductions to delinked payments from 2026 to 2027 when they\'re available.'
     )
   })
 
