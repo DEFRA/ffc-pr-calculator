@@ -159,7 +159,7 @@ describe('Calculation Delinked View Model', () => {
   describe('Schedule Text', () => {
     test('displays correct 2024 schedule text', () => {
       expect(viewModel.model.year[2024].schedule.text)
-        .toBe('We paid the 2024 delinked payment in 2 instalments.')
+        .toBe('We paid the 2024 delinked payment in 2 instalments from 1 August with the balance payment from September.')
     })
 
     test('displays correct 2025 schedule text', () => {
