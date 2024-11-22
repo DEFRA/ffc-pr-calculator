@@ -1,6 +1,7 @@
 const bands = require('../../calculation/bands')
 const { schemeYears } = require('../../calculation/scheme-years')
 const toCurrencyString = require('../../utils/to-currency-string')
+const schedule = require('../../utils/year-tab-schedule')
 
 function ViewModel (value, calculations) {
   const delinkedCalculation = {
@@ -34,9 +35,18 @@ function ViewModel (value, calculations) {
       paymentSummary: createPaymentSummary(delinkedCalculation, {
         caption: `Estimated delinked payment in ${year}`,
         year
-      })
+      }),
+      schedule: {
+        text: getScheduleText(year),
+        caption: `Payment schedule for ${year}`
+      }
     }
   })
+}
+
+const getScheduleText = (year) => {
+  const yearSchedule = schedule.find(s => s.year === year)
+  return yearSchedule ? yearSchedule.text : ''
 }
 
 function createPaymentBandTable (calculations, options) {

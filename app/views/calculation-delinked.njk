@@ -29,9 +29,7 @@
 
           {{ govukTable(model.year[year].paymentSummary) }}
 
-          <p class="govuk-body">
-            We plan to make the payment in 2 instalments - an advance payment of around 50% from 1 August with the balance payment from September.
-          </p>
+          <p class="govuk-body">{{ model.year[year].schedule.text }}</p>
 
           {{ govukTable(model.year[year].reduction) }}
           {{ govukTable(model.year[year].paymentBand) }}
