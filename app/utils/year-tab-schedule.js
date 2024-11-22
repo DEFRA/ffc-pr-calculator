@@ -4,5 +4,5 @@ module.exports = [{
 },
 {
   year: 2024,
-  text: 'We paid the 2024 delinked payment in 2 instalments.'
+  text: 'We paid the 2024 delinked payment in 2 instalments from 1 August with the balance payment from September.'
 }]
