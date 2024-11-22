@@ -77,17 +77,52 @@ describe('Calculation Delinked View Model', () => {
   })
 
   describe('Schedule Text', () => {
-    test('displays correct 2024 schedule text', () => {
-      expect(viewModel.model.year[2024].schedule.text)
-        .toBe('We paid the 2024 delinked payment in 2 instalments.')
-    })
+    describe('text content', () => {
+      test('displays correct 2024 schedule text', () => {
+        expect(viewModel.model.year[2024].schedule.text)
+          .toBe('We paid the 2024 delinked payment in 2 instalments.')
+      })
 
-    test('displays correct 2025 schedule text', () => {
-      expect(viewModel.model.year[2025].schedule.text)
-        .toBe('We plan to make the payment in 2 instalments - an advance payment of around 50% from 1 August with the balance payment from December.')
+      test('displays correct 2025 schedule text', () => {
+        expect(viewModel.model.year[2025].schedule.text)
+          .toBe('We plan to make the payment in 2 instalments - an advance payment of around 50% from 1 August with the balance payment from December.')
+      })
+
+      test('non-existent year is not added to model', () => {
+        const invalidCalculations = {
+          bandResult: [{
+            band: 1,
+            result: [{
+              schemeYear: 2023,
+              rate: 0.50,
+              payment: 25698.95,
+              reduction: 12849.48
+            }]
+          }],
+          overallResult: [{
+            schemeYear: 2023,
+            payment: 12849.47,
+            reduction: 12849.48
+          }]
+        }
+        const invalidViewModel = new ViewModel(mockValue, invalidCalculations)
+        expect(invalidViewModel.model.year[2023]).toBeUndefined()
+      })
     })
   })
+  describe('structure', () => {
+    const years = [2024, 2025]
 
+    years.forEach(year => {
+      test(`${year} schedule has correct structure`, () => {
+        const schedule = viewModel.model.year[year].schedule
+        expect(schedule).toEqual({
+          text: expect.any(String),
+          caption: `Payment schedule for ${year}`
+        })
+      })
+    })
+  })
   describe('Payment Calculations', () => {
     test('2024 payment summary shows correct values', () => {
       const summary = viewModel.model.year[2024].paymentSummary
