@@ -18,7 +18,7 @@ jest.mock('../../app/utils/year-tab-schedule', () => ([
   },
   {
     year: 2024,
-    text: 'We paid the 2024 delinked payment in 2 instalments.'
+    text: 'We paid the 2024 delinked payment in 2 instalments from 1 August with the balance payment from September.'
   }
 ]))
 
@@ -80,7 +80,7 @@ describe('Calculation Delinked View Model', () => {
     describe('text content', () => {
       test('displays correct 2024 schedule text', () => {
         expect(viewModel.model.year[2024].schedule.text)
-          .toBe('We paid the 2024 delinked payment in 2 instalments.')
+          .toBe('We paid the 2024 delinked payment in 2 instalments from 1 August with the balance payment from September.')
       })
 
       test('displays correct 2025 schedule text', () => {
