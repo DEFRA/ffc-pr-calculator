@@ -14,7 +14,7 @@ jest.mock('../../app/calculation/scheme-years', () => ({
 jest.mock('../../app/utils/year-tab-schedule', () => ([
   {
     year: 2025,
-    text: 'We plan to make the payment in 2 instalments - an advance payment of around 50% from 1 August with the balance payment from December.'
+    text: 'We plan to make the payment from 1 August.'
   },
   {
     year: 2024,
@@ -85,7 +85,7 @@ describe('Calculation Delinked View Model', () => {
 
       test('displays correct 2025 schedule text', () => {
         expect(viewModel.model.year[2025].schedule.text)
-          .toBe('We plan to make the payment in 2 instalments - an advance payment of around 50% from 1 August with the balance payment from December.')
+          .toBe('We plan to make the payment from 1 August.')
       })
 
       test('non-existent year is not added to model', () => {
@@ -164,7 +164,7 @@ describe('Calculation Delinked View Model', () => {
 
     test('displays correct 2025 schedule text', () => {
       expect(viewModel.model.year[2025].schedule.text)
-        .toBe('We plan to make the payment in 2 instalments - an advance payment of around 50% from 1 August with the balance payment from December.')
+        .toBe('We plan to make the payment from 1 August.')
     })
 
     test('2024 schedule has correct structure', () => {
