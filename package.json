@@ -1,6 +1,6 @@
 {
   "name": "ffc-pr-calculator",
-  "version": "1.16.24",
+  "version": "1.16.25",
   "description": "FFC Progressive Reductions calculator",
   "homepage": "https://github.com/DEFRA/ffc-pr-calculator",
   "main": "app/index.js",
@@ -25,7 +25,8 @@
     "Kaz Iyiola kaz.iyiola@defra.gov.uk",
     "Simon Dunn simon.dunn1@defra.gov.uk",
     "Marc Templeton m.templeton@kainos.com",
-    "Leigh Godson leigh.godson.external@eviden.com"
+    "Leigh Godson leigh.godson.external@eviden.com",
+    "Sam Plackett samuel.plackett@eviden.com"
   ],
   "license": "OGL-UK-3.0",
   "dependencies": {
