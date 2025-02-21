@@ -2,7 +2,7 @@ Feature: FFC-PR-CALCULATOR
 
   Scenario: 001-Calculate delinked payment for a farmer
     Given I open the url "/"
-    When I click on start new calculator button ".govuk-button--start"
+    When I click on the element "button.govuk-button--start"
     Then I expect that the url contains "/delinked-calculator"
     When I add "500" to the inputfield "#value"
     And I click on Next button "#submit"
@@ -12,7 +12,7 @@ Feature: FFC-PR-CALCULATOR
   Scenario: 003-User can click on Farming is changing link
     Given I open the url "/"
     When I click on the element "#farming-is-changing-link"
-    Then I expect that the url contain "/funding-for-farmers"
+    Then I expect that the url contain "gov.uk/guidance/funding-for-farmers"
 
   Scenario: 004-User can click on Agricultural transition link
     Given I open the url "/"
