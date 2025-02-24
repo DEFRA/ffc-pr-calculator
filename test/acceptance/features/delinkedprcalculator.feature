@@ -2,7 +2,7 @@ Feature: FFC-PR-CALCULATOR
 
   Scenario: 001-Calculate delinked payment for a farmer
     Given I open the url "/"
-    When I click on start new calculator button ".govuk-button--start"
+    When I click on start new calculator button "#submit"
     Then I expect that the url contains "/delinked-calculator"
     When I add "500" to the inputfield "#value"
     And I click on Next button "#submit"
@@ -26,14 +26,14 @@ Feature: FFC-PR-CALCULATOR
 
   Scenario: 006-User can click on Gov.uk link
     Given I open the url "/"
-    When I click on start new calculator button ".govuk-button--start"
+    When I click on start new calculator button "#submit"
     Then I expect that the url contains "/delinked-calculator"
     When I click on the link "GOV.UK"
     Then I expect that element "h1" contains the text "GOV.UK"
 
   Scenario: 007-User can click on Start now link
     Given I open the url "/"
-    When I click on start new calculator button ".govuk-button--start"
+    When I click on start new calculator button "#submit"
     Then I expect that the url contains "/delinked-calculator"
     When I click on the link "Calculate your delinked payment"
     Then I expect that the url contains "/"
@@ -41,7 +41,7 @@ Feature: FFC-PR-CALCULATOR
 
   Scenario: 008-User can click on Accessibility statement link
     Given I open the url "/"
-    When I click on start new calculator button ".govuk-button--start"
+    When I click on start new calculator button "#submit"
     Then I expect that the url contains "/delinked-calculator"
     When I click on the link "Accessibility statement"
     Then I expect that element "h1" contains the text "Accessibility statement"
@@ -79,7 +79,7 @@ Feature: FFC-PR-CALCULATOR
 
   Scenario: 015-Can navigate back to previous page
     Given I open the url "/"
-    When I click on start new calculator button ".govuk-button--start"
+    When I click on start new calculator button "#submit"
     And I add "500" to the inputfield "#value"
     And I click on Next button "#submit"
     Then I expect that the url contains "/calculation-delinked"

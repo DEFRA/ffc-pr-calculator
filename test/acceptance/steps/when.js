@@ -1,3 +1,5 @@
+import homePage from '../pageobjects/home.page'
+import valuePage from '../pageobjects/value.page'
 import clearInputField from '../support/action/clearInputField'
 import clickElement from '../support/action/clickElement'
 import closeLastOpenedWindow from '../support/action/closeLastOpenedWindow'
@@ -14,23 +16,33 @@ import selectOptionByIndex from '../support/action/selectOptionByIndex'
 import setCookie from '../support/action/setCookie'
 import setInputField from '../support/action/setInputField'
 import setPromptText from '../support/action/setPromptText'
-import valuePage from '../pageobjects/value.page'
-import homePage from '../pageobjects/home.page'
 
 
 
 const { When } = require('cucumber')
 
 When(
-  /^I (click|doubleclick) on the (link|button|element) "([^"]*)?"$/, 
+  /^I (click) on start new calculator (button) "([^"]*)?"$/,
+  async (action, type, selector) => {
+    // Try both selectors
+    try {
+      clickElement(action, type, '#submit')
+    } catch (error) {
+      // Fallback to original selector if first attempt fails
+      clickElement(action, type, selector)
+    }
+  }
+)
+
+When(
+  /^I (click|doubleclick) on the (link|button|element) "([^"]*)?"$/,
   clickElement
 )
 
 When(
-  /^I (click|doubleclick) on the delink (link|button|element) "([^"]*)?"$/, (delink)  =>
- {
-    clickElement(delink)
- });
+  /^I (click|doubleclick) on the delink (link|button|element) "([^"]*)?"$/, (delink) => {
+  clickElement(delink)
+});
 
 When(
   /^I (click) on start new calculator (button) "([^"]*)?"$/,
@@ -40,7 +52,7 @@ When(
 //When I click on the button ".govuk-button--start"
 //When I click on start new calculator button
 
-When( 
+When(
   /^I (click) on option (button) "([^"]*)?"$/,
   clickElement
 )
@@ -51,24 +63,24 @@ When(
 )
 
 
- When(/^I click on Next button$/, () => {
-   InputTypePage.continue();
- });
-
-
-When(/^I click on the backlink$/, function ()  {
-   valuePage.clickBackLink
-  
+When(/^I click on Next button$/, () => {
+  InputTypePage.continue();
 });
 
 
- When(/^I click on usefullink$/, () => {
-    homePage.ProgressiveReductionSupport();
- });
+When(/^I click on the backlink$/, function () {
+  valuePage.clickBackLink
 
- When(/^I click on usefullink farming$/, () => {
-     homePage.FarmingIsChanging();
- });
+});
+
+
+When(/^I click on usefullink$/, () => {
+  homePage.ProgressiveReductionSupport();
+});
+
+When(/^I click on usefullink farming$/, () => {
+  homePage.FarmingIsChanging();
+});
 
 
 When(
