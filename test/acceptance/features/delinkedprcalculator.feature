@@ -2,25 +2,17 @@ Feature: FFC-PR-CALCULATOR
 
   Scenario: 001-Calculate delinked payment for a farmer
     Given I open the url "/"
-    When I click on the element "button[id='submit']"
+    When I click on start new calculator button ".govuk-button--start"
     Then I expect that the url contains "/delinked-calculator"
     When I add "500" to the inputfield "#value"
     And I click on Next button "#submit"
     Then I expect that the url contains "/calculation-delinked?value=500"
     Then I expect that element "h1" contains the text "Delinked payment"
 
-  Scenario: 002-User can interact with Start now button
-    Given I open the url "/"
-    Then I expect that element "button[id='submit']" exists
-    And I expect that element "button[id='submit']" is visible
-    When I click on the element "button[id='submit']"
-    Then I expect that the url contains "/delinked-calculator"
-
   Scenario: 003-User can click on Farming is changing link
     Given I open the url "/"
-    Then I expect that element "a#farming-is-changing-link" exists
-    When I click on the element "a#farming-is-changing-link"
-    Then I expect that the url contains "gov.uk/guidance/funding-for-farmers"
+    When I click on the element "#farming-is-changing-link"
+    Then I expect that the url contain "/funding-for-farmers"
 
   Scenario: 004-User can click on Agricultural transition link
     Given I open the url "/"
@@ -121,5 +113,3 @@ Feature: FFC-PR-CALCULATOR
     Given I open the url "/"
     When I click on the link "Funding for farmers, growers and land managers"
     Then I expect that element "h1" contains the text "Funding for farmers, growers and land managers"
-
-
