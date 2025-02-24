@@ -9,12 +9,14 @@
     "build:watch": "webpack --watch",
     "pretest": "npm run test:lint",
     "test": "jest --runInBand --forceExit",
+    "test:acceptance": "wdio run wdio.conf.js",
     "test:watch": "jest --coverage=false --onlyChanged --watch --runInBand",
     "test:lint": "standard",
     "test:debug": "node --inspect-brk=0.0.0.0 ./node_modules/jest/bin/jest.js --coverage=false --onlyChanged --watch --runInBand --no-cache",
     "start:watch": "npm-run-all --parallel build:watch start:nodemon",
     "start:debug": "nodemon --inspect-brk=0.0.0.0 --ext css,js,njk --legacy-watch app/index.js",
-    "start:nodemon": "nodemon --inspect=0.0.0.0 --ext css,js,njk --legacy-watch app/index.js"
+    "start:nodemon": "nodemon --inspect=0.0.0.0 --ext css,js,njk --legacy-watch app/index.js",
+    "wdio": "wdio run ./wdio.conf.js"
   },
   "author": "Defra DDTS",
   "contributors": [
@@ -43,7 +45,11 @@
     "nunjucks": "3.2.4"
   },
   "devDependencies": {
+    "@wdio/cli": "9.0.7",
+    "@wdio/cucumber-framework": "9.9.0",
+    "@wdio/local-runner": "9.9.3",
     "blipp": "4.0.2",
+    "browserstack-local": "1.5.6",
     "clean-webpack-plugin": "3.0.0",
     "css-loader": "5.2.6",
     "html-webpack-plugin": "5.3.1",
@@ -52,12 +58,13 @@
     "mini-css-extract-plugin": "1.6.0",
     "nodemon": "3.0.1",
     "npm-run-all": "4.1.5",
-    "resolve-url-loader": "^5.0.0",
+    "resolve-url-loader": "5.0.0",
     "sass": "1.32.13",
     "sass-loader": "11.1.1",
     "standard": "16.0.3",
     "style-loader": "2.0.0",
-    "webpack": "^5.96.1",
+    "webdriverio": "9.0.7",
+    "webpack": "5.96.1",
     "webpack-cli": "4.7.0"
   },
   "standard": {
