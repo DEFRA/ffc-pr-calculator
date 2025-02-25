@@ -19,4 +19,3 @@ jsconfig.json
 .vs
 .gitignore
 sonar-project.properties
-test/acceptance
