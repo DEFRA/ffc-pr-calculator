@@ -1,4 +1,5 @@
 {% extends "govuk/template.njk" %}
+{% set govukRebrand = true %}
 
 {% block head %}
   {% if cookiesPolicy and cookiesPolicy.analytics %}
@@ -12,7 +13,6 @@
 {% block header %}
   {{ govukHeader({
     rebrand: true,
-    homepageUrl: "https://www.gov.uk/",
     containerClasses: "govuk-width-container",
     productName: serviceName
   }) }}
