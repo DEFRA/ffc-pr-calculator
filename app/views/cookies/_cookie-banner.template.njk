@@ -2,14 +2,15 @@
 
 <noscript>
   {{ govukCookieBanner({
-  ariaLabel: "Cookies on Calculate my progressive reductions",
-  messages: [
-    {
-      headingText: "Cookies on Calculate my progressive reductions",
-      text: "We use cookies to make this service work and collect analytics information. To accept or reject cookies, turn on JavaScript in your browser settings or reload this page."
-    }
-  ]
-}) }}
+    rebrand: true,
+    ariaLabel: "Cookies on Calculate my progressive reductions",
+    messages: [
+      {
+        headingText: "Cookies on Calculate my progressive reductions",
+        text: "We use cookies to make this service work and collect analytics information. To accept or reject cookies, turn on JavaScript in your browser settings or reload this page."
+      }
+    ]
+  }) }}
 </noscript>
 
 <div class="js-cookies-container" style="display:none">
@@ -27,6 +28,7 @@
   {% endset %}
 
   {{ govukCookieBanner({
+    rebrand: true,
     ariaLabel: "Cookies on Calculate my progressive reductions",
     classes: "js-cookies-banner",
     messages: [

@@ -19,7 +19,7 @@ module.exports = [{
     handler: {
       directory: {
         path: [
-          'node_modules/govuk-frontend/govuk/assets'
+          'node_modules/govuk-frontend/dist/govuk/assets'
         ]
       }
     },
@@ -36,7 +36,7 @@ module.exports = [{
       directory: {
         path: [
           'app/dist',
-          'node_modules/govuk-frontend/govuk/assets'
+          'node_modules/govuk-frontend/dist/govuk/assets'
         ]
       }
     },
