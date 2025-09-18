@@ -21,7 +21,9 @@ module.exports = [{
       }
     },
     handler: async (request, h) => {
-      return h.redirect(`/calculation-delinked?value=${request.payload.value}`)
+      const currentYear = new Date().getFullYear()
+      const value = encodeURIComponent(request.payload.value)
+      return h.redirect(`/calculation-delinked?value=${value}#year${currentYear}`)
     }
   }
 }]
