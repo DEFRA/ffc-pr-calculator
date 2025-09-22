@@ -1,6 +1,6 @@
 {
   "name": "ffc-pr-calculator",
-  "version": "1.16.28",
+  "version": "1.16.29",
   "description": "FFC Progressive Reductions calculator",
   "homepage": "https://github.com/DEFRA/ffc-pr-calculator",
   "main": "app/index.js",
@@ -25,11 +25,15 @@
     "Kaz Iyiola kaz.iyiola@defra.gov.uk",
     "Simon Dunn simon.dunn1@defra.gov.uk",
     "Marc Templeton m.templeton@kainos.com",
-    "Leigh Godson leigh.godson.external@eviden.com",
-    "Sam Plackett samuel.plackett@eviden.com",
+    "Leigh Godson leigh.godson@atos.net",
+    "Sam Plackett samuel.plackett@atos.net",
     "Oliver Lewington oliver.lewington@atos.net"
   ],
   "license": "OGL-UK-3.0",
+  "overrides": {
+  "@cucumber/cucumber": "11.3.0",
+  "tmp": "0.2.4"
+},
   "dependencies": {
     "@hapi/boom": "9.1.1",
     "@hapi/crumb": "8.0.1",
@@ -44,8 +48,8 @@
     "nunjucks": "3.2.4"
   },
   "devDependencies": {
-    "@wdio/cli": "9.0.7",
-    "@wdio/cucumber-framework": "9.9.0",
+    "@wdio/cli": "9.19.2",
+    "@wdio/cucumber-framework": "9.19.2",
     "@wdio/local-runner": "9.9.3",
     "blipp": "4.0.2",
     "browserstack-local": "1.5.6",

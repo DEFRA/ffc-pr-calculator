@@ -10,7 +10,7 @@ services:
       - ./test-output:/home/node/test-output
 
   zap-baseline-scan:
-    image: softwaresecurityproject/zap-bare:2.14.0
+    image: ghcr.io/zaproxy/zaproxy:stable  # Updated from defunct softwaresecurityproject/zap-bare:2.14.0
     command: zap.sh -cmd -quickurl http://ffc-pr-calculator:${PORT:-3000} -configfile wrk/config/zap.conf -quickout wrk/test-output/zap-report.html
     depends_on:
       - ffc-pr-calculator
