@@ -55,6 +55,10 @@ readinessProbe:
   timeoutSeconds: 5
   failureThreshold: 5
 
+azureIdentity:
+  clientID: not-a-real-clientID
+  resourceID: not-a-real-resourceID
+
 secretProviderClass:
   azure:
     keyvaultName: SNDFFCINFKV2001
