@@ -12,6 +12,9 @@ services:
       - servicebus-emulator
     environment:
       NODE_ENV: test
+      MESSAGE_QUEUE_HOST: servicebus-emulator
+      MESSAGE_QUEUE_USER: RootManageSharedAccessKey
+      MESSAGE_QUEUE_PASSWORD: SAS_KEY_VALUE
     volumes:
       - ./test:/home/node/test
       - ./test-output:/home/node/test-output
