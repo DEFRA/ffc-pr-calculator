@@ -21,4 +21,4 @@ secretProviderClass:
       type: Opaque
       data:
         - objectName: pre-ffcahwr-appinsights-connectionString
-          key: APPINSIGHTS_CONNECTION_STRING
+          key: APPINSIGHTS_CONNECTIONSTRING
