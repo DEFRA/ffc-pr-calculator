@@ -1,4 +1,5 @@
 environment: production
+environmentCode:
 name: ffc-pr-calculator
 namespace: ffc-pr
 workstream: ffc-pr
