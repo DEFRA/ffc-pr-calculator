@@ -35,6 +35,11 @@ container:
   port: 3000
   googleTagManagerKey: GTM-5XJKV8F
 
+ingress:
+  class: nginx
+  endpoint: ffc-pr-calculator
+  server: example.com
+
 livenessProbe:
   path: /healthz
   port: 3000
