@@ -64,6 +64,9 @@
     "webpack": "5.96.1",
     "webpack-cli": "4.7.0"
   },
+  "overrides": {
+    "minimatch": "^10.2.1"
+  },
   "nodemonConfig": {
     "ignore": [
       "**/test-output/**"
