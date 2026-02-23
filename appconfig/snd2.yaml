@@ -1,6 +1,6 @@
 ---
 environment: production
-environmentCode: snd
+environmentCode: snd2
 ingress:
   server: azure.defra.cloud
   endpoint: ffc-pr-calculator-snd2
