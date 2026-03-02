@@ -1,21 +1,21 @@
 ---
 environment: production
-environmentCode: pre
+environmentCode: prd
 container:
   endpointEnabled: true
 ingress:
   server: azure.defra.cloud
-  endpoint: ffc-pr-calculator-pre
+  endpoint: ffc-pr-calculator-prd
 secretProviderClass:
   azure:
-    keyvaultName: PREFFCINFKV1001
+    keyvaultName: PRDFFCINFKV1001
     objects:
-      - objectName: pre-ffcahwr-appinsights-connectionString
+      - objectName: prd-ffcahwr-appinsights-connectionString
         objectType: secret
 
   secretObjects:
     - secretName: ffc-pr-calculator
       type: Opaque
       data:
-        - objectName: pre-ffcahwr-appinsights-connectionString
+        - objectName: prd-ffcahwr-appinsights-connectionString
           key: APPINSIGHTS_CONNECTIONSTRING

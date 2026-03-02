@@ -1,6 +1,6 @@
 {
   "name": "ffc-pr-calculator",
-  "version": "1.16.33",
+  "version": "1.16.37",
   "description": "FFC Progressive Reductions calculator",
   "homepage": "https://github.com/DEFRA/ffc-pr-calculator",
   "main": "app/index.js",
@@ -61,7 +61,7 @@
     "sass": "1.32.13",
     "sass-loader": "11.1.1",
     "style-loader": "2.0.0",
-    "webpack": "5.96.1",
+    "webpack": "5.105.3",
     "webpack-cli": "4.7.0"
   },
   "nodemonConfig": {
