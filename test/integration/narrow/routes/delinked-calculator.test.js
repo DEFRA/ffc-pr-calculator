@@ -70,6 +70,7 @@ describe('delinked-calculator route', () => {
 
   test('POST /delinked-calculator redirects to calculation', async () => {
     const value = 1000.01
+    const currentYear = new Date().getFullYear()
 
     const options = {
       method: 'POST',
@@ -79,7 +80,7 @@ describe('delinked-calculator route', () => {
 
     const result = await server.inject(options)
     expect(result.statusCode).toBe(302)
-    expect(result.headers.location).toBe(`/calculation-delinked?value=${value}#year2025`)
+    expect(result.headers.location).toBe(`/calculation-delinked?value=${value}#year${currentYear}`)
   })
 
   test('POST /delinked-calculator 0', async () => {
