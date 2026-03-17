@@ -16,7 +16,7 @@ paths = [
 #enter regex here wrapped in triple ''' to exclude specific keys
 regexes = [
   '''defra.helpline@defra.gov.uk''',
-  '''defraGroupDataProtectionOfficer@defra.gov.uk''',
+  '''DefraGroupDataProtectionOfficer@defra.gov.uk''',
   '''contentteam@defra.gov.uk''',
   '''enquiries@environment-agency.gov.uk''',
 ]
