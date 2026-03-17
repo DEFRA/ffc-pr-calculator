@@ -1,8 +1,6 @@
 ---
 environment: production
 environmentCode: prd
-container:
-  endpointEnabled: true
 ingress:
   server: azure.defra.cloud
   endpoint: ffc-pr-calculator-prd
