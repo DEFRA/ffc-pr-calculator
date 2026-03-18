@@ -2,8 +2,8 @@
 environment: production
 environmentCode: prd
 ingress:
-  server: azure.defra.cloud
-  endpoint: ffc-pr-calculator-prd
+  server: defra.gov.uk
+  endpoint: calculate-direct-payment-reductions
 secretProviderClass:
   azure:
     keyvaultName: PRDFFCINFKV1001
