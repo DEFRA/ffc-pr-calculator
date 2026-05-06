@@ -12,7 +12,8 @@ const routes = [].concat(
   require('../routes/cookies'),
   require('../routes/accessibility'),
   require('../routes/privacy'),
-  require('../routes/api/calculation')
+  require('../routes/api/calculation'),
+  require('../routes/sitemap')
 )
 
 module.exports = {

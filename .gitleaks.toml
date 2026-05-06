@@ -18,5 +18,5 @@ regexes = [
   '''defra.helpline@defra.gov.uk''',
   '''DefraGroupDataProtectionOfficer@defra.gov.uk''',
   '''contentteam@defra.gov.uk''',
-  '''enquiries@environment-agency.gov.uk''',
+  '''enquiries@environment-agency.gov.uk'''
 ]
