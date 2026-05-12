@@ -3,53 +3,55 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
 {% block content %}
-  <div class="govuk-width-container">
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        <h1 class="govuk-heading-l">Calculate your delinked payment</h1>
+  <main class="govuk-main-wrapper " id="main-content" role="main">
+    <div class="govuk-width-container">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <h1 class="govuk-heading-l">Calculate your delinked payment</h1>
 
-        <p class="govuk-body">Delinked payments have replaced Basic Payment Scheme (BPS) payments in England. Reductions will be applied each year until the payments finish at the end of 2027.</p>
-        <p class="govuk-body">Reductions to delinked payments are known as progressive reductions.</p>
-        <p class="govuk-body">To receive delinked payments, you must have claimed, and been eligible for, BPS 2023 in England (except in some inheritance cases).</p>
-        </br>
-        <p class="govuk-body">Use this calculator to estimate how progressive reductions could reduce your delinked payment for 2026 and 2027. The estimate for 2026 and 2027 is based on the proposed progressive reduction figures for these years shown in the <a class="govuk-link" rel="external" href="https://www.gov.uk/guidance/delinked-payments-replacing-the-basic-payment-scheme#delinked-payments-calculated"> delinked payments guidance</a>. The calculator also shows how progressive reductions affected your 2024 and 2025 delinked payment.</p>
+          <p class="govuk-body">Delinked payments have replaced Basic Payment Scheme (BPS) payments in England. Reductions will be applied each year until the payments finish at the end of 2027.</p>
+          <p class="govuk-body">Reductions to delinked payments are known as progressive reductions.</p>
+          <p class="govuk-body">To receive delinked payments, you must have claimed, and been eligible for, BPS 2023 in England (except in some inheritance cases).</p>
+          </br>
+          <p class="govuk-body">Use this calculator to estimate how progressive reductions could reduce your delinked payment for 2026 and 2027. The estimate for 2026 and 2027 is based on the proposed progressive reduction figures for these years shown in the <a class="govuk-link" rel="external" href="https://www.gov.uk/guidance/delinked-payments-replacing-the-basic-payment-scheme#delinked-payments-calculated"> delinked payments guidance</a>. The calculator also shows how progressive reductions affected your 2024 and 2025 delinked payment.</p>
 
-        {{ govukButton({
-          classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8",
-          href: "/delinked-calculator",
-          isStartButton: true,
-          text: "Start now",
-          attributes: { 
-            id: "submit" 
-          }
-        }) }}
+          {{ govukButton({
+            classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8",
+            href: "/delinked-calculator",
+            isStartButton: true,
+            text: "Start now",
+            attributes: { 
+              id: "submit" 
+            }
+          }) }}
 
-        <p class="govuk-body">Calculations should be quick and will not ask for personal information.</p>
-        <p class="govuk-body">Call the Rural Payments helpline on 03000 200 301 if you need help using this calculator.</p>
-        <p class="govuk-body">The reductions to delinked payments help fund <a class="govuk-link" href="https://www.gov.uk/guidance/funding-for-farmers">new schemes and grants.</a></p>
-        <p class="govuk-body">You can read more about <a class="govuk-link" href="https://www.gov.uk/guidance/delinked-payments-replacing-the-basic-payment-scheme">delinked payments: replacing the Basic Payment Scheme. </a></p>
-      </div>
-      <div class="govuk-grid-column-one-third">
-        <aside class="app-related-items" aria-labelledby="subsection-title">
-          <h2 class="govuk-heading-m" id="subsection-title">
-            Related content
-          </h2>
-          <nav role="navigation" aria-labelledby="subsection-title">
-            <ul class="govuk-list govuk-!-font-size-16">
-              <li>
-                <a class="govuk-link" rel="external" href="https://www.gov.uk/guidance/delinked-payments-replacing-the-basic-payment-scheme">
-                  Delinked payments replacing the Basic Payment Scheme
-                </a>
-              </li>
-              <li>
-                <a id="farming-is-changing-link" rel="external" class="govuk-link" href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1003924/farming-changing.pdf">
-                  Funding for farmers, growers and land managers
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </aside>
+          <p class="govuk-body">Calculations should be quick and will not ask for personal information.</p>
+          <p class="govuk-body">Call the Rural Payments helpline on 03000 200 301 if you need help using this calculator.</p>
+          <p class="govuk-body">The reductions to delinked payments help fund <a class="govuk-link" href="https://www.gov.uk/guidance/funding-for-farmers">new schemes and grants.</a></p>
+          <p class="govuk-body">You can read more about <a class="govuk-link" href="https://www.gov.uk/guidance/delinked-payments-replacing-the-basic-payment-scheme">delinked payments: replacing the Basic Payment Scheme. </a></p>
+        </div>
+        <div class="govuk-grid-column-one-third">
+          <aside class="app-related-items" aria-labelledby="subsection-title">
+            <h2 class="govuk-heading-m" id="subsection-title">
+              Related content
+            </h2>
+            <nav role="navigation" aria-labelledby="subsection-title">
+              <ul class="govuk-list govuk-!-font-size-16">
+                <li>
+                  <a class="govuk-link" rel="external" href="https://www.gov.uk/guidance/delinked-payments-replacing-the-basic-payment-scheme">
+                    Delinked payments replacing the Basic Payment Scheme
+                  </a>
+                </li>
+                <li>
+                  <a id="farming-is-changing-link" rel="external" class="govuk-link" href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1003924/farming-changing.pdf">
+                    Funding for farmers, growers and land managers
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </aside>
+        </div>
       </div>
     </div>
-  </div>
+  </main>
 {% endblock %}

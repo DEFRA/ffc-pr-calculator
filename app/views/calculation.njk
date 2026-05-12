@@ -9,29 +9,30 @@
   <div class="govuk-width-container">
     {{ govukBackLink({
       text: "Back",
-      href: "/value",
-      classes: "govuk-!-margin-bottom-7"
+      href: "/value"
     }) }}
   </div>
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-width-container" style="overflow-y: auto;">
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-full">
-        {{ govukPanel({
-          titleText: "Calculation complete"
-        }) }}
+  <main class="govuk-main-wrapper " id="main-content" role="main">
+    <div class="govuk-width-container" style="overflow-y: auto;">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+          {{ govukPanel({
+            titleText: "Calculation complete"
+          }) }}
 
-        <p class="govuk-body">{{ model.confirmation }}</p>
+          <p class="govuk-body">{{ model.confirmation }}</p>
 
-        {{ govukTable(model.paymentBand) }}
-        {{ govukTable(model.reduction) }}
-        <h2 class="govuk-heading-m">
-          Your estimated payment after progressive reductions
-        </h2>
-        {{ govukSummaryList(model.paymentSummary)}}
+          {{ govukTable(model.paymentBand) }}
+          {{ govukTable(model.reduction) }}
+          <h2 class="govuk-heading-m">
+            Your estimated payment after progressive reductions
+          </h2>
+          {{ govukSummaryList(model.paymentSummary)}}
+        </div>
       </div>
     </div>
-  </div>
+  </main>
 {% endblock %}

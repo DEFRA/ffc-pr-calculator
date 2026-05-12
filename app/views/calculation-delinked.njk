@@ -9,47 +9,48 @@
   <div class="govuk-width-container">
     {{ govukBackLink({
       text: "Back",
-      href: "/delinked-calculator",
-      classes: "govuk-!-margin-bottom-7"
+      href: "/delinked-calculator"
     }) }}
   </div>
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-      {{ govukPanel({
-        titleText: "Delinked payment calculation"
-      }) }}
+  <main class="govuk-main-wrapper " id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        {{ govukPanel({
+          titleText: "Delinked payment calculation"
+        }) }}
 
-      {% set tabs = [] %}
+        {% set tabs = [] %}
 
-      {% for year in model.years %}
-        {% set content %}
-        <div id="year{{ year }}">
-          <p class="govuk-body">{{ model.year[year].confirmation }}</p>
+        {% for year in model.years %}
+          {% set content %}
+          <div id="year{{ year }}">
+            <p class="govuk-body">{{ model.year[year].confirmation }}</p>
 
-          {{ govukTable(model.year[year].paymentSummary) }}
+            {{ govukTable(model.year[year].paymentSummary) }}
 
-          <p class="govuk-body">{{ model.year[year].schedule.text }}</p>
+            <p class="govuk-body">{{ model.year[year].schedule.text }}</p>
 
-          {{ govukTable(model.year[year].reduction) }}
-          {{ govukTable(model.year[year].paymentBand) }}
-        </div>
-        {% endset %}
+            {{ govukTable(model.year[year].reduction) }}
+            {{ govukTable(model.year[year].paymentBand) }}
+          </div>
+          {% endset %}
 
-        {% set tabs = (tabs.push({
-          id: 'year' ~ year,
-          label: year,
-          panel: {
-            html: content
-          }
-        }), tabs) %}
-      {% endfor %}
+          {% set tabs = (tabs.push({
+            id: 'year' ~ year,
+            label: year,
+            panel: {
+              html: content
+            }
+          }), tabs) %}
+        {% endfor %}
 
-      {{ govukTabs({
-        items: tabs
-      }) }}
+        {{ govukTabs({
+          items: tabs
+        }) }}
+      </div>
     </div>
-  </div>
+  </main>
 {% endblock %}

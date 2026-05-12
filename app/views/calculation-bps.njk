@@ -8,28 +8,29 @@
 {% block beforeContent %}
   <div class="govuk-width-container">
     {{ govukBackLink({
-        text: "Back",
-        href: "/bps-calculator",
-        classes: "govuk-!-margin-bottom-7"
-      }) }}
+      text: "Back",
+      href: "/bps-calculator"
+    }) }}
   </div>
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-width-container">
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-full">
-        {{ govukPanel({
-          titleText: "BPS calculation complete"
-        }) }}
-        <p class="govuk-body">{{ model.confirmation }}</p>
-        {{ govukTable(model.paymentSummary)}}
-        <br/>
-        {{ govukTable(model.paymentBand) }}
-        <br/>
-        {{ govukTable(model.reduction) }}       
+  <main class="govuk-main-wrapper " id="main-content" role="main">
+    <div class="govuk-width-container">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+          {{ govukPanel({
+            titleText: "BPS calculation complete"
+          }) }}
+          <p class="govuk-body">{{ model.confirmation }}</p>
+          {{ govukTable(model.paymentSummary)}}
+          <br/>
+          {{ govukTable(model.paymentBand) }}
+          <br/>
+          {{ govukTable(model.reduction) }}       
 
+        </div>
       </div>
     </div>
-  </div>
+  </main>
 {% endblock %}
