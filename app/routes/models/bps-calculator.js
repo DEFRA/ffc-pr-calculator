@@ -1,4 +1,4 @@
-function ViewModel (value, error) {
+function viewModel (value, error) {
   // Constructor function to create logic dependent nunjucks page
   this.model = {
     label: {
@@ -28,4 +28,4 @@ function ViewModel (value, error) {
   }
 }
 
-module.exports = ViewModel
+module.exports = viewModel

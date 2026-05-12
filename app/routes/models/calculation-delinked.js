@@ -3,7 +3,7 @@ const { schemeYears } = require('../../calculation/scheme-years')
 const toCurrencyString = require('../../utils/to-currency-string')
 const schedule = require('../../utils/year-tab-schedule')
 
-function ViewModel (value, calculations) {
+function viewModel (value, calculations) {
   const delinkedCalculation = {
     ...calculations
   }
@@ -215,4 +215,4 @@ function overallToRow (overallResult, property, index) {
   }]
 }
 
-module.exports = ViewModel
+module.exports = viewModel

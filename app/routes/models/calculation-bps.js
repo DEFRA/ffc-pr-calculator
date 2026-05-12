@@ -2,7 +2,7 @@ const bands = require('../../calculation/bands')
 const { schemeYears } = require('../../calculation/scheme-years')
 const toCurrencyString = require('../../utils/to-currency-string')
 
-function ViewModel (value, calculations) {
+function viewModel (value, calculations) {
   this.model = {
     confirmation: createSummary(value),
     paymentBand: createTableDefinition(calculations, { property: 'rate', text: '', caption: 'Percentage reductions by scheme year', formatType: 'percentage', showOverall: false }),
@@ -157,4 +157,4 @@ const overallToRow = (overallResult, property, index) => {
   return data
 }
 
-module.exports = ViewModel
+module.exports = viewModel
