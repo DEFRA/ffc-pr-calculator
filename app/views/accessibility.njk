@@ -1,7 +1,10 @@
 {% extends "_layout.njk" %}
+
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 
-{% block pageTitle %}Accessibility statement - GOV.UK{% endblock %}
+{% set pageTitle = "Accessibility statement" %}
+
+{% block pageTitle %}{{ pageTitle }} - {{ serviceName }}{% endblock %}
 
 {% block beforeContent %}
   <div class="govuk-width-container">
@@ -16,7 +19,7 @@
   <main class="govuk-main-wrapper " id="main-content" role="main">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
-        <h1 class="govuk-heading-l">Accessibility statement</h1>
+        <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
         <p class="govuk-body">
           This service is run by Defra. We want as many people as possible to be able to use this website. 
           For example, that means you should be able to:

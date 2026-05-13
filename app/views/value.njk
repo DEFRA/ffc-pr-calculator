@@ -1,10 +1,14 @@
 {% extends '_layout.njk' %}
-{% set mainClasses = "govuk-main-wrapper--auto-spacing" %}
+
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/error-message/macro.njk" import govukErrorMessage %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{% set pageTitle = "What is your starting payment amount?" %}
+
+{% block pageTitle %}{{ pageTitle }} - {{ serviceName }}{% endblock %}
 
 {% block beforeContent %}
   <div class="govuk-width-container">

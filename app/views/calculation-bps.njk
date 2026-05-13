@@ -1,9 +1,13 @@
 {% extends '_layout.njk' %}
-{% set mainClasses = "govuk-main-wrapper--auto-spacing" %}
+
 {% from "govuk/components/panel/macro.njk" import govukPanel %}
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% from "govuk/components/table/macro.njk" import govukTable %}
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% set pageTitle = "BPS calculation complete" %}
+
+{% block pageTitle %}{{ pageTitle }} - {{ serviceName }}{% endblock %}
 
 {% block beforeContent %}
   <div class="govuk-width-container">
@@ -20,7 +24,7 @@
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full">
           {{ govukPanel({
-            titleText: "BPS calculation complete"
+            titleText: pageTitle
           }) }}
           <p class="govuk-body">{{ model.confirmation }}</p>
           {{ govukTable(model.paymentSummary)}}
