@@ -4,6 +4,9 @@ const {
   createSummary
 } = require('./calculation-helpers')
 
+const threeChars = 3
+const fourChars = 4
+
 function viewModel (value, calculations) {
   this.model = {
     confirmation: createSummary(value),
@@ -29,7 +32,7 @@ const createTable = (calculations, options) => ({
   captionClasses: 'govuk-table__caption--m',
   firstCellIsHeader: true,
   head: getBandHeaderRow(false),
-  rows: populateData(calculations, options).map(r => r.slice(0, 4))
+  rows: populateData(calculations, options).map(r => r.slice(0, fourChars))
 })
 
 const createPaymentSummary = (calculations) => ({
@@ -49,7 +52,7 @@ const createPaymentSummary = (calculations) => ({
       format: 'numeric',
       classes: 'govuk-body govuk-!-font-weight-bold'
     }
-  ]).slice(0, 3)
+  ]).slice(0, threeChars)
 })
 
 module.exports = viewModel

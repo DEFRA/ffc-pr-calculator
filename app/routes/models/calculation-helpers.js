@@ -30,7 +30,7 @@ const calculatePercentage = (x, property) => {
 }
 
 const fillGaps = (results, data, formatType) => {
-  const checkSchemeYears = results.result.map(x => x.schemeYear)
+  const checkSchemeYears = new Set(results.result.map(x => x.schemeYear))
   const maxSchemeYear = Math.max(...schemeYears)
   const minSchemeYear = Math.min(...schemeYears)
 
@@ -43,7 +43,7 @@ const fillGaps = (results, data, formatType) => {
 
   for (let i = minSchemeYear; i <= maxSchemeYear; i++) {
     yearIncrementCount++
-    if (!checkSchemeYears.includes(i)) {
+    if (!checkSchemeYears.has(i)) {
       data.splice(yearIncrementCount, 0, missingData)
     }
   }
