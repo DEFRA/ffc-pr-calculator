@@ -1,29 +1,33 @@
 {% extends '_layout.njk' %}
-{% set mainClasses = "govuk-main-wrapper--auto-spacing" %}
+
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/error-message/macro.njk" import govukErrorMessage %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 
+{% set pageTitle = "Enter your delinked payment reference amount" %}
+
+{% block pageTitle %}{{ pageTitle }} - {{ serviceName }}{% endblock %}
+
 {% block beforeContent %}
   <div class="govuk-width-container">
     {{ govukBackLink({
       text: "Back",
-      href: "/",
-      attributes: { id: "back" }
+      href: "/"
     }) }}
   </div>
 {% endblock %}
 
 {% block content %}
+  <main class="govuk-main-wrapper " id="main-content" role="main">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
         <form method="POST" action="/delinked-calculator" novalidate>
           <input type="hidden" name="crumb" value="{{ crumb }}"/>
 
-          <h1 class="govuk-heading-l">Enter your delinked payment reference amount</h1>
+          <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
 
           <p class="govuk-body">
             This calculator will estimate your payment for each of the years 2024 to 2027 based on the reference amount you enter.
@@ -59,4 +63,5 @@
 
       </div>
     </div>
+  </main>
 {% endblock %}
