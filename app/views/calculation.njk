@@ -19,24 +19,22 @@
 {% endblock %}
 
 {% block content %}
-  <main class="govuk-main-wrapper " id="main-content" role="main">
-    <div class="govuk-width-container" style="overflow-y: auto;">
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-full">
-          {{ govukPanel({
-            titleText: pageTitle
-          }) }}
+  <div class="govuk-width-container" style="overflow-y: auto;">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        {{ govukPanel({
+          titleText: pageTitle
+        }) }}
 
-          <p class="govuk-body">{{ model.confirmation }}</p>
+        <p class="govuk-body">{{ model.confirmation }}</p>
 
-          {{ govukTable(model.paymentBand) }}
-          {{ govukTable(model.reduction) }}
-          <h2 class="govuk-heading-m">
-            Your estimated payment after progressive reductions
-          </h2>
-          {{ govukSummaryList(model.paymentSummary)}}
-        </div>
+        {{ govukTable(model.paymentBand) }}
+        {{ govukTable(model.reduction) }}
+        <h2 class="govuk-heading-m">
+          Your estimated payment after progressive reductions
+        </h2>
+        {{ govukSummaryList(model.paymentSummary)}}
       </div>
     </div>
-  </main>
+  </div>
 {% endblock %}

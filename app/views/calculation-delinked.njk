@@ -19,42 +19,40 @@
 {% endblock %}
 
 {% block content %}
-  <main class="govuk-main-wrapper " id="main-content" role="main">
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-full">
-        {{ govukPanel({
-          titleText: pageTitle
-        }) }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {{ govukPanel({
+        titleText: pageTitle
+      }) }}
 
-        {% set tabs = [] %}
+      {% set tabs = [] %}
 
-        {% for year in model.years %}
-          {% set content %}
-          <div id="year{{ year }}">
-            <p class="govuk-body">{{ model.year[year].confirmation }}</p>
+      {% for year in model.years %}
+        {% set content %}
+        <div id="year{{ year }}">
+          <p class="govuk-body">{{ model.year[year].confirmation }}</p>
 
-            {{ govukTable(model.year[year].paymentSummary) }}
+          {{ govukTable(model.year[year].paymentSummary) }}
 
-            <p class="govuk-body">{{ model.year[year].schedule.text }}</p>
+          <p class="govuk-body">{{ model.year[year].schedule.text }}</p>
 
-            {{ govukTable(model.year[year].reduction) }}
-            {{ govukTable(model.year[year].paymentBand) }}
-          </div>
-          {% endset %}
+          {{ govukTable(model.year[year].reduction) }}
+          {{ govukTable(model.year[year].paymentBand) }}
+        </div>
+        {% endset %}
 
-          {% set tabs = (tabs.push({
-            id: 'year' ~ year,
-            label: year,
-            panel: {
-              html: content
-            }
-          }), tabs) %}
-        {% endfor %}
+        {% set tabs = (tabs.push({
+          id: 'year' ~ year,
+          label: year,
+          panel: {
+            html: content
+          }
+        }), tabs) %}
+      {% endfor %}
 
-        {{ govukTabs({
-          items: tabs
-        }) }}
-      </div>
+      {{ govukTabs({
+        items: tabs
+      }) }}
     </div>
-  </main>
+  </div>
 {% endblock %}
