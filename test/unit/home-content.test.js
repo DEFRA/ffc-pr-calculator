@@ -93,7 +93,7 @@ describe('home page to test the new version of the PRC', () => {
     )
   })
 
-  test('GET / paragraph says Use this calculator to estimate how progressive reductions could reduce your delinked payment for 2026 and 2027.', async () => {
+  test('GET / paragraph says Use this calculator to estimate how progressive reductions could reduce your delinked payment for 2026 and 2027. The calculator also shows how progressive reductions affected your 2024 and 2025 delinked payment.', async () => {
     const options = {
       method: 'GET',
       url: '/'
@@ -101,7 +101,7 @@ describe('home page to test the new version of the PRC', () => {
 
     const result = await server.inject(options)
     expect(result.request.response._payload._data).toContain(
-      'Use this calculator to estimate how progressive reductions could reduce your delinked payment for 2026 and 2027. The estimate for 2026 and 2027 is based on the proposed progressive reduction figures for these years shown in the <a class="govuk-link" rel="external" href="https://www.gov.uk/guidance/delinked-payments-replacing-the-basic-payment-scheme#delinked-payments-calculated"> delinked payments guidance</a>. The calculator also shows how progressive reductions affected your 2024 and 2025 delinked payment.'
+      'Use this calculator to estimate how progressive reductions could reduce your delinked payment for 2026 and 2027. The calculator also shows how progressive reductions affected your 2024 and 2025 delinked payment.'
     )
   })
 
