@@ -12,10 +12,12 @@ describe('Cookie Banner Text Content', () => {
   const requiredText = {
     noscript: 'We use cookies to make this service work and collect analytics information. To accept or reject cookies, turn on JavaScript in your browser settings or reload this page.',
     essential: 'We use some essential cookies to make this service work.',
-    analytics: 'We’d also like to use analytics cookies so we can understand how you use the service and make improvements',
+    analytics1: 'We’d also like to use analytics cookies so we can understand how you use',
+    analytics2: 'the service and make improvements',
     accept: 'You’ve accepted analytics cookies.',
     reject: 'You’ve rejected analytics cookies.',
-    changeSettings: 'change your cookie settings',
+    changeSettings1: 'change',
+    changeSettings2: 'your cookie settings',
     buttons: [
       'Accept analytics cookies',
       'Reject analytics cookies',
@@ -33,13 +35,15 @@ describe('Cookie Banner Text Content', () => {
   })
 
   test('cookie banner contains required analytics messages', () => {
-    expect(templateContent).toContain(requiredText.analytics)
+    expect(templateContent).toContain(requiredText.analytics1)
+    expect(templateContent).toContain(requiredText.analytics2)
   })
 
   test('cookie banner contains acceptance/rejection messages', () => {
     expect(templateContent).toContain(requiredText.accept)
     expect(templateContent).toContain(requiredText.reject)
-    expect(templateContent).toContain(requiredText.changeSettings)
+    expect(templateContent).toContain(requiredText.changeSettings1)
+    expect(templateContent).toContain(requiredText.changeSettings2)
   })
 
   test('cookie banner contains all required buttons', () => {
