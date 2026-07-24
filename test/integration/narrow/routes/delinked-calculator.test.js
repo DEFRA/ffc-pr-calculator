@@ -83,55 +83,38 @@ describe('delinked-calculator route', () => {
     expect(result.headers.location).toBe(`/calculation-delinked?value=${value}#year${currentYear}`)
   })
 
-  test('POST /delinked-calculator 0', async () => {
+  test.each([
+    {
+      description: '0',
+      value: '0',
+      expectedError: 'The value needs to be greater than £0.'
+    },
+    {
+      description: 'above £1,000,000,000',
+      value: '1000000000.',
+      expectedError: 'The value needs to be less than £1,000,000,000.'
+    },
+    {
+      description: 'not a number',
+      value: 'abc',
+      expectedError: 'The value must be a number without commas.'
+    },
+    {
+      description: 'too high to be number',
+      value: '10000000000000000000',
+      expectedError: 'The value needs to be less than £1,000,000,000.'
+    }
+  ])('POST /delinked-calculator - $description', async ({ value, expectedError }) => {
     const options = {
       method: 'POST',
       url: '/delinked-calculator',
-      payload: { value: '0' }
+      payload: { value }
     }
 
     const result = await server.inject(options)
+
     expect(result.request.response.source.template).toBe('delinked-calculator')
-    expect(result.request.response.source.context.model.errorMessage.text).toContain('The value needs to be greater than £0.')
-    expect(result.statusCode).toBe(400)
-  })
-
-  test('POST /delinked-calculator above £1,000,000,000.', async () => {
-    const options = {
-      method: 'POST',
-      url: '/delinked-calculator',
-      payload: { value: '1000000000.' }
-    }
-
-    const result = await server.inject(options)
-    expect(result.request.response.source.template).toBe('delinked-calculator')
-    expect(result.request.response.source.context.model.errorMessage.text).toContain('The value needs to be less than £1,000,000,000.')
-    expect(result.statusCode).toBe(400)
-  })
-
-  test('POST /delinked-calculator not a number', async () => {
-    const options = {
-      method: 'POST',
-      url: '/delinked-calculator',
-      payload: { value: 'abc' }
-    }
-
-    const result = await server.inject(options)
-    expect(result.request.response.source.template).toBe('delinked-calculator')
-    expect(result.request.response.source.context.model.errorMessage.text).toContain('The value must be a number without commas.')
-    expect(result.statusCode).toBe(400)
-  })
-
-  test('POST /delinked-calculator too high to be number', async () => {
-    const options = {
-      method: 'POST',
-      url: '/delinked-calculator',
-      payload: { value: '10000000000000000000' }
-    }
-
-    const result = await server.inject(options)
-    expect(result.request.response.source.template).toBe('delinked-calculator')
-    expect(result.request.response.source.context.model.errorMessage.text).toContain('The value needs to be less than £1,000,000,000.')
+    expect(result.request.response.source.context.model.errorMessage.text).toContain(expectedError)
     expect(result.statusCode).toBe(400)
   })
 
@@ -145,34 +128,34 @@ describe('delinked-calculator route', () => {
     expect(result.request.response._payload._data).toContain('Enter your delinked payment reference amount')
   })
 
-  test('GET /delinked-calculator header subline says This calculator will estimate your payment for each of the years 2024 to 2027 based on the reference amount you enter.', async () => {
+  test('GET /delinked-calculator header subline says This calculator will estimate your payment', async () => {
     const options = {
       method: 'GET',
       url: '/delinked-calculator'
     }
 
     const result = await server.inject(options)
-    expect(result.request.response._payload._data).toContain('This calculator will estimate your payment for each of the years 2024 to 2027 based on the reference amount you enter.')
+    expect(result.request.response._payload._data).toContain('This calculator will estimate your payment')
   })
 
-  test('GET /delinked-calculator first paragraph says You were sent your reference amount in the delinked payments information statement.', async () => {
+  test('GET /delinked-calculator first paragraph says You were sent your reference amount', async () => {
     const options = {
       method: 'GET',
       url: '/delinked-calculator'
     }
 
     const result = await server.inject(options)
-    expect(result.request.response._payload._data).toContain('You were sent your reference amount in the delinked payments information statement.')
+    expect(result.request.response._payload._data).toContain('You were sent your reference amount')
   })
 
-  test('GET /delinked-calculator second paragraph says This amount will have changed if BPS 2020, 2021 and 2022 reference data has either:', async () => {
+  test('GET /delinked-calculator second paragraph says This amount will have changed if', async () => {
     const options = {
       method: 'GET',
       url: '/delinked-calculator'
     }
 
     const result = await server.inject(options)
-    expect(result.request.response._payload._data).toContain('This amount will have changed if BPS 2020, 2021 and 2022 reference data has either:')
+    expect(result.request.response._payload._data).toContain('This amount will have changed if')
   })
 
   test('GET /delinked-calculator third paragraph says been transferred in or out of your business changed following a payment query ', async () => {
@@ -193,7 +176,7 @@ describe('delinked-calculator route', () => {
     }
 
     const result = await server.inject(options)
-    expect(result.request.response._payload._data).toContain('You can view your current reference amount and any data transfers in the')
+    expect(result.request.response._payload._data).toContain('You can view your current reference amount')
     expect(result.request.response._payload._data).toContain('https://www.ruralpayments.service.gov.uk/customer-account/login')
   })
 

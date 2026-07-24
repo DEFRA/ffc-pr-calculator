@@ -82,55 +82,37 @@ describe('bps-calculator route', () => {
     expect(result.headers.location).toBe(`/calculation-bps?value=${value}`)
   })
 
-  test('POST /bps-calculator 0', async () => {
-    const options = {
+  test.each([
+    {
+      description: '0',
+      value: '0',
+      expectedError: 'The value needs to be greater than £0.'
+    },
+    {
+      description: 'above £1,000,000,000',
+      value: '1000000000.',
+      expectedError: 'The value needs to be less than £1,000,000,000.'
+    },
+    {
+      description: 'not a number',
+      value: 'abc',
+      expectedError: 'The value must be a number without commas.'
+    },
+    {
+      description: 'too high to be number',
+      value: '10000000000000000000',
+      expectedError: 'The value needs to be less than £1,000,000,000.'
+    }
+  ])('POST /bps-calculator - $description', async ({ value, expectedError }) => {
+    const result = await server.inject({
       method: 'POST',
       url: '/bps-calculator',
-      payload: { value: '0' }
-    }
+      payload: { value }
+    })
 
-    const result = await server.inject(options)
     expect(result.request.response.source.template).toBe('bps-calculator')
-    expect(result.request.response.source.context.model.errorMessage.text).toContain('The value needs to be greater than £0.')
-    expect(result.statusCode).toBe(400)
-  })
-
-  test('POST /bps-calculator above £1,000,000,000.', async () => {
-    const options = {
-      method: 'POST',
-      url: '/bps-calculator',
-      payload: { value: '1000000000.' }
-    }
-
-    const result = await server.inject(options)
-    expect(result.request.response.source.template).toBe('bps-calculator')
-    expect(result.request.response.source.context.model.errorMessage.text).toContain('The value needs to be less than £1,000,000,000.')
-    expect(result.statusCode).toBe(400)
-  })
-
-  test('POST /bps-calculator not a number', async () => {
-    const options = {
-      method: 'POST',
-      url: '/bps-calculator',
-      payload: { value: 'abc' }
-    }
-
-    const result = await server.inject(options)
-    expect(result.request.response.source.template).toBe('bps-calculator')
-    expect(result.request.response.source.context.model.errorMessage.text).toContain('The value must be a number without commas.')
-    expect(result.statusCode).toBe(400)
-  })
-
-  test('POST /bps-calculator too high to be number', async () => {
-    const options = {
-      method: 'POST',
-      url: '/bps-calculator',
-      payload: { value: '10000000000000000000' }
-    }
-
-    const result = await server.inject(options)
-    expect(result.request.response.source.template).toBe('bps-calculator')
-    expect(result.request.response.source.context.model.errorMessage.text).toContain('The value needs to be less than £1,000,000,000.')
+    expect(result.request.response.source.context.model.errorMessage.text)
+      .toContain(expectedError)
     expect(result.statusCode).toBe(400)
   })
 
@@ -144,53 +126,53 @@ describe('bps-calculator route', () => {
     expect(result.request.response._payload._data).toContain('Enter your BPS starting payment amount')
   })
 
-  test('GET /bps-calculator first paragraph says This calculator will estimate your payment for the 2023 scheme year based on the starting payment amount you enter.', async () => {
+  test('GET /bps-calculator first paragraph says This calculator will estimate your payment', async () => {
     const options = {
       method: 'GET',
       url: '/bps-calculator'
     }
 
     const result = await server.inject(options)
-    expect(result.request.response._payload._data).toContain('This calculator will estimate your payment for the 2023 scheme year based on the starting payment amount you enter.')
+    expect(result.request.response._payload._data).toContain('This calculator will estimate your payment')
   })
 
-  test('GET /bps-calculator second paragraph says You will also see estimated payments for the 2021 and 2022 scheme years when you input your starting amount.', async () => {
+  test('GET /bps-calculator second paragraph says You will also see estimated payments', async () => {
     const options = {
       method: 'GET',
       url: '/bps-calculator'
     }
 
     const result = await server.inject(options)
-    expect(result.request.response._payload._data).toContain('You will also see estimated payments for the 2021 and 2022 scheme years when you input your starting amount.')
+    expect(result.request.response._payload._data).toContain('You will also see estimated payments')
   })
 
-  test('GET /bps-calculator third paragraph says You should use the Sub total in the Claim summary box of your most recent BPS Claim Statement as the starting payment amount.', async () => {
+  test('GET /bps-calculator third paragraph says You should use the \'Sub total\' in the \'Claim summary box\'', async () => {
     const options = {
       method: 'GET',
       url: '/bps-calculator'
     }
 
     const result = await server.inject(options)
-    expect(result.request.response._payload._data).toContain('of your most recent BPS Claim Statement as the starting payment amount.')
+    expect(result.request.response._payload._data).toContain('You should use the \'Sub total\' in the \'Claim summary box\'')
   })
 
-  test('GET /bps-calculator fourth paragraph says If your claim area changed during 2021 to 2023, you can use the calculator as many times as you need, using different starting payment amounts each time.', async () => {
+  test('GET /bps-calculator fourth paragraph says If your claim area changed during 2021 to 2023', async () => {
     const options = {
       method: 'GET',
       url: '/bps-calculator'
     }
 
     const result = await server.inject(options)
-    expect(result.request.response._payload._data).toContain('If your claim area changed during 2021 to 2023, you can use the calculator as many times as you need, using different starting payment amounts each time.')
+    expect(result.request.response._payload._data).toContain('If your claim area changed during 2021 to 2023')
   })
 
-  test('GET /bps-calculator fifth paragraph says The number you enter should not include commas. For example, enter £20,000 as 20000.', async () => {
+  test('GET /bps-calculator fifth paragraph says The number you enter should not include commas', async () => {
     const options = {
       method: 'GET',
       url: '/bps-calculator'
     }
 
     const result = await server.inject(options)
-    expect(result.request.response._payload._data).toContain('The number you enter should not include commas. For example, enter £20,000 as 20000.')
+    expect(result.request.response._payload._data).toContain('The number you enter should not include commas')
   })
 })

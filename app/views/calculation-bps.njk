@@ -11,10 +11,12 @@
 
 {% block beforeContent %}
   <div class="govuk-width-container">
-    {{ govukBackLink({
-      text: "Back",
-      href: "/bps-calculator"
-    }) }}
+    {{
+      govukBackLink({
+        text: "Back",
+        href: "/bps-calculator"
+      })
+    }}
   </div>
 {% endblock %}
 
@@ -22,16 +24,17 @@
   <div class="govuk-width-container">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
-        {{ govukPanel({
-          titleText: pageTitle
-        }) }}
+        {{
+          govukPanel({
+            titleText: pageTitle
+          })
+        }}
         <p class="govuk-body">{{ model.confirmation }}</p>
-        {{ govukTable(model.paymentSummary)}}
-        <br/>
+        {{ govukTable(model.paymentSummary) }}
+        <br />
         {{ govukTable(model.paymentBand) }}
-        <br/>
-        {{ govukTable(model.reduction) }}       
-
+        <br />
+        {{ govukTable(model.reduction) }}
       </div>
     </div>
   </div>

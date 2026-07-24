@@ -11,20 +11,26 @@
 
 {% block beforeContent %}
   <div class="govuk-width-container">
-    {{ govukBackLink({
-      text: "Back",
-      href: "/value"
-    }) }}
+    {{
+      govukBackLink({
+        text: "Back",
+        href: "/value"
+      })
+    }}
   </div>
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-width-container" style="overflow-y: auto;">
+  <div
+    class="govuk-width-container"
+    style="overflow-y: auto;">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
-        {{ govukPanel({
-          titleText: pageTitle
-        }) }}
+        {{
+          govukPanel({
+            titleText: pageTitle
+          })
+        }}
 
         <p class="govuk-body">{{ model.confirmation }}</p>
 
@@ -33,7 +39,7 @@
         <h2 class="govuk-heading-m">
           Your estimated payment after progressive reductions
         </h2>
-        {{ govukSummaryList(model.paymentSummary)}}
+        {{ govukSummaryList(model.paymentSummary) }}
       </div>
     </div>
   </div>

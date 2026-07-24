@@ -12,32 +12,43 @@
 
 {% block beforeContent %}
   <div class="govuk-width-container">
-    {{ govukBackLink({
-      text: "Back",
-      href: "/"
-    }) }}
+    {{
+      govukBackLink({
+        text: "Back",
+        href: "/"
+      })
+    }}
   </div>
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-      <form method="POST" action="/delinked-calculator" novalidate>
-        <input type="hidden" name="crumb" value="{{ crumb }}"/>
+      <form
+        method="POST"
+        action="/delinked-calculator"
+        novalidate>
+        <input
+          type="hidden"
+          name="crumb"
+          value="{{ crumb }}"
+        />
 
         <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
 
         <p class="govuk-body">
-          This calculator will estimate your payment for each of the years 2024 to 2027 based on the reference amount you enter.
+          This calculator will estimate your payment for each of the years 2024
+          to 2027 based on the reference amount you enter.
         </p>
 
         <p class="govuk-body">
-          You were sent your reference amount in the delinked payments information statement.
+          You were sent your reference amount in the delinked payments
+          information statement.
         </p>
 
         <p class="govuk-body">
-          This amount will have changed if BPS 2020, 2021 and 2022 reference data has either:
+          This amount will have changed if BPS 2020, 2021 and 2022 reference
+          data has either:
         </p>
 
         <ul class="govuk-list govuk-list--bullet">
@@ -46,20 +57,26 @@
         </ul>
 
         <p class="govuk-body">
-          You can view your current reference amount and any data transfers in the
-          <a class="govuk-link" href="https://www.ruralpayments.service.gov.uk/customer-account/login" target="_blank" rel="noopener noreferrer">
+          You can view your current reference amount and any data transfers in
+          the
+          <a
+            class="govuk-link"
+            href="https://www.ruralpayments.service.gov.uk/customer-account/login"
+            target="_blank"
+            rel="noopener noreferrer">
             Rural Payments service
           </a>.
         </p>
 
         {{ govukInput(model) }}
 
-        {{ govukButton({
-          text: "Calculate my delinked payment",
-          attributes: { id: "submit" }
-        }) }}
+        {{
+          govukButton({
+            text: "Calculate my delinked payment",
+            attributes: { id: "submit" }
+          })
+        }}
       </form>
-
     </div>
   </div>
 {% endblock %}
