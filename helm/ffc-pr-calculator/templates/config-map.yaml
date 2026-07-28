@@ -4,6 +4,7 @@ data:
   NODE_ENV: {{ quote .Values.environment }}
   PORT: {{ quote .Values.container.port }}
   APPINSIGHTS_CLOUDROLE: {{ quote .Values.name }}
+  OTEL_SERVICE_NAME: {{ quote .Values.name }}
   GOOGLE_TAG_MANAGER_KEY: {{ quote .Values.container.googleTagManagerKey}}
   SITE_HOSTNAME: https://{{ .Values.ingress.endpoint }}.{{ .Values.ingress.server }}
 {{- end -}}
