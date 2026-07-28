@@ -18,7 +18,8 @@ module.exports = [{
     validate: {
       payload: joi.object({
         analytics: joi.boolean(),
-        async: joi.boolean().default(false)
+        async: joi.boolean().default(false),
+        crumb: joi.string()
       })
     },
     handler: (request, h) => {
