@@ -48,7 +48,7 @@ describe('cookies route', () => {
     const options = {
       method: 'POST',
       url: '/cookies',
-      payload: { analytics: true }
+      payload: { analytics: true, crumb: 'test-crumb' }
     }
 
     const result = await server.inject(options)
